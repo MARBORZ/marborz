@@ -1,0 +1,168 @@
+{
+  "common": {
+    "logo": "[ MARBORZ.ONE ]",
+    "copyright": "© 2026 AMADI MASUEV",
+    "statuses": {
+      "active": "AKTIV",
+      "shipped": "LEVERT",
+      "experiment": "EKSPERIMENT",
+      "planned": "PLANLAGT"
+    }
+  },
+  "nav": {
+    "home": "HJEM",
+    "projects": "PROSJEKTER",
+    "about": "OM MEG",
+    "contact": "KONTAKT"
+  },
+  "home": {
+    "breadcrumb": "001 / HJEM",
+    "location": "PORSGRUNN, 59.14°N · 2026",
+    "hero": {
+      "line1": "Bygger",
+      "line2": "grensesnitt",
+      "line3": "som tenker."
+    },
+    "projects": {
+      "label": "— UTVALGTE PROSJEKTER / 2025–2026",
+      "subtitle": "Fire prosjekter under utvikling.",
+      "viewAll": "SE ALLE →"
+    },
+    "approach": {
+      "label": "— TILNÆRMING",
+      "line1": "Jeg vil forstå",
+      "line2": "arkitektur, ikke bare kode.",
+      "body": "Lær hvorfor før hvordan. Bygg små ting godt før du skalerer. Det er hele planen."
+    },
+    "cta": {
+      "label": "— TA KONTAKT",
+      "email": "masuevamadi@gmail.com →"
+    },
+    "footer": {
+      "next": "→ PROSJEKTER"
+    }
+  },
+  "projects": {
+    "breadcrumb": "002 / PROSJEKTER",
+    "count": "12 PROSJEKTER · 4 AKTIVE",
+    "hero": {
+      "line1": "Alt jeg har bygget",
+      "line2": "og lært av."
+    },
+    "filter": {
+      "label": "FILTER:",
+      "all": "ALLE",
+      "active": "AKTIVE",
+      "shipped": "LEVERT",
+      "experiments": "EKSPERIMENTER",
+      "view": "VISNING: RUTENETT / LISTE"
+    },
+    "featured": {
+      "label": "— FREMHEVET"
+    },
+    "archive": {
+      "label": "— EKSPERIMENTER OG ARKIV"
+    },
+    "list": {
+      "aether": { "description": "Moderne landingsside som utforsker minimalistische designprinsipper og glatte interaksjoner." },
+      "2048": { "description": "Klassisk implementasjon av puslespillet 2048. Fokus på ren spellogikk og tilstandshåndtering." },
+      "yatzy": { "description": "Tradisjonelt Yatzy-spill med full regelimplementering og poengtakking." },
+      "stasis": { "description": "Eksperimentell landingsside med fokus på typografi og visuell hierarki." },
+      "hdufndsk": { "description": "Sosial plattform bygget i samarbeid med Deathtrip. Brukergodkjenning, innlegg og fellesskapsinteraksjoner." },
+      "kropp-fitness": { "description": "Min første landingsside. Bygget med ren HTML og CSS for å mestre grunnleggende webdesign- og layout-prinsipper." },
+      "skrekkeparken": { "description": "Interaktiv Halloween-kartspill for skoleprosjekt. Kombinerer historie med interaktive elementer og animasjoner." },
+      "date-time": { "description": "Vakker animert temaside for Wallpaper Engine med direkte klokke og datumopdateringer. Demonstrerer elegant bruk av setInterval() og CSS-animasjoner." },
+      "redbeardvfx": { "description": "Portefølje-landingsside for VFX-veileder som spesialiserer seg på film, serier og kommersiell visuell effekt. Inneholder kontaktskjema og prosjektvisning." },
+      "todo-react": { "description": "Fullstack todo-applikasjon som demonstrerer React-grunnleggende med komplett CRUD-operasjoner. Enkel backend med riktig API-struktur. Første seriøse React-prosjekt som beviser junior-nivå kompetanse." },
+      "interactive-dashboard": { "description": "Datavisualiseringsdashbord med sanntidsoppdateringer og interaktive diagrammer. Fokus på responsivt design og brukeropplevelse." },
+      "nordic-market": { "description": "E-handelsplattform som viser nordiske designprodukter. Fullstendig handlevogn, betalingsintegrasjon og admin-panel." }
+    },
+    "footer": {
+      "next": "→ OM MEG"
+    }
+  },
+  "about": {
+    "breadcrumb": "003 / OM MEG",
+    "status": "ÅR 1 AV 4 · IT OG MEDIEPRODUKSJON",
+    "hero": {
+      "line1": "Tre språk hjemme,",
+      "line2": "ett på skolen,",
+      "line3": "ett i terminalen."
+    },
+    "background": {
+      "label": "— BAKGRUNN",
+      "body": "Jeg er Amadi Masuev. Førsteklassing ved Porsgrunn videregående skole, IT og medieproduksjon. Lærer fullstack-utvikling med fokus på arkitektur og hvorfor ting er bygget slik de er.\n\nLangsiktig mål: jobbe i norsk teknologiindustri som fullstack-utvikler med fokus på AI-integrasjon."
+    },
+    "quickInfo": {
+      "label": "— KORT FORTALT",
+      "location": { "key": "STED", "value": "Porsgrunn, Norge" },
+      "status": { "key": "STATUS", "value": "Åpen for junior-stillinger" },
+      "codingSince": { "key": "KODER SIDEN", "value": "Mai 2025" },
+      "focus": { "key": "FOKUS", "value": "Fullstack + AI" },
+      "stack": { "key": "STACK", "value": "React · TS · Node" },
+      "editor": { "key": "EDITOR", "value": "VS Code" }
+    },
+    "learning": {
+      "label": "— LÆRINGSSTI",
+      "subtitle": "Hvor jeg er, og hvor jeg skal.",
+      "items": [
+        { "level": "01", "name": "React, HTML, CSS, JavaScript", "status": "KOMFORTABEL" },
+        { "level": "02", "name": "TypeScript, Node, Express", "status": "PÅGÅR" },
+        { "level": "03", "name": "Next.js, NestJS, PostgreSQL", "status": "NESTE" },
+        { "level": "04", "name": "ML, statistikk, AI-integrasjon", "status": "LANGSIKTIG" }
+      ]
+    },
+    "principles": {
+      "label": "— PRINSIPPER",
+      "items": [
+        {
+          "number": "01",
+          "title": "Hvorfor før hvordan.",
+          "body": "Jeg vil forstå arkitektur og avveininger, ikke bare lime sammen kode som kjører."
+        },
+        {
+          "number": "02",
+          "title": "Små ting, godt bygget.",
+          "body": "Fire ordentlig leverte prosjekter er bedre enn tjue halvferdige eksperimenter."
+        },
+        {
+          "number": "03",
+          "title": "Tydelig struktur.",
+          "body": "Ren kode, klare navn, lite støy. Samme følelse jeg vil ha visuelt."
+        }
+      ]
+    },
+    "footer": {
+      "next": "→ KONTAKT"
+    }
+  },
+  "contact": {
+    "breadcrumb": "004 / KONTAKT",
+    "status": "SVARER INNEN 24T",
+    "hero": {
+      "line1": "La oss snakke.",
+      "line2": "Kort eller langt — jeg leser det."
+    },
+    "form": {
+      "label": "— SEND EN MELDING",
+      "name": { "label": "NAVN", "placeholder": "ditt navn" },
+      "email": { "label": "E-POST", "placeholder": "example@gmail.com" },
+      "message": { "label": "MELDING", "placeholder": "hva tenker du på?" },
+      "send": "SEND →"
+    },
+    "direct": {
+      "label": "— DIREKTE",
+      "email": { "key": "E-POST", "value": "masuevamadi@gmail.com →" },
+      "github": { "key": "GITHUB", "value": "github.com/MARBORZ →" },
+      "location": {
+        "key": "STED",
+        "value": "Porsgrunn, Telemark",
+        "coords": "59.14°N · 9.66°E · CET (UTC+1)"
+      },
+      "reply": { "key": "SVARER PÅ", "value": "NO · EN · RU" }
+    },
+    "footer": {
+      "next": "→ HJEM"
+    }
+  }
+}

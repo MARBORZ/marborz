@@ -1,0 +1,208 @@
+{
+  "common": {
+    "logo": "[ MARBORZ.ONE ]",
+    "copyright": "© 2026 AMADI MASUEV",
+    "statuses": {
+      "active": "ACTIVE",
+      "shipped": "SHIPPED",
+      "experiment": "EXPERIMENT",
+      "planned": "PLANNED"
+    }
+  },
+  "nav": {
+    "home": "HOME",
+    "projects": "PROJECTS",
+    "about": "ABOUT",
+    "contact": "CONTACT"
+  },
+  "home": {
+    "breadcrumb": "001 / HOME",
+    "location": "PORSGRUNN, 59.14°N · 2026",
+    "hero": {
+      "line1": "Building",
+      "line2": "interfaces",
+      "line3": "that think."
+    },
+    "projects": {
+      "label": "— SELECTED PROJECTS / 2025–2026",
+      "subtitle": "Four projects in progress.",
+      "viewAll": "VIEW ALL →"
+    },
+    "approach": {
+      "label": "— APPROACH",
+      "line1": "I want to understand",
+      "line2": "architecture, not just code.",
+      "body": "Learn the why before the how. Build small things well before scaling. That's the whole plan."
+    },
+    "cta": {
+      "label": "— GET IN TOUCH",
+      "email": "masuevamadi@gmail.com →"
+    },
+    "footer": {
+      "next": "→ PROJECTS"
+    }
+  },
+  "projects": {
+    "breadcrumb": "002 / PROJECTS",
+    "count": "12 PROJECTS · 4 ACTIVE",
+    "hero": {
+      "line1": "Everything I've built",
+      "line2": "and learned from."
+    },
+    "filter": {
+      "label": "FILTER:",
+      "all": "ALL",
+      "active": "ACTIVE",
+      "shipped": "SHIPPED",
+      "experiments": "EXPERIMENTS",
+      "view": "VIEW: GRID / LIST"
+    },
+    "featured": {
+      "label": "— FEATURED"
+    },
+    "archive": {
+      "label": "— EXPERIMENTS AND ARCHIVE"
+    },
+    "list": {
+      "aether": {
+        "description": "Modern landing page exploring minimalist design principles and smooth interactions."
+      },
+      "2048": {
+        "description": "Classic 2048 puzzle game implementation. Focused on clean game logic and state management."
+      },
+      "yatzy": {
+        "description": "Traditional Yatzy game with full rules implementation and score tracking."
+      },
+      "stasis": {
+        "description": "Experimental landing page with focus on typography and visual hierarchy."
+      },
+      "hdufndsk": {
+        "description": "Social platform built in collaboration with Deathtrip. Features user authentication, posts, and community interactions."
+      },
+      "kropp-fitness": {
+        "description": "My first landing page. Built with pure HTML and CSS to master fundamentals of web design and layout."
+      },
+      "skrekkeparken": {
+        "description": "Interactive Halloween map-game for school project. Combines storytelling with interactive elements and animations."
+      },
+      "date-time": {
+        "description": "Beautiful animated wallpaper engine theme featuring live clock and date updates. Demonstrates elegant use of setInterval() and CSS animations."
+      },
+      "redbeardvfx": {
+        "description": "Portfolio landing page for VFX supervisor specializing in film, series, and commercial visual effects. Features contact form and project showcase."
+      },
+      "todo-react": {
+        "description": "Full-stack todo application demonstrating React fundamentals with complete CRUD operations. Vanilla backend with proper API structure. First serious React project proving junior-level competency."
+      },
+      "interactive-dashboard": {
+        "description": "Data visualization dashboard with real-time updates and interactive charts. Focus on responsive design and user experience."
+      },
+      "nordic-market": {
+        "description": "E-commerce platform showcasing Nordic design products. Full shopping cart, payment integration, and admin panel."
+      }
+    },
+    "footer": {
+      "next": "→ ABOUT"
+    }
+  },
+  "about": {
+    "breadcrumb": "003 / ABOUT",
+    "status": "YEAR 1 / 4 · IT & MEDIA PRODUCTION",
+    "hero": {
+      "line1": "Three languages at home,",
+      "line2": "one at school,",
+      "line3": "one in the terminal."
+    },
+    "background": {
+      "label": "— BACKGROUND",
+      "body": "I'm Amadi Masuev. First-year student at Porsgrunn videregående skole, IT and media production. Learning fullstack development with focus on architecture and why things are built the way they are.\n\nLong-term goal: working in the Norwegian tech industry as a fullstack developer with focus on AI integration."
+    },
+    "quickInfo": {
+      "label": "— QUICK INFO",
+      "location": { "key": "LOCATION", "value": "Porsgrunn, Norway" },
+      "status": { "key": "STATUS", "value": "Open to junior roles" },
+      "codingSince": { "key": "CODING SINCE", "value": "May 2025" },
+      "focus": { "key": "FOCUS", "value": "Fullstack + AI" },
+      "stack": { "key": "STACK", "value": "React · TS · Node" },
+      "editor": { "key": "EDITOR", "value": "VS Code" }
+    },
+    "learning": {
+      "label": "— LEARNING PATH",
+      "subtitle": "Where I am, where I'm going.",
+      "items": [
+        {
+          "level": "01",
+          "name": "React, HTML, CSS, JavaScript",
+          "status": "COMFORTABLE"
+        },
+        {
+          "level": "02",
+          "name": "TypeScript, Node, Express",
+          "status": "IN PROGRESS"
+        },
+        {
+          "level": "03",
+          "name": "Next.js, NestJS, PostgreSQL",
+          "status": "NEXT"
+        },
+        {
+          "level": "04",
+          "name": "ML, statistics, AI integration",
+          "status": "LONG-TERM"
+        }
+      ]
+    },
+    "principles": {
+      "label": "— PRINCIPLES",
+      "items": [
+        {
+          "number": "01",
+          "title": "Why before how.",
+          "body": "I want to understand architecture and trade-offs, not just glue together code that runs."
+        },
+        {
+          "number": "02",
+          "title": "Small things, well built.",
+          "body": "Four projects shipped properly beat twenty half-finished experiments."
+        },
+        {
+          "number": "03",
+          "title": "Clear structure.",
+          "body": "Clean code, clear names, low noise. Same feeling I want visually."
+        }
+      ]
+    },
+    "footer": {
+      "next": "→ CONTACT"
+    }
+  },
+  "contact": {
+    "breadcrumb": "004 / CONTACT",
+    "status": "REPLIES WITHIN 24H",
+    "hero": {
+      "line1": "Let's talk.",
+      "line2": "Short or long, I'll read it."
+    },
+    "form": {
+      "label": "— SEND A MESSAGE",
+      "name": { "label": "NAME", "placeholder": "your name" },
+      "email": { "label": "EMAIL", "placeholder": "example@gmail.com" },
+      "message": { "label": "MESSAGE", "placeholder": "what's on your mind?" },
+      "send": "SEND →"
+    },
+    "direct": {
+      "label": "— DIRECT",
+      "email": { "key": "EMAIL", "value": "masuevamadi@gmail.com →" },
+      "github": { "key": "GITHUB", "value": "github.com/MARBORZ →" },
+      "location": {
+        "key": "LOCATION",
+        "value": "Porsgrunn, Telemark",
+        "coords": "59.14°N · 9.66°E · CET (UTC+1)"
+      },
+      "reply": { "key": "I REPLY IN", "value": "NO · EN · RU" }
+    },
+    "footer": {
+      "next": "→ HOME"
+    }
+  }
+}
