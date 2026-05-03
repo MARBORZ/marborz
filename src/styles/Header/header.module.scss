@@ -1,0 +1,109 @@
+@use "../tokens" as *;
+
+.header {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  background-color: $color-bg;
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm 80px;
+  background-color: $color-bg;
+  border-bottom: 1px solid $color-border;
+
+  .logo {
+    font-family: $font-mono;
+    font-size: $font-size-sm;
+    font-weight: 400;
+    letter-spacing: $letter-spacing-wide;
+    color: $color-text;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  .nav {
+    display: flex;
+    gap: $spacing-lg;
+
+    .navItem {
+      position: relative;
+      font-family: $font-mono;
+      font-size: $font-size-sm;
+      text-align: center;
+      letter-spacing: $letter-spacing-wide;
+      color: $color-text-muted;
+      position: relative;
+      transition:
+        color 0.2s,
+        filter 0.2s;
+
+      &:hover {
+        color: $color-text;
+      }
+
+      &.active {
+        color: $color-text;
+
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: 0px;
+          left: 50%;
+          translate: -50%;
+          background-color: #000000;
+          width: 60%;
+          height: 1px;
+        }
+      }
+    }
+  }
+
+  .lang {
+    display: flex;
+    gap: $spacing-sm;
+    align-items: center;
+
+    .langBtn {
+      padding: $spacing-xs;
+      min-width: 40px;
+      font-family: $font-mono;
+      font-size: $font-size-sm;
+      letter-spacing: $letter-spacing-wide;
+      border-radius: $radius-sm;
+      border: 1px solid transparent;
+      color: $color-text-muted;
+      background-color: transparent;
+      text-align: center;
+      transition: all 0.2s;
+
+      &.active {
+        color: $color-bg;
+        background-color: $color-text;
+        border-color: $color-text;
+      }
+
+      &:hover:not(.active) {
+        color: $color-text;
+        border-color: $color-text;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: $spacing-lg;
+
+    .nav {
+      flex-wrap: wrap;
+      gap: $spacing-lg;
+      justify-content: center;
+    }
+  }
+}

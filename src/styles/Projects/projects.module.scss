@@ -1,0 +1,343 @@
+@use '../tokens' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 24px;
+  padding: $spacing-xl clamp($spacing-xl, 5.5vw, 80px);
+  gap: 0;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: $spacing-xl 0;
+}
+
+.breadcrumb {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-text-muted;
+}
+
+.count {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-text-muted;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: $spacing-2xl 0 $spacing-3xl;
+
+  h1 {
+    font-family: $font-sans;
+    font-size: $font-size-6xl;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: $letter-spacing-hero;
+    margin: 0;
+
+    &:nth-child(2) {
+      font-family: $font-serif;
+      font-style: italic;
+    }
+  }
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2xl;
+  position: relative;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-lg 0;
+
+  .filterLabel {
+    font-family: $font-mono;
+    font-size: $font-size-xs;
+    letter-spacing: $letter-spacing-wide;
+    color: $color-text-muted;
+  }
+
+  .filterButtons {
+    display: flex;
+    gap: $spacing-sm;
+
+    button {
+      padding: $spacing-xs $spacing-md;
+      border: 1px solid transparent;
+      border-radius: $radius-md;
+      font-family: $font-mono;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      letter-spacing: $letter-spacing-wide;
+      color: $color-text;
+      background-color: transparent;
+      cursor: pointer;
+
+      &.active {
+        background-color: $color-text;
+        color: $color-bg;
+      }
+
+      &:hover:not(.active) {
+        border-color: $color-text;
+      }
+    }
+  }
+
+  .filterCount {
+    position: absolute;
+    right: 0;
+    font-family: $font-mono;
+    font-size: $font-size-xs;
+    letter-spacing: $letter-spacing-wide;
+    color: $color-text-muted;
+  }
+}
+
+// Featured section
+.featuredSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+  padding: $spacing-3xl 0;
+  border-bottom: 1px solid $color-border;
+}
+
+.featuredLabel {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-text-muted;
+}
+
+.featuredProject {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+}
+
+.featuredMedia {
+  width: 100%;
+  height: 520px;
+  background-color: $color-surface;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    font-family: $font-mono;
+    font-size: $font-size-md;
+    letter-spacing: $letter-spacing-wide;
+    color: $color-text-muted;
+  }
+}
+
+.featuredBody {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-xl;
+}
+
+.featuredMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.featuredNum {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.featuredTitle {
+  font-family: $font-sans;
+  font-size: $font-size-5xl;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: $color-text;
+}
+
+.featuredStatus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px $spacing-sm;
+  background-color: $color-text;
+  color: $color-bg;
+  font-family: $font-mono;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  letter-spacing: $letter-spacing-wide;
+  border-radius: $radius-md;
+  width: fit-content;
+}
+
+.featuredDescription {
+  font-family: $font-sans;
+  font-size: $font-size-md;
+  line-height: $line-height-loose;
+  color: $color-text-muted;
+  max-width: 720px;
+}
+
+// Project cards grid (2x2)
+.projectsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-2xl;
+  padding: $spacing-3xl 0;
+  border-bottom: 1px solid $color-border;
+}
+
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+
+  .cardMedia {
+    width: 100%;
+    height: 220px;
+    background-color: $color-surface;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      font-family: $font-mono;
+      font-size: $font-size-sm;
+      letter-spacing: $letter-spacing-wide;
+      color: $color-text-muted;
+    }
+  }
+
+  .cardBody {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding: $spacing-lg;
+  }
+
+  .cardMeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cardNum {
+    font-family: $font-mono;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+
+  .cardStatus {
+    font-family: $font-mono;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    letter-spacing: $letter-spacing-wide;
+    color: $color-bg;
+    background-color: $color-text;
+    padding: 3px $spacing-sm;
+    border-radius: $radius-md;
+  }
+
+  .cardTitle {
+    font-family: $font-sans;
+    font-size: $font-size-xl;
+    font-weight: 400;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-text;
+    margin-top: $spacing-xs;
+  }
+
+  .cardDescription {
+    font-family: $font-sans;
+    font-size: 13px;
+    line-height: 1.55;
+    color: $color-text-muted;
+  }
+}
+
+// Experiments list
+.archiveSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  padding: $spacing-3xl 0;
+}
+
+.archiveLabel {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-text-muted;
+}
+
+.archiveList {
+  display: flex;
+  flex-direction: column;
+}
+
+.archiveRow {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px solid $color-border;
+  gap: $spacing-lg;
+
+  &:first-child {
+    border-top: 1px solid $color-border;
+  }
+
+  .archiveNum {
+    font-family: $font-mono;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    min-width: 32px;
+    flex-shrink: 0;
+  }
+
+  .archiveTitle {
+    font-family: $font-sans;
+    font-size: $font-size-2xl;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-text;
+    flex-shrink: 0;
+  }
+
+  .archiveSub {
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: $font-size-xl;
+    color: $color-text-muted;
+    flex: 1;
+  }
+
+  .archiveStack {
+    font-family: $font-mono;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .archiveArrow {
+    font-family: $font-mono;
+    font-size: $font-size-md;
+    color: $color-text;
+    flex-shrink: 0;
+  }
+}

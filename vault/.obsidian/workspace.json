@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "88d39627a32ee52c",
+        "id": "ed271f4c4642e434",
         "type": "tabs",
         "children": [
           {
-            "id": "70e55b94ca6521fb",
+            "id": "28d7dbab3bed2a9e",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -176,11 +176,12 @@
       "bases:Создать новую базу": false
     }
   },
-  "active": "70e55b94ca6521fb",
+  "active": "28d7dbab3bed2a9e",
   "lastOpenFiles": [
+    "notes/SESSION_2026-05-03_styling.md",
+    "PROJECT_OVERVIEW.md",
     "design/COMPONENTS.md",
     "design/DESIGN_TOKENS.md",
-    "project/PROJECT_PLAN.md",
-    "PROJECT_OVERVIEW.md"
+    "project/PROJECT_PLAN.md"
   ]
 }

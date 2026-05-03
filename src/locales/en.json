@@ -1,6 +1,5 @@
 {
   "common": {
-    "logo": "[ MARBORZ.ONE ]",
     "copyright": "© 2026 AMADI MASUEV",
     "statuses": {
       "active": "ACTIVE",
@@ -107,7 +106,7 @@
   },
   "about": {
     "breadcrumb": "003 / ABOUT",
-    "status": "YEAR 1 / 4 · IT & MEDIA PRODUCTION",
+    "status": "YEAR 1 / 3 · IT & MEDIA PRODUCTION",
     "hero": {
       "line1": "Three languages at home,",
       "line2": "one at school,",
@@ -115,7 +114,7 @@
     },
     "background": {
       "label": "— BACKGROUND",
-      "body": "I'm Amadi Masuev. First-year student at Porsgrunn videregående skole, IT and media production. Learning fullstack development with focus on architecture and why things are built the way they are.\n\nLong-term goal: working in the Norwegian tech industry as a fullstack developer with focus on AI integration."
+      "body": "I'm Amadi Masuev — a first-year student at Porsgrunn videregående skole, IT and media production. I got into programming because I wanted to understand how things are built, not just how to use them.\n\nWorking toward a career in the Norwegian tech industry as a fullstack developer. Particularly interested in system architecture and AI integration."
     },
     "quickInfo": {
       "label": "— QUICK INFO",

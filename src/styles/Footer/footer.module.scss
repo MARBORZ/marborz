@@ -1,0 +1,19 @@
+@use '../tokens' as *;
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: $spacing-lg;
+  margin-top: $spacing-xl;
+  padding-bottom: $spacing-xl;
+  font-family: $font-mono;
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-text-muted;
+
+  a {
+    color: $color-text;
+    letter-spacing: $letter-spacing-wide;
+  }
+}

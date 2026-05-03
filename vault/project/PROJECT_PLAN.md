@@ -1,280 +1,189 @@
 # PROJECT_PLAN — Marborz.one Redesign 2026
 
-## 📊 Обзор проекта
+## Обзор проекта
 
 | Параметр | Значение |
 |----------|----------|
-| **Проект** | Redizajn portfolio marborz.one |
-| **Цель** | Junior+ portfolio с focus на engineering mindset |
-| **Стек** | Vite + React 19 + TypeScript + Express (backend) |
-| **Дизайн** | Pencil (.pen) с заранее определённой дизайн-системой |
-| **Структура** | 4 страницы + навигация + компоненты |
+| **Проект** | Редизайн портфолио marborz.one |
+| **Цель** | Junior+ портфолио с акцентом на engineering mindset |
+| **Стек** | Vite + React 19 + TypeScript + react-i18next + react-hook-form |
+| **Дизайн** | Pencil (.pen) — `marborz_design.pen` в корне проекта |
+| **Структура** | 4 страницы + Header + Footer + общие компоненты |
+| **Архитектура** | Feature-Sliced Design, CSS Modules (SCSS) |
 
 ---
 
-## 🎯 Этапы разработки
+## Этапы разработки
 
-### ЭТАП 1: Project Setup ✅ IN PROGRESS
-**📥 INPUT:** Создать базовый React + Vite + TypeScript проект
-**⚙️ PROCESSING:**
-- Vite как build tool (fast, modern)
-- React 19 (latest) + TypeScript для type safety
-- pnpm как package manager
-- Minimal dependencies на этапе (позже добавим React Router, etc)
-
-**📤 OUTPUT:**
-- Vite + React 19 + TS проект создан
-- Папка структура готова
-- Dev server работает локально
-- Без Framer Motion / Lenis / React Router пока
-
-**Статус:** Starting now...
+### ЭТАП 1: Project Setup ✅ DONE
+- Vite + React 19 + TypeScript
+- bun как package manager
+- React Router, react-i18next, react-hook-form
+- Базовая структура папок
 
 ---
 
-### ЭТАП 2: Design Tokens & Global Styles
-**📥 INPUT:** Применить дизайн-токены в код
-**⚙️ PROCESSING:**
-- Вытащить дизайн-токены из Pencil (цвета, типография, spacing)
-- Создать CSS variables / Tailwind config
-- Применить глобальный стиль
+### ЭТАП 2: Design Tokens & Global Styles ✅ DONE
+- `src/styles/tokens.scss` — все переменные ($color-*, $font-*, $spacing-*, $font-size-*, $line-height-*, $letter-spacing-*)
+- `src/styles/global.scss` — CSS reset, базовые стили body/a/button/input
+- Все модули используют `@use '../tokens' as *`
 
-**📤 OUTPUT:**
-- global.css с всеми токенами
-- CSS variables для лёгкого управления стилями
-- Всё из [[design/DESIGN_TOKENS.md]]
+**Токены:**
+```
+$color-bg: #f4f2ed
+$color-text: #0a0a0a
+$color-text-muted: #6b6b68
+$color-text-placeholder: #a8a8a4
+$color-border: #0a0a0a
+$color-surface: #e8e5dd
 
-**Статус:** Pending
+$font-sans: 'Inter', system-ui, sans-serif
+$font-serif: 'Georgia', 'Times New Roman', serif
+$font-mono: 'JetBrains Mono', monospace
 
----
-
-### ЭТАП 3: Layout & Components
-**📥 INPUT:** Создать переиспользуемые компоненты
-**⚙️ PROCESSING:**
-- Header (навигация, language switcher)
-- Button (с вариантами: primary, secondary, ghost)
-- Form fields (input, textarea)
-- Project card
-- Footer
-
-**📤 OUTPUT:**
-- components/ папка с React компонентами
-- Каждый компонент имеет props, className, clean API
-- Все из [[design/COMPONENTS.md]]
-
-**Статус:** Pending
+$letter-spacing-hero: -0.01em
+$letter-spacing-title: -0.02em
+$letter-spacing-tight: -0.01em
+$letter-spacing-wide: 0.08em
+$letter-spacing-label: 0.10em
+```
 
 ---
 
-### ЭТАП 4: Страницы (Home, Projects, About, Contact)
-**📥 INPUT:** Реализовать 4 страницы по дизайну
-**⚙️ PROCESSING:**
-- Для каждой страницы:
-  - Прочитать структуру из дизайна
-  - Построить компоненты вверх из базовых
-  - Добавить текст, проверить responsive
-
-**📤 OUTPUT:**
-- pages/Home.tsx
-- pages/Projects.tsx
-- pages/About.tsx
-- pages/Contact.tsx
-- Все работают, все выглядят по дизайну
-
-**Статус:** Pending
+### ЭТАП 3: Layout & Components ✅ DONE
+- `Header.tsx` — фиксированный, nav с active state, language switcher (NO/EN/RU), i18n nav items
+- `Footer.tsx` — copyright + next page link, margin-top: $spacing-xl
+- `ScrollToTop` — компонент в App.tsx через useLocation
+- `Layout.tsx` — Header + children
 
 ---
 
-### ЭТАП 5: Навигация & Routing
-**📥 INPUT:** Сделать навигацию между страницами
-**⚙️ PROCESSING:**
-- React Router (добавим на этом этапе)
-- Header навигация
-- Smooth transitions
+### ЭТАП 4: Страницы ✅ DONE
 
-**📤 OUTPUT:**
-- React Router настроен
-- Все routes работают
-- Header меняет active state
+**Home:**
+- Hero 88px (3 строки: sans / serif italic / sans)
+- Превью 4 проектов в виде строк (/number | title | *italic sub* | stack | badge | →)
+- Approach секция (64px h3 mixed serif/sans)
+- CTA с email ссылкой
 
-**Статус:** Pending
+**Projects:**
+- Hero 88px (2 строки)
+- Фильтры (ALL/ACTIVE/SHIPPED/EXPERIMENT) + счётчик absolute right
+- Featured проект: большая карточка с border, media placeholder, body padding
+- Grid 2×2 карточек с border, cardBody, cardMeta (number + status badge)
+- Archive список (experiment/planned) как строки
 
----
+**About:**
+- Hero 88px (3 строки)
+- Background + Quick Info side-by-side (justify-content: center, gap: 160px)
+  - Background: 500px, max-width текста 600px
+  - Quick Info: 600px, flex rows с key/value space-between
+- Learning Path: квадратный индикатор + name + status + number
+- Principles: 3-колоночный grid
 
-### ЭТАП 6: Backend Integration
-**📥 INPUT:** Подключить контактную форму к backend
-**⚙️ PROCESSING:**
-- Скопировать Express backend из C:/dev/bio-site (как есть)
-- API endpoints интегрировать в Contact page
-- Resend для emails
-
-**📤 OUTPUT:**
-- Contact форма отправляет данные на backend
-- Emails приходят через Resend
-- Error handling + success messages
-
-**Статус:** Pending
-
----
-
-### ЭТАП 7: Animations & Polish
-**📥 INPUT:** Добавить animations и улучшить UX
-**⚙️ PROCESSING:**
-- Framer Motion (добавим на этом этапе)
-- Scroll animations
-- Hover states
-- Page transitions
-
-**📤 OUTPUT:**
-- Плавные animations по всему сайту
-- Никакого лишнего — только что улучшает UX
-
-**Статус:** Pending
+**Contact:**
+- Hero 88px (2 строки)
+- 2-колоночный grid: форма (1fr) + direct contact (420px)
+- Форма: react-hook-form, aria-invalid, кнопка SEND → с filter:invert + border
+- Direct contact: email, github, location (с координатами), reply languages
 
 ---
 
-### ЭТАП 8: Deployment & Testing
-**📥 INPUT:** Подготовить к production
-**⚙️ PROCESSING:**
-- Build optimization
+### ЭТАП 5: i18n ✅ DONE
+- 3 языка: NO (default), EN, RU
+- Все nav links через `t('nav.key')`
+- Все страницы полностью переведены
+- Проекты: subtitle на всех 12 проектах в `projects.ts`
+
+---
+
+### ЭТАП 6: Backend Integration 🔴 TODO
+- Подключить Contact форму к Resend API
+- Express backend (взять из C:/dev/bio-site)
+- Email отправка + success/error UX
+
+---
+
+### ЭТАП 7: Animations & Polish 🔴 TODO
+- Framer Motion — page transitions, scroll animations
+- Hover states на project rows (стрелка, подчёркивание?)
+- Skeleton loading для карточек
+- Mobile responsive доработка (сейчас базово есть @media 900px)
+
+---
+
+### ЭТАП 8: Deployment 🔴 TODO
+- Vercel deploy
+- Domain marborz.one
 - Lighthouse audit
-- Deploy на Vercel
-- Testing (manual + automated)
-
-**📤 OUTPUT:**
-- marborz.one живой и быстрый
-- Все работает на мобильных
-- Lighthouse зелёный
-
-**Статус:** Pending
+- SEO meta tags
 
 ---
 
-## 🎨 Дизайн-система
+## Структура проекта (актуальная)
 
-### Цвета (из [[design/DESIGN_TOKENS.md]])
 ```
-color-accent:        #0A0A0A (основной тёмный)
-color-bg:            #F4F2ED (фон, бежевый)
-color-muted:         #E8E5DD (приглушённый серо-бежевый)
-color-text:          #0A0A0A (основной текст)
-color-text-secondary: #6B6B68 (вторичный текст)
-```
-
-### Типография
-```
-font-sans:  Inter, system-ui, sans-serif
-font-serif: Georgia, serif
-font-mono:  JetBrains Mono, monospace
-```
-
-### Размеры шрифтов
-```
-size-xs:   11px
-size-sm:   12px
-size-base: 16px (body text)
-size-lg:   20px
-size-xl:   26px
-size-2xl:  32px
-size-3xl:  44px
-size-4xl:  64px (headings)
-size-5xl:  88px (hero headings)
+src/
+├── components/
+│   ├── Header.tsx         # Fixed header, nav, lang switcher
+│   ├── Footer.tsx         # Copyright + next page
+│   └── Layout.tsx         # Header wrapper
+├── pages/
+│   ├── Home.tsx
+│   ├── Projects.tsx       # Filtering, featured card, grid, archive
+│   ├── About.tsx
+│   └── Contact.tsx        # react-hook-form
+├── shared/
+│   └── projects.ts        # Project data + types + subtitle
+├── locales/
+│   ├── en.json
+│   ├── no.json
+│   └── ru.json
+├── styles/
+│   ├── tokens.scss        # Design tokens
+│   ├── global.scss        # CSS reset + base
+│   ├── Header/header.module.scss
+│   ├── Footer/footer.module.scss
+│   ├── Home/home.module.scss
+│   ├── Projects/projects.module.scss
+│   ├── About/about.module.scss
+│   └── Contact/contact.module.scss
+├── App.tsx                # BrowserRouter в main.tsx, useLocation scroll
+└── main.tsx               # global.scss import, BrowserRouter
 ```
 
 ---
 
-## 📄 Структура страниц
+## Архитектурные решения
 
-### HOME (02_home_en)
-**Секции:**
-- Header (nav, language switcher)
-- Hero: "Building interfaces that think" (с italics на "interfaces")
-- Selected Projects (4 проекта с row layout)
-- Approach section (Why I code this way)
-- Contact CTA (masuevamadi@gmail.com)
-- Footer
-
-### PROJECTS (04_projects_en)
-**Секции:**
-- Header
-- Hero: "Everything I've built and learned from"
-- Filter buttons (All, Active, Shipped, Experiments)
-- Featured project (большой с видео)
-- Project grid (12 projects, 2 колонки)
-- Experiments archive
-
-### ABOUT (06_about_en)
-**Секции:**
-- Header
-- Hero: "Three languages at home, one at school, one in the terminal"
-- Background информация (1st year IT student)
-- Quick info (Location, Status, Stack, Editor)
-- Learning path (4 этапа)
-- Principles (3 основных принципа)
-- Footer
-
-### CONTACT (08_contact_en)
-**Секции:**
-- Header
-- Hero: "Let's talk"
-- Contact form (name, email, message)
-- Direct contacts (email, github, location)
-- Language info
-- Footer
+| Решение | Почему |
+|---------|--------|
+| CSS Modules + SCSS | Изоляция стилей, нет конфликтов, переиспользование через tokens |
+| `@use` вместо `@import` | Dart Sass 1.65+ — @import deprecated |
+| `filter: invert(1)` на SEND | Элегантный hover без отдельного цвета |
+| `position: absolute` на счётчик фильтров | Не двигает кнопки при изменении |
+| `clamp($spacing-xl, 5.5vw, 80px)` | Responsive padding без медиа-запросов |
+| `subtitle` field в projects.ts | Описание на уровне данных, не translations |
 
 ---
 
-## 📁 Структура проекта (итоговая)
+## Что работает прямо сейчас
+- ✅ Все 4 страницы рендерятся
+- ✅ Language switcher NO/EN/RU работает
+- ✅ Фильтры проектов работают
+- ✅ Форма валидируется (react-hook-form)
+- ✅ Scroll to top при навигации
+- ✅ CSS reset применяется (global.scss в main.tsx)
+- ✅ Responsive базово (900px breakpoint)
 
-```
-C:/dev/main/marborz/
-├── src/
-│   ├── components/          # Переиспользуемые компоненты
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Button.tsx
-│   │   ├── ProjectCard.tsx
-│   │   └── ...
-│   ├── pages/               # Страницы
-│   │   ├── Home.tsx
-│   │   ├── Projects.tsx
-│   │   ├── About.tsx
-│   │   └── Contact.tsx
-│   ├── styles/              # Глобальные стили
-│   │   └── global.css
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
-├── vault/                   # Obsidian vault (этот файл)
-├── public/                  # Статические файлы
-├── vite.config.ts
-├── tsconfig.json
-├── package.json
-└── pnpm-lock.yaml
-```
+## Что не работает / TODO
+- ❌ Форма реально не отправляет (нет API)
+- ❌ Анимации отсутствуют
+- ❌ Мобильный вид не доработан
+- ❌ SEO/meta tags нет
+- ❌ Deploy не настроен
 
 ---
 
-## 🔗 Связанные файлы в vault
-
-Для каждого этапа есть детали в:
-- [[../design/DESIGN_TOKENS.md]] — дизайн-токены и их использование
-- [[../design/COMPONENTS.md]] — компоненты и их структура
-- [[../code/ARCHITECTURE.md]] — архитектурные решения
-- [[../notes/NEURAL_CONNECTION_TEMPLATE.md]] — как писать заметки про решения
-
----
-
-## 📝 Как обновлять этот план
-
-Для каждого решения используй структуру:
-1. **INPUT:** Что входит?
-2. **PROCESSING:** Какие варианты, трейд-оффы?
-3. **OUTPUT:** Итоговое решение и почему?
-
-Создавай заметку в [[../notes/]] и ссылайся на неё здесь.
-
----
-
-**Last updated:** 2026-05-03  
-**Next step:** ✅ Этап 1 — создание Vite проекта
+**Last updated:** 2026-05-04
+**Current focus:** Styling polish → Backend → Deploy

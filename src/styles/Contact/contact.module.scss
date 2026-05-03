@@ -1,0 +1,233 @@
+@use '../tokens' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 24px;
+  padding: $spacing-xl clamp($spacing-xl, 5.5vw, 80px);
+  gap: 0;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: $spacing-xl 0;
+}
+
+.breadcrumb {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-text-muted;
+}
+
+.status {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-text-muted;
+  text-align: right;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: $spacing-2xl 0 $spacing-3xl;
+
+  h1 {
+    font-family: $font-sans;
+    font-size: $font-size-6xl;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: $letter-spacing-hero;
+    margin: 0;
+
+    &:nth-child(2) {
+      font-family: $font-serif;
+      font-style: italic;
+    }
+  }
+}
+
+// 2-column layout: form | direct
+.contactContent {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: $spacing-4xl;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-3xl 0;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+  }
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.sectionLabel {
+  font-family: $font-mono;
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-label;
+  color: $color-text-muted;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+
+  label {
+    font-family: $font-mono;
+    font-size: $font-size-xs;
+    letter-spacing: $letter-spacing-label;
+    color: $color-text-muted;
+  }
+
+  input,
+  textarea {
+    border: none;
+    border-bottom: 1px solid $color-border;
+    padding: $spacing-sm 0;
+    background-color: transparent;
+    font-family: $font-sans;
+    font-size: $font-size-md;
+    color: $color-text;
+    width: 100%;
+
+    &::placeholder {
+      color: $color-text-placeholder;
+    }
+
+    &:focus {
+      outline: none;
+      border-bottom-color: $color-text;
+    }
+
+    &[aria-invalid='true'] {
+      border-bottom-color: #d32f2f;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .errorMessage {
+    font-size: $font-size-xs;
+    color: #d32f2f;
+  }
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 48px;
+  background-color: $color-text;
+  color: $color-bg;
+  border: 1px solid $color-bg;
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  letter-spacing: $letter-spacing-wide;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: filter 0.2s;
+  margin-top: $spacing-md;
+
+  &:hover:not(:disabled) {
+    filter: invert(1);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Direct contact column
+.directContact {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.contactLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $spacing-lg;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .contactKey {
+    font-family: $font-mono;
+    font-size: $font-size-xs;
+    letter-spacing: $letter-spacing-label;
+    color: $color-text-muted;
+  }
+
+  a,
+  .contactValue {
+    font-family: $font-sans;
+    font-size: 20px;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-text;
+    word-break: break-word;
+  }
+
+  .locationInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    p {
+      font-family: $font-sans;
+      font-size: 20px;
+      letter-spacing: $letter-spacing-tight;
+      color: $color-text;
+      margin: 0;
+
+      &.coordinates {
+        font-family: $font-mono;
+        font-size: $font-size-xs;
+        letter-spacing: $letter-spacing-wide;
+        color: $color-text-muted;
+      }
+    }
+  }
+
+  .replyLanguages {
+    font-family: $font-sans;
+    font-size: 20px;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-text;
+  }
+}
