@@ -173,9 +173,9 @@ npm install react-helmet-async
 ### ✅ Завершено (2026-05-04):
 1. ✅ Применить mixins к остальным SCSS — Projects, About, Contact, NotFound
 2. ✅ Lazy Loading + Skeleton — React.lazy для всех страниц, 3 skeleton компонента
+3. ✅ Animations (Framer Motion) — page transitions, scroll animations, language change skeleton
 
 ### Сейчас (следующий шаг):
-3. Animations (Framer Motion)
 4. Deploy на Vercel
 
 ### Потом:
@@ -202,4 +202,4 @@ npm install react-helmet-async
 - [[MARBORZ_PROJECT]] — canvas обзор
 
 ---
-**Last updated:** 2026-05-04 16:35
+**Last updated:** 2026-05-04 17:05
