@@ -53,9 +53,6 @@ export default function About() {
     },
   }
 
-export default function About() {
-  const { t } = useTranslation()
-
   return (
     <>
       <section className={styles.page}>
