@@ -101,6 +101,7 @@ export default function Projects() {
             className={styles.filterSelect}
             value={filter}
             onChange={(e) => setFilter(e.target.value as ProjectStatus | 'all')}
+            aria-label={t('projects.filter.label')}
           >
             {PROJECT_FILTERS.map((f) => (
               <option key={f} value={f}>
