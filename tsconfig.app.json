@@ -21,13 +21,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "ignoreDeprecations": "5.0",
+    "ignoreDeprecations": "6.0",
     "noFallthroughCasesInSwitch": true,
 
     /* Aliases */
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]

@@ -1,0 +1,70 @@
+@use '../tokens' as *;
+
+.page {
+  @include page-layout;
+  justify-content: center;
+  min-height: calc(100vh - 72px);
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: $spacing-xl 0;
+}
+
+.breadcrumb {
+  @include breadcrumb-style;
+}
+
+.status {
+  @include breadcrumb-style;
+  text-align: right;
+}
+
+.hero {
+  @include hero-section;
+  padding-bottom: $spacing-2xl;
+
+  h1 {
+    &:first-child {
+      font-size: 160px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: $color-text;
+    }
+
+    &:nth-child(2) {
+      font-family: $font-serif;
+      font-style: italic;
+      font-size: $font-size-6xl;
+      letter-spacing: $letter-spacing-hero;
+    }
+  }
+}
+
+.body {
+  font-family: $font-sans;
+  font-size: $font-size-md;
+  line-height: $line-height-loose;
+  color: $color-text-muted;
+  max-width: 480px;
+  margin-bottom: $spacing-2xl;
+}
+
+.homeLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-text;
+  border-bottom: 1px solid $color-text;
+  padding-bottom: 2px;
+  transition: opacity $transition;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}

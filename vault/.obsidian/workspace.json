@@ -15,9 +15,9 @@
               "state": {
                 "file": "MARBORZ_PROJECT.canvas",
                 "viewState": {
-                  "x": 270,
-                  "y": 460,
-                  "zoom": -1.19339472464198
+                  "x": 176.2924290364304,
+                  "y": 130.27963023747063,
+                  "zoom": -1.3719542933747884
                 }
               },
               "icon": "lucide-layout-dashboard",
@@ -34,8 +34,7 @@
               "title": "Граф"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -194,19 +193,20 @@
       "bases:Создать новую базу": false
     }
   },
-  "active": "c62dbd7d24f3ae79",
+  "active": "1daaef638d33db83",
   "lastOpenFiles": [
+    "project/PROJECT_PLAN.md",
+    "notes/SESSION_2026-05-04_code-review.md",
+    "PROJECT_OVERVIEW.md",
     "MARBORZ_PROJECT.canvas",
     "resources/LINKS.md",
     "notes/DECISION_scss-modules-vs-tailwind.md",
     "code/ARCHITECTURE.md",
-    "PROJECT_OVERVIEW.md",
     "ROADMAP.canvas",
     "design/COMPONENTS.md",
     "MARBORZ_PROJECT.canvas.tmp.25260.1777883210698",
     "design/DESIGN_TOKENS.md",
     "notes/SESSION_2026-05-03_styling.md",
-    "notes/NEURAL_CONNECTION_TEMPLATE.md",
-    "project/PROJECT_PLAN.md"
+    "notes/NEURAL_CONNECTION_TEMPLATE.md"
   ]
 }
