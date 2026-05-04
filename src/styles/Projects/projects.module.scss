@@ -83,6 +83,8 @@
       background-color: transparent;
       cursor: pointer;
 
+      transition: background-color $transition, color $transition, border-color $transition;
+
       &.active {
         background-color: $color-text;
         color: $color-bg;
@@ -123,8 +125,25 @@
 .featuredProject {
   display: flex;
   flex-direction: column;
-  border: 1px solid $color-border;
+  width: 100%;
+  border: 1.25px solid $color-border;
   border-radius: 8px;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity $transition;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.featuredImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .featuredMedia {
@@ -205,8 +224,17 @@
 .projectCard {
   display: flex;
   flex-direction: column;
-  border: 1px solid $color-border;
+  border: 1.25px solid $color-border;
   border-radius: 8px;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity $transition;
+
+  &:hover {
+    opacity: 0.85;
+  }
 
   .cardMedia {
     width: 100%;
@@ -215,6 +243,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 
     span {
       font-family: $font-mono;
@@ -222,6 +251,13 @@
       letter-spacing: $letter-spacing-wide;
       color: $color-text-muted;
     }
+  }
+
+  .cardImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .cardBody {
@@ -294,9 +330,22 @@
 .archiveRow {
   display: flex;
   align-items: center;
+  width: 100%;
   height: 80px;
   border-bottom: 1px solid $color-border;
   gap: $spacing-lg;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color $transition;
+
+  &:hover .archiveArrow {
+    transform: translateX(4px);
+  }
 
   &:first-child {
     border-top: 1px solid $color-border;
@@ -339,5 +388,6 @@
     font-size: $font-size-md;
     color: $color-text;
     flex-shrink: 0;
+    transition: transform $transition;
   }
 }

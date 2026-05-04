@@ -20,6 +20,7 @@
     letter-spacing: $letter-spacing-wide;
     color: $color-text;
     cursor: pointer;
+    transition: opacity $transition;
 
     &:hover {
       opacity: 0.5;
@@ -39,8 +40,8 @@
       color: $color-text-muted;
       position: relative;
       transition:
-        color 0.2s,
-        filter 0.2s;
+        color $transition,
+        filter $transition;
 
       &:hover {
         color: $color-text;
@@ -79,7 +80,7 @@
       color: $color-text-muted;
       background-color: transparent;
       text-align: center;
-      transition: all 0.2s;
+      transition: all $transition;
 
       &.active {
         color: $color-bg;

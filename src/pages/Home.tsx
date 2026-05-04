@@ -1,11 +1,14 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Footer from '@/components/Footer'
+import ProjectModal from '@/components/ProjectModal'
 import { allProjects } from '@/shared/projects'
 import styles from '@/styles/Home/home.module.scss'
 
 export default function Home() {
   const { t } = useTranslation()
+  const [activeId, setActiveId] = useState<string | null>(null)
 
   const previewProjects = allProjects.slice(0, 4)
 
@@ -29,14 +32,19 @@ export default function Home() {
 
           <div className={styles.projectsList}>
             {previewProjects.map((project) => (
-              <div key={project.id} className={styles.projectRow}>
+              <button
+                key={project.id}
+                type="button"
+                className={styles.projectRow}
+                onClick={() => setActiveId(project.id)}
+              >
                 <span className={styles.rowNum}>/{project.number}</span>
                 <span className={styles.rowTitle}>{project.title}</span>
                 <span className={styles.rowSub}>— {project.subtitle}</span>
                 <span className={styles.rowStack}>{project.stack}</span>
                 <span className={styles.rowStatus}>{t(`common.statuses.${project.status}`)}</span>
                 <span className={styles.rowArrow}>→</span>
-              </div>
+              </button>
             ))}
           </div>
 
@@ -62,6 +70,8 @@ export default function Home() {
         </section>
         <Footer title={t('home.footer.next')} href="/projects" />
       </section>
+
+      <ProjectModal projectId={activeId} onClose={() => setActiveId(null)} />
     </>
   )
 }

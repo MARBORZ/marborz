@@ -5,9 +5,13 @@ export interface Project {
   number: string;
   title: string;
   subtitle: string;
+  fullDescription?: string;
   stack: string;
   status: ProjectStatus;
   href?: string;
+  demoUrl?: string;
+  videoUrl?: string;
+  imageUrl?: string;
 }
 
 export const projects: Project[] = [

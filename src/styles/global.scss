@@ -6,6 +6,18 @@
   box-sizing: border-box;
 }
 
+button {
+  outline: none;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: rgba(10, 10, 10, 0.04);
+  }
+}
+
 html,
 body,
 #root {
@@ -25,6 +37,7 @@ body {
 a {
   color: $color-text;
   text-decoration: none;
+  transition: opacity $transition;
 
   &:hover {
     opacity: 0.7;
@@ -37,6 +50,7 @@ button {
   cursor: pointer;
   font-family: inherit;
   font-size: inherit;
+  transition: background-color $transition, opacity $transition, color $transition, border-color $transition;
 }
 
 input,
@@ -47,6 +61,7 @@ textarea {
   font-size: $font-size-md;
   background-color: transparent;
   color: $color-text;
+  transition: border-color $transition;
 
   &::placeholder {
     color: $color-text-muted;

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import Footer from '@/components/Footer'
@@ -16,15 +17,30 @@ export default function Contact() {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
+    setError,
   } = useForm<ContactFormData>({
     defaultValues: { name: '', email: '', message: '' },
   })
 
+  const [success, setSuccess] = useState(false)
+
   const onSubmit = async (data: ContactFormData) => {
+    setSuccess(false)
     try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}))
+        setError('root', { message: json.message ?? 'Failed to send message' })
+        return
+      }
       reset()
-    } catch (error) {
-      console.error('Error sending message:', error)
+      setSuccess(true)
+    } catch {
+      setError('root', { message: 'Network error — try again' })
     }
   }
 
@@ -123,6 +139,13 @@ export default function Contact() {
               >
                 {isSubmitting ? "Sending..." : t("contact.form.send")}
               </button>
+
+              {errors.root && (
+                <span className={styles.errorMessage}>{errors.root.message}</span>
+              )}
+              {success && (
+                <span className={styles.successMessage}>Message sent ✓</span>
+              )}
             </form>
           </section>
 

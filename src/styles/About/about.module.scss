@@ -61,22 +61,30 @@
 
 // Background + Quick Info side by side
 .infoRow {
-  display: flex;
-  justify-content: space-around;
-  gap: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-3xl;
   border-top: 1px solid $color-border;
   border-bottom: 1px solid $color-border;
   padding: $spacing-3xl 0;
 
   @media (max-width: 900px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: $spacing-2xl;
   }
 }
 
+.infoRowDivider {
+  width: 1px;
+  background: $color-border;
+  align-self: stretch;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+}
+
 .backgroundSection {
-  width: 500px;
-  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: $spacing-lg;
@@ -87,19 +95,12 @@
   font-size: 17px;
   line-height: 1.65;
   color: $color-text;
-  max-width: 600px;
 }
 
 .quickInfoSection {
-  width: 600px;
-  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: $spacing-lg;
-
-  @media (max-width: 900px) {
-    width: 100%;
-  }
 }
 
 .infoGrid {

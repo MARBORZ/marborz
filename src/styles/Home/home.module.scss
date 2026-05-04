@@ -91,9 +91,22 @@
 .projectRow {
   display: flex;
   align-items: center;
+  width: 100%;
   height: 80px;
   border-bottom: 1px solid $color-border;
   gap: $spacing-lg;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color $transition;
+
+  &:hover .rowArrow {
+    transform: translateX(4px);
+  }
 
   &:first-child {
     border-top: 1px solid $color-border;
@@ -149,6 +162,7 @@
     font-size: $font-size-md;
     color: $color-text;
     flex-shrink: 0;
+    transition: transform $transition;
   }
 }
 

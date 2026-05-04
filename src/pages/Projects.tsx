@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Footer from '@/components/Footer'
+import ProjectModal from '@/components/ProjectModal'
 import { allProjects, type ProjectStatus } from '@/shared/projects'
 import styles from '@/styles/Projects/projects.module.scss'
 
 export default function Projects() {
   const { t } = useTranslation()
   const [filter, setFilter] = useState<ProjectStatus | 'all'>('all')
+  const [activeId, setActiveId] = useState<string | null>(null)
 
   const filtered = filter === 'all'
     ? allProjects
@@ -49,9 +51,16 @@ export default function Projects() {
         {featured && (
           <div className={styles.featuredSection}>
             <div className={styles.featuredLabel}>{t('projects.featured.label')}</div>
-            <div className={styles.featuredProject}>
+            <button
+              type="button"
+              className={styles.featuredProject}
+              onClick={() => setActiveId(featured.id)}
+            >
               <div className={styles.featuredMedia}>
-                <span>[ DEMO VIDEO PLACEHOLDER ]</span>
+                {featured.imageUrl
+                  ? <img src={featured.imageUrl} alt={featured.title} className={styles.featuredImg} />
+                  : <span>[ DEMO VIDEO PLACEHOLDER ]</span>
+                }
               </div>
               <div className={styles.featuredBody}>
                 <div className={styles.featuredMeta}>
@@ -63,16 +72,24 @@ export default function Projects() {
                   {t(`projects.list.${featured.id}.description`, { defaultValue: featured.stack })}
                 </p>
               </div>
-            </div>
+            </button>
           </div>
         )}
 
         {gridProjects.length > 0 && (
           <div className={styles.projectsGrid}>
             {gridProjects.map((project) => (
-              <div key={project.id} className={styles.projectCard}>
+              <button
+                key={project.id}
+                type="button"
+                className={styles.projectCard}
+                onClick={() => setActiveId(project.id)}
+              >
                 <div className={styles.cardMedia}>
-                  <span>[ IMAGE PLACEHOLDER ]</span>
+                  {project.imageUrl
+                    ? <img src={project.imageUrl} alt={project.title} className={styles.cardImg} />
+                    : <span>[ IMAGE PLACEHOLDER ]</span>
+                  }
                 </div>
                 <div className={styles.cardBody}>
                   <div className={styles.cardMeta}>
@@ -86,7 +103,7 @@ export default function Projects() {
                     {t(`projects.list.${project.id}.description`, { defaultValue: project.stack })}
                   </p>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         )}
@@ -96,19 +113,26 @@ export default function Projects() {
             <div className={styles.archiveLabel}>{t('projects.archive.label')}</div>
             <div className={styles.archiveList}>
               {archiveProjects.map((project) => (
-                <div key={project.id} className={styles.archiveRow}>
+                <button
+                  key={project.id}
+                  type="button"
+                  className={styles.archiveRow}
+                  onClick={() => setActiveId(project.id)}
+                >
                   <span className={styles.archiveNum}>/{project.number}</span>
                   <span className={styles.archiveTitle}>{project.title}</span>
                   <span className={styles.archiveSub}>— {project.subtitle}</span>
                   <span className={styles.archiveStack}>{project.stack}</span>
                   <span className={styles.archiveArrow}>→</span>
-                </div>
+                </button>
               ))}
             </div>
           </div>
         )}
         <Footer title={t('projects.footer.next')} href="/about" />
       </section>
+
+      <ProjectModal projectId={activeId} onClose={() => setActiveId(null)} />
     </>
   )
 }
