@@ -1,5 +1,8 @@
 export type ProjectStatus = 'active' | 'shipped' | 'experiment' | 'planned';
 
+export const PROJECT_FILTERS = ['all', 'active', 'shipped', 'experiment'] as const;
+export type ProjectFilter = typeof PROJECT_FILTERS[number];
+
 export interface Project {
   id: string;
   number: string;

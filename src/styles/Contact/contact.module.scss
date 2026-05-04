@@ -1,12 +1,7 @@
 @use '../tokens' as *;
 
 .page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin-top: 24px;
-  padding: $spacing-xl clamp($spacing-xl, 5.5vw, 80px);
-  gap: 0;
+  @include page-layout;
 }
 
 .topBar {
@@ -17,39 +12,16 @@
 }
 
 .breadcrumb {
-  font-family: $font-mono;
-  font-size: $font-size-sm;
-  letter-spacing: $letter-spacing-wide;
-  color: $color-text-muted;
+  @include breadcrumb-style;
 }
 
 .status {
-  font-family: $font-mono;
-  font-size: $font-size-sm;
-  letter-spacing: $letter-spacing-wide;
-  color: $color-text-muted;
+  @include breadcrumb-style;
   text-align: right;
 }
 
 .hero {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: $spacing-2xl 0 $spacing-3xl;
-
-  h1 {
-    font-family: $font-sans;
-    font-size: $font-size-6xl;
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: $letter-spacing-hero;
-    margin: 0;
-
-    &:nth-child(2) {
-      font-family: $font-serif;
-      font-style: italic;
-    }
-  }
+  @include hero-section;
 }
 
 // 2-column layout: form | direct
@@ -74,10 +46,7 @@
 }
 
 .sectionLabel {
-  font-family: $font-mono;
-  font-size: $font-size-xs;
-  letter-spacing: $letter-spacing-label;
-  color: $color-text-muted;
+  @include section-label;
 }
 
 .contactForm {
@@ -120,7 +89,7 @@
     }
 
     &[aria-invalid='true'] {
-      border-bottom-color: #d32f2f;
+      border-bottom-color: $color-error;
     }
   }
 
@@ -131,13 +100,13 @@
 
   .errorMessage {
     font-size: $font-size-xs;
-    color: #d32f2f;
+    color: $color-error;
   }
 }
 
 .successMessage {
   font-size: $font-size-xs;
-  color: #2e7d32;
+  color: $color-success;
   letter-spacing: $letter-spacing-wide;
 }
 
@@ -204,10 +173,11 @@
   a,
   .contactValue {
     font-family: $font-sans;
-    font-size: 20px;
+    font-size: $font-size-lg;
     letter-spacing: $letter-spacing-tight;
     color: $color-text;
     word-break: break-word;
+    padding-right: $spacing-sm;
   }
 
   .locationInfo {
@@ -217,7 +187,7 @@
 
     p {
       font-family: $font-sans;
-      font-size: 20px;
+      font-size: $font-size-lg;
       letter-spacing: $letter-spacing-tight;
       color: $color-text;
       margin: 0;
@@ -233,7 +203,7 @@
 
   .replyLanguages {
     font-family: $font-sans;
-    font-size: 20px;
+    font-size: $font-size-lg;
     letter-spacing: $letter-spacing-tight;
     color: $color-text;
   }

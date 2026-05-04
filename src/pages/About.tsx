@@ -2,6 +2,18 @@ import { useTranslation } from 'react-i18next'
 import Footer from '@/components/Footer'
 import styles from '@/styles/About/about.module.scss'
 
+interface LearningItem {
+  level: string
+  name: string
+  status: string
+}
+
+interface Principle {
+  number: string
+  title: string
+  body: string
+}
+
 export default function About() {
   const { t } = useTranslation()
 
@@ -43,7 +55,7 @@ export default function About() {
           <div className={styles.sectionLabel}>{t('about.learning.label')}</div>
           <p className={styles.learningSubtitle}>{t('about.learning.subtitle')}</p>
           <div className={styles.learningItems}>
-            {(t('about.learning.items', { returnObjects: true }) as any[]).map((item: any) => (
+            {(t('about.learning.items', { returnObjects: true }) as LearningItem[]).map((item) => (
               <div key={item.level} className={styles.learningItem}>
                 <span className={styles.levelIndicator} />
                 <span className={styles.levelName}>{item.name}</span>
@@ -57,7 +69,7 @@ export default function About() {
         <section className={styles.principlesSection}>
           <div className={styles.sectionLabel}>{t('about.principles.label')}</div>
           <div className={styles.principlesList}>
-            {(t('about.principles.items', { returnObjects: true }) as any[]).map((item: any) => (
+            {(t('about.principles.items', { returnObjects: true }) as Principle[]).map((item) => (
               <div key={item.number} className={styles.principleCard}>
                 <span className={styles.principleIndicator}>■</span>
                 <h3>{item.title}</h3>

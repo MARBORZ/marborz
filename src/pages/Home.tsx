@@ -1,14 +1,19 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Footer from '@/components/Footer'
 import ProjectModal from '@/components/ProjectModal'
 import { allProjects } from '@/shared/projects'
+import { SITE_CONFIG } from '@/shared/config'
 import styles from '@/styles/Home/home.module.scss'
 
 export default function Home() {
   const { t } = useTranslation()
   const [activeId, setActiveId] = useState<string | null>(null)
+
+  const handleCloseModal = useCallback(() => {
+    setActiveId(null)
+  }, [])
 
   const previewProjects = allProjects.slice(0, 4)
 
@@ -64,14 +69,14 @@ export default function Home() {
 
         <section className={styles.cta}>
           <div className={styles.sectionLabel}>{t('home.cta.label')}</div>
-          <a href="mailto:masuevamadi@gmail.com" className={styles.emailLink}>
-            {t('home.cta.email')}
+          <a href={`mailto:${SITE_CONFIG.email}`} className={styles.emailLink}>
+            {SITE_CONFIG.email} →
           </a>
         </section>
         <Footer title={t('home.footer.next')} href="/projects" />
       </section>
 
-      <ProjectModal projectId={activeId} onClose={() => setActiveId(null)} />
+      <ProjectModal projectId={activeId} onClose={handleCloseModal} />
     </>
   )
 }

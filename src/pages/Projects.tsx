@@ -1,14 +1,26 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import Footer from '@/components/Footer'
 import ProjectModal from '@/components/ProjectModal'
-import { allProjects, type ProjectStatus } from '@/shared/projects'
+import { allProjects, PROJECT_FILTERS, type ProjectStatus } from '@/shared/projects'
 import styles from '@/styles/Projects/projects.module.scss'
 
 export default function Projects() {
   const { t } = useTranslation()
   const [filter, setFilter] = useState<ProjectStatus | 'all'>('all')
   const [activeId, setActiveId] = useState<string | null>(null)
+
+  const filterKeys: Record<'all' | ProjectStatus, string> = {
+    all: 'all',
+    active: 'active',
+    shipped: 'shipped',
+    experiment: 'experiments',
+    planned: 'planned',
+  }
+
+  const handleCloseModal = useCallback(() => {
+    setActiveId(null)
+  }, [])
 
   const filtered = filter === 'all'
     ? allProjects
@@ -34,14 +46,14 @@ export default function Projects() {
         <div className={styles.filters}>
           <span className={styles.filterLabel}>{t('projects.filter.label')}</span>
           <div className={styles.filterButtons}>
-            {(['all', 'active', 'shipped', 'experiment'] as const).map((f) => (
+            {PROJECT_FILTERS.map((f) => (
               <button
                 key={f}
                 type="button"
                 className={filter === f ? styles.active : ''}
                 onClick={() => setFilter(f)}
               >
-                {t(`projects.filter.${f === 'all' ? 'all' : f === 'active' ? 'active' : f === 'shipped' ? 'shipped' : 'experiments'}`)}
+                {t(`projects.filter.${filterKeys[f]}`)}
               </button>
             ))}
           </div>
@@ -132,7 +144,7 @@ export default function Projects() {
         <Footer title={t('projects.footer.next')} href="/about" />
       </section>
 
-      <ProjectModal projectId={activeId} onClose={() => setActiveId(null)} />
+      <ProjectModal projectId={activeId} onClose={handleCloseModal} />
     </>
   )
 }

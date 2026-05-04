@@ -10,7 +10,6 @@
   justify-content: space-between;
   align-items: center;
   padding: $spacing-sm 80px;
-  background-color: $color-bg;
   border-bottom: 1px solid $color-border;
 
   .logo {
@@ -38,7 +37,6 @@
       text-align: center;
       letter-spacing: $letter-spacing-wide;
       color: $color-text-muted;
-      position: relative;
       transition:
         color $transition,
         filter $transition;
@@ -56,7 +54,7 @@
           bottom: 0px;
           left: 50%;
           translate: -50%;
-          background-color: #000000;
+          background-color: $color-text;
           width: 60%;
           height: 1px;
         }

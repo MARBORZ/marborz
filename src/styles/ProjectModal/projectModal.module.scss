@@ -96,7 +96,7 @@
   color: $color-text-muted;
   padding: 4px 8px;
   line-height: 1;
-  transition: color 0.15s;
+  transition: color $transition;
 
   &:hover {
     color: $color-text;

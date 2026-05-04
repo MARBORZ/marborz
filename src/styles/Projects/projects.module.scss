@@ -1,12 +1,7 @@
 @use '../tokens' as *;
 
 .page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin-top: 24px;
-  padding: $spacing-xl clamp($spacing-xl, 5.5vw, 80px);
-  gap: 0;
+  @include page-layout;
 }
 
 .topBar {
@@ -17,38 +12,15 @@
 }
 
 .breadcrumb {
-  font-family: $font-mono;
-  font-size: $font-size-sm;
-  letter-spacing: $letter-spacing-wide;
-  color: $color-text-muted;
+  @include breadcrumb-style;
 }
 
 .count {
-  font-family: $font-mono;
-  font-size: $font-size-sm;
-  letter-spacing: $letter-spacing-wide;
-  color: $color-text-muted;
+  @include breadcrumb-style;
 }
 
 .hero {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: $spacing-2xl 0 $spacing-3xl;
-
-  h1 {
-    font-family: $font-sans;
-    font-size: $font-size-6xl;
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: $letter-spacing-hero;
-    margin: 0;
-
-    &:nth-child(2) {
-      font-family: $font-serif;
-      font-style: italic;
-    }
-  }
+  @include hero-section;
 }
 
 .filters {

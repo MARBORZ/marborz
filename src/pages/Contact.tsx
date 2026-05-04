@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import Footer from '@/components/Footer'
+import { SITE_CONFIG } from '@/shared/config'
 import styles from '@/styles/Contact/contact.module.scss'
 
 interface ContactFormData {
@@ -158,8 +159,8 @@ export default function Contact() {
                 <span className={styles.contactKey}>
                   {t("contact.direct.email.key")}
                 </span>
-                <a href="mailto:masuevamadi@gmail.com">
-                  {t("contact.direct.email.value")}
+                <a href={`mailto:${SITE_CONFIG.email}`}>
+                  {SITE_CONFIG.email} →
                 </a>
               </div>
 
@@ -168,7 +169,7 @@ export default function Contact() {
                   {t("contact.direct.github.key")}
                 </span>
                 <a
-                  href="https://github.com/MARBORZ"
+                  href={SITE_CONFIG.github}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -182,8 +183,9 @@ export default function Contact() {
                 </span>
                 <div className={styles.locationInfo}>
                   <a
-                    href="https://maps.app.goo.gl/VVsTDggwqQEqBF2u5"
-                    target="blank"
+                    href={SITE_CONFIG.location.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {t("contact.direct.location.value")}
                   </a>
