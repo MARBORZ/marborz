@@ -12,7 +12,7 @@ export function useIsMobile(breakpoint: number = MOBILE_BREAKPOINT): boolean {
 
     checkMobile()
 
-    let resizeTimeout: NodeJS.Timeout
+    let resizeTimeout: ReturnType<typeof setTimeout>
     const handleResize = () => {
       clearTimeout(resizeTimeout)
       resizeTimeout = setTimeout(checkMobile, 150)

@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: column;
   border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
   padding: $spacing-3xl 0;
 }
 
@@ -184,7 +185,7 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-xl;
-  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
   padding: $spacing-3xl 0;
 
   @include mobile {
@@ -242,7 +243,6 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-lg;
-  border-top: 1px solid $color-border;
   border-bottom: 1px solid $color-border;
   padding: $spacing-3xl 0;
 
