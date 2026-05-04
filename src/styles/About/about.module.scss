@@ -2,6 +2,18 @@
 
 .page {
   @include page-layout;
+
+  @media (max-width: $breakpoint-laptop) {
+    padding: $spacing-xl $spacing-2xl;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-xl $spacing-lg;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-lg $spacing-md;
+  }
 }
 
 .topBar {
@@ -22,6 +34,20 @@
 
 .hero {
   @include hero-section;
+
+  h1 {
+    @media (max-width: $breakpoint-laptop) {
+      font-size: 72px;
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: 56px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 44px;
+    }
+  }
 }
 
 .sectionLabel {
@@ -37,7 +63,11 @@
   border-bottom: 1px solid $color-border;
   padding: $spacing-3xl 0;
 
-  @media (max-width: 900px) {
+  @media (max-width: $breakpoint-laptop) {
+    gap: $spacing-2xl;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
     grid-template-columns: 1fr;
     gap: $spacing-2xl;
   }
@@ -121,6 +151,14 @@
   letter-spacing: $letter-spacing-title;
   line-height: $line-height-relaxed;
   color: $color-text;
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: $font-size-2xl;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-size-xl;
+  }
 }
 
 .learningItems {
@@ -183,6 +221,11 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: $spacing-2xl;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+  }
 }
 
 .principleCard {

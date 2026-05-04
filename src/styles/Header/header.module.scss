@@ -12,6 +12,18 @@
   padding: $spacing-sm 80px;
   border-bottom: 1px solid $color-border;
 
+  @media (max-width: $breakpoint-laptop) {
+    padding: $spacing-sm $spacing-xl;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-sm $spacing-lg;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-sm $spacing-md;
+  }
+
   .logo {
     font-family: $font-mono;
     font-size: $font-size-sm;
@@ -26,9 +38,32 @@
     }
   }
 
+  // Desktop nav
+  .desktopNav {
+    @media (max-width: $breakpoint-mobile-lg) {
+      display: none !important;
+    }
+  }
+
+  .desktopLang {
+    @media (max-width: $breakpoint-mobile-lg) {
+      display: none !important;
+    }
+  }
+
   .nav {
     display: flex;
     gap: $spacing-lg;
+
+    @media (max-width: $breakpoint-tablet) {
+      gap: $spacing-md;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      gap: $spacing-sm;
+    }
 
     .navItem {
       position: relative;
@@ -57,6 +92,14 @@
           background-color: $color-text;
           width: 60%;
           height: 1px;
+
+          @media (max-width: $breakpoint-mobile-lg) {
+            display: none;
+          }
+
+          @media (max-width: $breakpoint-mobile) {
+            width: 80%;
+          }
         }
       }
     }
@@ -92,17 +135,99 @@
       }
     }
   }
-}
 
-@media (max-width: 768px) {
-  .header {
+  // Burger button
+  .burger {
+    display: none;
+    font-size: 24px;
+    color: $color-text;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $spacing-xs;
+    transition: opacity $transition;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    @media (max-width: $breakpoint-mobile-lg) {
+      display: block;
+    }
+  }
+
+  // Mobile menu
+  .mobileMenu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: $color-bg;
+    border-bottom: 1px solid $color-border;
+    padding: $spacing-lg;
+    display: flex;
     flex-direction: column;
     gap: $spacing-lg;
+    z-index: 9998;
+  }
 
-    .nav {
-      flex-wrap: wrap;
-      gap: $spacing-lg;
-      justify-content: center;
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    .mobileNavItem {
+      font-family: $font-mono;
+      font-size: $font-size-sm;
+      letter-spacing: $letter-spacing-wide;
+      color: $color-text-muted;
+      background: none;
+      border: none;
+      padding: $spacing-sm 0;
+      text-align: left;
+      cursor: pointer;
+      transition: color $transition;
+
+      &:hover {
+        color: $color-text;
+      }
+
+      &.active {
+        color: $color-text;
+      }
+    }
+  }
+
+  .mobileLang {
+    display: flex;
+    gap: $spacing-sm;
+    padding-top: $spacing-sm;
+    border-top: 1px solid $color-border;
+
+    .mobileLangBtn {
+      flex: 1;
+      padding: $spacing-xs;
+      font-family: $font-mono;
+      font-size: $font-size-sm;
+      letter-spacing: $letter-spacing-wide;
+      border-radius: $radius-sm;
+      border: 1px solid transparent;
+      color: $color-text-muted;
+      background-color: transparent;
+      text-align: center;
+      cursor: pointer;
+      transition: all $transition;
+
+      &.active {
+        color: $color-bg;
+        background-color: $color-text;
+        border-color: $color-text;
+      }
+
+      &:hover:not(.active) {
+        color: $color-text;
+        border-color: $color-text;
+      }
     }
   }
 }

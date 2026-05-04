@@ -33,6 +33,13 @@ $spacing-4xl: 88px;
 // Transitions
 $transition: 0.2s;
 
+// Breakpoints
+$breakpoint-mobile: 430px;
+$breakpoint-mobile-lg: 600px;
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 1024px;
+$breakpoint-desktop: 1440px;
+
 // Border radius
 $radius-sm: 2px;
 $radius-md: 4px;
@@ -58,14 +65,70 @@ $line-height-loose: 1.55;
 $line-height-loose-xl: 1.6;
 $line-height-loose-2xl: 1.65;
 
+// Media query mixins
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin mobile-lg {
+  @media (max-width: $breakpoint-mobile-lg) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-width: $breakpoint-laptop) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+// Transition mixins
+@mixin transition-opacity {
+  transition: opacity $transition;
+}
+
+@mixin transition-colors {
+  transition: background-color $transition, color $transition, border-color $transition;
+}
+
+@mixin transition-all {
+  transition: all $transition;
+}
+
 // Mixins for reusable patterns
 @mixin page-layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin-top: 24px;
+  margin-top: 60px;
   padding: $spacing-xl clamp($spacing-xl, 5.5vw, 80px);
   gap: 0;
+
+  @include laptop {
+    padding: $spacing-xl $spacing-2xl;
+  }
+
+  @include tablet {
+    padding: $spacing-xl $spacing-lg;
+  }
+
+  @include mobile {
+    padding: $spacing-lg $spacing-md;
+  }
 }
 
 @mixin hero-section {
@@ -82,10 +145,35 @@ $line-height-loose-2xl: 1.65;
     letter-spacing: $letter-spacing-hero;
     margin: 0;
 
+    @include laptop {
+      font-size: 72px;
+    }
+
+    @include tablet {
+      font-size: 56px;
+    }
+
+    @include mobile {
+      font-size: 44px;
+    }
+
     &:nth-child(2) {
       font-family: $font-serif;
       font-style: italic;
     }
+  }
+}
+
+@mixin topBar-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: $spacing-xl 0;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-xs;
+    padding: $spacing-lg 0;
   }
 }
 

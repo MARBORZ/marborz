@@ -8,24 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "1daaef638d33db83",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "MARBORZ_PROJECT.canvas",
-                "viewState": {
-                  "x": 176.2924290364304,
-                  "y": 130.27963023747063,
-                  "zoom": -1.3719542933747884
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "MARBORZ_PROJECT"
-            }
-          },
-          {
-            "id": "c62dbd7d24f3ae79",
+            "id": "3f85550f73c33e65",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -193,12 +176,12 @@
       "bases:Создать новую базу": false
     }
   },
-  "active": "1daaef638d33db83",
+  "active": "3f85550f73c33e65",
   "lastOpenFiles": [
+    "MARBORZ_PROJECT.canvas",
     "project/PROJECT_PLAN.md",
     "notes/SESSION_2026-05-04_code-review.md",
     "PROJECT_OVERVIEW.md",
-    "MARBORZ_PROJECT.canvas",
     "resources/LINKS.md",
     "notes/DECISION_scss-modules-vs-tailwind.md",
     "code/ARCHITECTURE.md",

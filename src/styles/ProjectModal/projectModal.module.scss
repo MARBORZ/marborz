@@ -10,6 +10,10 @@
   z-index: 1000;
   padding: $spacing-lg;
   backdrop-filter: blur(4px);
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-sm;
+  }
 }
 
 .modal {
@@ -57,6 +61,14 @@
 
 .body {
   padding: $spacing-xl $spacing-xl $spacing-2xl;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-lg $spacing-lg $spacing-xl;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-md $spacing-md $spacing-lg;
+  }
 }
 
 .topRow {
@@ -111,6 +123,14 @@
   line-height: 1.1;
   margin-bottom: $spacing-sm;
   color: $color-text;
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: $font-size-2xl;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-size-xl;
+  }
 }
 
 .stack {
@@ -128,6 +148,10 @@
   line-height: 1.65;
   max-width: 640px;
   margin-bottom: $spacing-xl;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-size-md;
+  }
 }
 
 .demoLink {

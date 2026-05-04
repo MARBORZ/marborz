@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, memo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { allProjects } from '@/shared/projects'
 import styles from '@/styles/ProjectModal/projectModal.module.scss'
 
@@ -12,8 +13,13 @@ function getYoutubeEmbedUrl(url: string): string | null {
   return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=1&mute=1&loop=1&playlist=${match[1]}` : null
 }
 
-export default function ProjectModal({ projectId, onClose }: ProjectModalProps) {
-  const project = projectId ? allProjects.find((p) => p.id === projectId) ?? null : null
+function ProjectModal({ projectId, onClose }: ProjectModalProps) {
+  const { t } = useTranslation()
+
+  const project = useMemo(() =>
+    projectId ? allProjects.find((p) => p.id === projectId) : null,
+    [projectId]
+  )
 
   useEffect(() => {
     if (!project) return
@@ -62,7 +68,7 @@ export default function ProjectModal({ projectId, onClose }: ProjectModalProps) 
           <div className={styles.topRow}>
             <div className={styles.meta}>
               <span className={styles.num}>/{project.number}</span>
-              <span className={styles.statusBadge}>{project.status.toUpperCase()}</span>
+              <span className={styles.statusBadge}>{t(`common.statuses.${project.status}`)}</span>
             </div>
             <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
           </div>
@@ -90,3 +96,5 @@ export default function ProjectModal({ projectId, onClose }: ProjectModalProps) 
     </div>
   )
 }
+
+export default memo(ProjectModal)

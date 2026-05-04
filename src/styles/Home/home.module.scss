@@ -2,27 +2,14 @@
 
 .page {
   @include page-layout;
-
-  @media (max-width: 900px) {
-    padding: $spacing-xl $spacing-xl;
-  }
 }
 
 .hero {
   @include hero-section;
-
-  h1 {
-    @media (max-width: 900px) {
-      font-size: 48px;
-    }
-  }
 }
 
 .topBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: $spacing-xl 0;
+  @include topBar-layout;
 }
 
 .breadcrumb {
@@ -50,6 +37,11 @@
   font-size: $font-size-lg;
   color: $color-text-muted;
   margin-bottom: $spacing-xl;
+
+  @include mobile {
+    font-size: $font-size-md;
+    margin-bottom: $spacing-lg;
+  }
 }
 
 .projectsList {
@@ -68,10 +60,23 @@
   border-left: none;
   border-right: none;
   border-top: none;
-  padding: 0;
+  padding: 0 $spacing-xs 0 0;
   cursor: pointer;
   text-align: left;
   transition: background-color $transition;
+  overflow: hidden;
+
+  @include tablet {
+    height: auto;
+    min-height: 60px;
+    padding: $spacing-md $spacing-xs $spacing-md 0;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  @include mobile {
+    gap: $spacing-xs;
+  }
 
   &:hover .rowArrow {
     transform: translateX(4px);
@@ -94,6 +99,14 @@
     letter-spacing: $letter-spacing-tight;
     color: $color-text;
     flex-shrink: 0;
+
+    @include tablet {
+      font-size: $font-size-xl;
+    }
+
+    @include mobile {
+      font-size: $font-size-lg;
+    }
   }
 
   .rowSub {
@@ -102,6 +115,12 @@
     font-size: $font-size-xl;
     color: $color-text-muted;
     flex: 1;
+
+    @include tablet {
+      font-size: $font-size-md;
+      flex-basis: 100%;
+      order: 3;
+    }
   }
 
   .rowStack {
@@ -109,7 +128,18 @@
     font-size: $font-size-sm;
     color: $color-text-muted;
     margin-left: auto;
+    margin-right: $spacing-md;
     flex-shrink: 0;
+
+    @include tablet {
+      margin-left: 0;
+      margin-right: $spacing-sm;
+      font-size: $font-size-xs;
+    }
+
+    @include mobile {
+      display: none;
+    }
   }
 
   .rowStatus {
@@ -124,6 +154,7 @@
     min-width: 90px;
     text-align: center;
     flex-shrink: 0;
+    margin-right: $spacing-sm;
   }
 
   .rowArrow {
@@ -142,6 +173,11 @@
   letter-spacing: $letter-spacing-wide;
   align-self: flex-end;
   margin-top: $spacing-lg;
+  @include transition-opacity;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .approach {
@@ -151,6 +187,11 @@
   border-top: 1px solid $color-border;
   border-bottom: 1px solid $color-border;
   padding: $spacing-3xl 0;
+
+  @include mobile {
+    padding: $spacing-2xl 0;
+    gap: $spacing-lg;
+  }
 
   .approachContent {
     display: flex;
@@ -165,6 +206,19 @@
       letter-spacing: -0.03em;
       margin: 0;
 
+      @include laptop {
+        font-size: 48px;
+      }
+
+      @include tablet {
+        font-size: 36px;
+      }
+
+      @include mobile {
+        font-size: 28px;
+        line-height: 1.2;
+      }
+
       &:nth-child(2) {
         font-family: $font-serif;
         font-style: italic;
@@ -177,6 +231,11 @@
     line-height: $line-height-loose;
     color: $color-text-muted;
     max-width: 600px;
+
+    @include mobile {
+      font-size: $font-size-sm;
+      line-height: 1.6;
+    }
   }
 }
 
@@ -188,6 +247,11 @@
   border-bottom: 1px solid $color-border;
   padding: $spacing-3xl 0;
 
+  @include mobile {
+    padding: $spacing-2xl 0;
+    gap: $spacing-md;
+  }
+
   .emailLink {
     font-family: $font-sans;
     font-size: $font-size-4xl;
@@ -196,5 +260,19 @@
     letter-spacing: $letter-spacing-title;
     color: $color-text;
     padding-right: $spacing-sm;
+
+    @include laptop {
+      font-size: $font-size-3xl;
+    }
+
+    @include tablet {
+      font-size: $font-size-2xl;
+    }
+
+    @include mobile {
+      font-size: $font-size-lg;
+      word-break: break-all;
+      padding-right: 0;
+    }
   }
 }

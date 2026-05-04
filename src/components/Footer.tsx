@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { memo } from 'react'
 import styles from '@/styles/Footer/footer.module.scss'
 
-export default function Footer({
+function Footer({
   title,
   href,
 }: {
@@ -18,3 +19,5 @@ export default function Footer({
     </section>
   )
 }
+
+export default memo(Footer)

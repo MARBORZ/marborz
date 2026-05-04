@@ -2,6 +2,18 @@
 
 .page {
   @include page-layout;
+
+  @media (max-width: $breakpoint-laptop) {
+    padding: $spacing-xl $spacing-2xl;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-xl $spacing-lg;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-lg $spacing-md;
+  }
 }
 
 .topBar {
@@ -22,6 +34,20 @@
 
 .hero {
   @include hero-section;
+
+  h1 {
+    @media (max-width: $breakpoint-laptop) {
+      font-size: 72px;
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: 56px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 44px;
+    }
+  }
 }
 
 // 2-column layout: form | direct
@@ -33,9 +59,19 @@
   border-bottom: 1px solid $color-border;
   padding: $spacing-3xl 0;
 
-  @media (max-width: 900px) {
+  @media (max-width: $breakpoint-laptop) {
+    grid-template-columns: 1fr 360px;
+    gap: $spacing-3xl;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
     grid-template-columns: 1fr;
     gap: $spacing-2xl;
+    padding: $spacing-xl 0;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-lg 0;
   }
 }
 
@@ -178,6 +214,7 @@
     color: $color-text;
     word-break: break-word;
     padding-right: $spacing-sm;
+    transition: opacity $transition;
   }
 
   .locationInfo {

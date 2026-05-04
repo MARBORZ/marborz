@@ -203,5 +203,11 @@
     "footer": {
       "next": "→ HOME"
     }
+  },
+  "notFound": {
+    "breadcrumb": "404 / NOT FOUND",
+    "line2": "Page not found.",
+    "body": "The page you're looking for doesn't exist or was moved. Nothing broken — just a wrong turn.",
+    "link": "← HOME"
   }
 }

@@ -163,5 +163,11 @@
     "footer": {
       "next": "→ HJEM"
     }
+  },
+  "notFound": {
+    "breadcrumb": "404 / IKKE FUNNET",
+    "line2": "Siden finnes ikke.",
+    "body": "Siden du leter etter finnes ikke eller er flyttet. Ingenting ødelagt — bare feil sving.",
+    "link": "← HJEM"
   }
 }

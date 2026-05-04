@@ -28,7 +28,7 @@ export default function Projects() {
 
   const featured = filtered.find((p) => p.status === 'active') ?? filtered[0]
   const gridProjects = filtered.filter((p) => p.id !== featured?.id && (p.status === 'active' || p.status === 'shipped')).slice(0, 4)
-  const archiveProjects = filtered.filter((p) => p.status === 'experiment' || p.status === 'planned')
+  const archiveProjects = filtered.filter((p) => p.id !== featured?.id && (p.status === 'experiment' || p.status === 'planned'))
 
   return (
     <>
@@ -45,6 +45,8 @@ export default function Projects() {
 
         <div className={styles.filters}>
           <span className={styles.filterLabel}>{t('projects.filter.label')}</span>
+
+          {/* Desktop filter buttons */}
           <div className={styles.filterButtons}>
             {PROJECT_FILTERS.map((f) => (
               <button
@@ -57,6 +59,20 @@ export default function Projects() {
               </button>
             ))}
           </div>
+
+          {/* Mobile filter dropdown */}
+          <select
+            className={styles.filterSelect}
+            value={filter}
+            onChange={(e) => setFilter(e.target.value as ProjectStatus | 'all')}
+          >
+            {PROJECT_FILTERS.map((f) => (
+              <option key={f} value={f}>
+                {t(`projects.filter.${filterKeys[f]}`)}
+              </option>
+            ))}
+          </select>
+
           <span className={styles.filterCount}>{filtered.length} / {allProjects.length}</span>
         </div>
 

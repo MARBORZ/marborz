@@ -4,6 +4,18 @@
   @include page-layout;
   justify-content: center;
   min-height: calc(100vh - 72px);
+
+  @media (max-width: $breakpoint-laptop) {
+    padding: $spacing-xl $spacing-2xl;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-xl $spacing-lg;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-lg $spacing-md;
+  }
 }
 
 .topBar {
@@ -32,6 +44,18 @@
       line-height: 1;
       letter-spacing: -0.05em;
       color: $color-text;
+
+      @media (max-width: $breakpoint-laptop) {
+        font-size: 120px;
+      }
+
+      @media (max-width: $breakpoint-tablet) {
+        font-size: 96px;
+      }
+
+      @media (max-width: $breakpoint-mobile) {
+        font-size: 72px;
+      }
     }
 
     &:nth-child(2) {
@@ -39,6 +63,18 @@
       font-style: italic;
       font-size: $font-size-6xl;
       letter-spacing: $letter-spacing-hero;
+
+      @media (max-width: $breakpoint-laptop) {
+        font-size: 72px;
+      }
+
+      @media (max-width: $breakpoint-tablet) {
+        font-size: 56px;
+      }
+
+      @media (max-width: $breakpoint-mobile) {
+        font-size: 44px;
+      }
     }
   }
 }

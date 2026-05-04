@@ -12,6 +12,12 @@
   letter-spacing: $letter-spacing-wide;
   color: $color-text-muted;
 
+  @media (max-width: $breakpoint-tablet) {
+    flex-direction: column;
+    gap: $spacing-md;
+    text-align: center;
+  }
+
   a {
     color: $color-text;
     letter-spacing: $letter-spacing-wide;

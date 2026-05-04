@@ -2,6 +2,18 @@
 
 .page {
   @include page-layout;
+
+  @media (max-width: $breakpoint-laptop) {
+    padding: $spacing-xl $spacing-2xl;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-xl $spacing-lg;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-lg $spacing-md;
+  }
 }
 
 .topBar {
@@ -21,6 +33,20 @@
 
 .hero {
   @include hero-section;
+
+  h1 {
+    @media (max-width: $breakpoint-laptop) {
+      font-size: 72px;
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: 56px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 44px;
+    }
+  }
 }
 
 .filters {
@@ -32,6 +58,15 @@
   border-bottom: 1px solid $color-border;
   padding: $spacing-lg 0;
 
+  @media (max-width: $breakpoint-tablet) {
+    flex-wrap: wrap;
+    gap: $spacing-md;
+  }
+
+  @media (max-width: $breakpoint-mobile-lg) {
+    gap: $spacing-sm;
+  }
+
   .filterLabel {
     font-family: $font-mono;
     font-size: $font-size-xs;
@@ -42,6 +77,11 @@
   .filterButtons {
     display: flex;
     gap: $spacing-sm;
+    flex-wrap: wrap;
+
+    @media (max-width: $breakpoint-mobile-lg) {
+      display: none;
+    }
 
     button {
       padding: $spacing-xs $spacing-md;
@@ -57,6 +97,11 @@
 
       transition: background-color $transition, color $transition, border-color $transition;
 
+      @media (max-width: $breakpoint-mobile) {
+        padding: $spacing-xs $spacing-sm;
+        font-size: 10px;
+      }
+
       &.active {
         background-color: $color-text;
         color: $color-bg;
@@ -68,13 +113,37 @@
     }
   }
 
+  .filterSelect {
+    display: none;
+
+    @media (max-width: $breakpoint-mobile-lg) {
+      display: block;
+      max-width: 200px;
+      padding: $spacing-xs $spacing-sm;
+      border: 1px solid $color-border;
+      border-radius: $radius-md;
+      font-family: $font-mono;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      letter-spacing: $letter-spacing-wide;
+      color: $color-text;
+      background-color: $color-bg;
+      cursor: pointer;
+      transition: border-color $transition;
+
+      &:focus {
+        outline: none;
+        border-color: $color-text;
+      }
+    }
+  }
+
   .filterCount {
-    position: absolute;
-    right: 0;
     font-family: $font-mono;
     font-size: $font-size-xs;
     letter-spacing: $letter-spacing-wide;
     color: $color-text-muted;
+    margin-left: auto;
   }
 }
 
@@ -104,7 +173,7 @@
   padding: 0;
   cursor: pointer;
   text-align: left;
-  transition: opacity $transition;
+  transition: opacity $transition, border-color $transition;
 
   &:hover {
     opacity: 0.85;
@@ -126,11 +195,23 @@
   align-items: center;
   justify-content: center;
 
+  @media (max-width: $breakpoint-tablet) {
+    height: 360px;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    height: 240px;
+  }
+
   span {
     font-family: $font-mono;
     font-size: $font-size-md;
     letter-spacing: $letter-spacing-wide;
     color: $color-text-muted;
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: $font-size-sm;
+    }
   }
 }
 
@@ -145,6 +226,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
 }
 
 .featuredNum {
@@ -159,6 +242,18 @@
   font-weight: 500;
   letter-spacing: -0.03em;
   color: $color-text;
+
+  @media (max-width: $breakpoint-laptop) {
+    font-size: $font-size-4xl;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: $font-size-3xl;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-size-2xl;
+  }
 }
 
 .featuredStatus {
@@ -191,6 +286,15 @@
   gap: $spacing-2xl;
   padding: $spacing-3xl 0;
   border-bottom: 1px solid $color-border;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    gap: $spacing-lg;
+  }
 }
 
 .projectCard {
@@ -202,7 +306,7 @@
   padding: 0;
   cursor: pointer;
   text-align: left;
-  transition: opacity $transition;
+  transition: opacity $transition, border-color $transition;
 
   &:hover {
     opacity: 0.85;
@@ -217,11 +321,19 @@
     justify-content: center;
     overflow: hidden;
 
+    @media (max-width: $breakpoint-mobile) {
+      height: 180px;
+    }
+
     span {
       font-family: $font-mono;
       font-size: $font-size-sm;
       letter-spacing: $letter-spacing-wide;
       color: $color-text-muted;
+
+      @media (max-width: $breakpoint-mobile) {
+        font-size: $font-size-xs;
+      }
     }
   }
 
@@ -243,6 +355,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
   }
 
   .cardNum {
@@ -269,6 +383,10 @@
     letter-spacing: $letter-spacing-tight;
     color: $color-text;
     margin-top: $spacing-xs;
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: $font-size-lg;
+    }
   }
 
   .cardDescription {
@@ -310,10 +428,23 @@
   border-left: none;
   border-right: none;
   border-top: none;
-  padding: 0;
+  padding: 0 $spacing-xs 0 0;
   cursor: pointer;
   text-align: left;
+  overflow: hidden;
   transition: background-color $transition;
+
+  @media (max-width: $breakpoint-tablet) {
+    height: auto;
+    min-height: 60px;
+    padding: $spacing-md $spacing-xs $spacing-md 0;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    gap: $spacing-xs;
+  }
 
   &:hover .archiveArrow {
     transform: translateX(4px);
@@ -337,6 +468,14 @@
     letter-spacing: $letter-spacing-tight;
     color: $color-text;
     flex-shrink: 0;
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: $font-size-xl;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: $font-size-lg;
+    }
   }
 
   .archiveSub {
@@ -345,6 +484,12 @@
     font-size: $font-size-xl;
     color: $color-text-muted;
     flex: 1;
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: $font-size-md;
+      flex-basis: 100%;
+      order: 3;
+    }
   }
 
   .archiveStack {
@@ -353,6 +498,15 @@
     color: $color-text-muted;
     margin-left: auto;
     flex-shrink: 0;
+
+    @media (max-width: $breakpoint-tablet) {
+      margin-left: 0;
+      font-size: $font-size-xs;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      display: none;
+    }
   }
 
   .archiveArrow {

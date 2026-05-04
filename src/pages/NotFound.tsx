@@ -8,22 +8,21 @@ export default function NotFound() {
   return (
     <section className={styles.page}>
       <div className={styles.topBar}>
-        <div className={styles.breadcrumb}>404 / {t('nav.notFound', { defaultValue: 'NOT FOUND' })}</div>
+        <div className={styles.breadcrumb}>{t('notFound.breadcrumb')}</div>
         <div className={styles.status}>{t('home.location')}</div>
       </div>
 
       <div className={styles.hero}>
         <h1>404</h1>
-        <h1>Page not found.</h1>
+        <h1>{t('notFound.line2')}</h1>
       </div>
 
       <p className={styles.body}>
-        The page you're looking for doesn't exist or was moved.
-        Nothing broken — just a wrong turn.
+        {t('notFound.body')}
       </p>
 
       <Link to="/" className={styles.homeLink}>
-        ← {t('nav.home', { defaultValue: 'HOME' })}
+        {t('notFound.link')}
       </Link>
     </section>
   )
