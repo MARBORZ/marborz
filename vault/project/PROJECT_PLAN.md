@@ -104,19 +104,55 @@ $letter-spacing-label: 0.10em
 
 ---
 
-### ЭТАП 7: Animations & Polish 🔴 TODO
-- Framer Motion — page transitions, scroll animations
-- Hover states на project rows (стрелка, подчёркивание?)
-- Skeleton loading для карточек
-- Mobile responsive доработка (сейчас базово есть @media 900px)
+### ЭТАП 6.5: 404 страница 🔴 TODO
+- Страница в общем дизайне (hero, breadcrumb, ссылка домой)
+- Route `*` в App.tsx
+- SCSS модуль `src/styles/NotFound/notFound.module.scss`
 
 ---
 
-### ЭТАП 8: Deployment 🔴 TODO
-- Vercel deploy
-- Domain marborz.one
-- Lighthouse audit
-- SEO meta tags
+### ЭТАП 7: Responsive 🔴 TODO
+Breakpoints: `480px` (mobile) · `768px` (tablet) · `1024px` (laptop)
+
+- **Header** — hamburger меню на мобильном
+- **Hero** — `font-size: clamp(48px, 10vw, 88px)`
+- **Home** — project rows → компактный вид
+- **Projects** — grid 2×2 → 1 колонка, featured без медиа на мобильном
+- **About** — Background + QuickInfo → stacked, principles 3-col → 1-col
+- **Contact** — 2-col → 1-col
+- **Footer** — проверить
+
+---
+
+### ЭТАП 8: Animations 🔴 TODO
+- **Framer Motion** — `npm install framer-motion`
+  - Page transitions через `<AnimatePresence>` + React Router
+  - Scroll animations (секции появляются при прокрутке)
+  - Stagger на project grid cards
+  - Hover на project rows (стрелка → сдвигается)
+- **Lenis** — smooth scroll через Provider в `main.tsx`
+  - `npm install @studio-freight/lenis`
+  - Отключить на мобильных (`window.matchMedia('(hover: none)')`)
+
+---
+
+### ЭТАП 9: SEO 🔴 TODO
+- `react-helmet-async` или встроенный `<title>` через Vite
+- Динамический `<title>` на каждой странице
+- `<meta name="description">` уникальный
+- Open Graph: `og:title`, `og:description`, `og:image`
+- `robots.txt`
+- `sitemap.xml`
+- Lighthouse audit: Performance / A11y / SEO → цель 90+
+
+---
+
+### ЭТАП 10: Полировка 🔴 TODO
+- **Lazy loading** — `React.lazy()` + `<Suspense>` для страниц
+- **Skeleton компоненты** — для project cards при загрузке
+- 404 страница (см. Этап 6.5)
+- Реальные изображения вместо `[ IMAGE PLACEHOLDER ]`
+- Реальные описания проектов (fullDescription в projects.ts)
 
 ---
 
