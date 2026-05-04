@@ -1,161 +1,123 @@
-# DESIGN_TOKENS — Система токенов
+# DESIGN TOKENS — Актуальный справочник
 
-## 🎨 Цвета
-
-### Основные цвета
-| Токен | Hex | Использование |
-|-------|-----|-----------------|
-| `color-accent` | #0A0A0A | Основной тёмный цвет, текст, active элементы |
-| `color-bg` | #F4F2ED | Фон страниц, светлые области |
-| `color-muted` | #E8E5DD | Фон для secondary элементов |
-| `color-text` | #0A0A0A | Основной текст, заголовки |
-| `color-text-secondary` | #6B6B68 | Вторичный текст, descriptions, labels |
-
-### Правила использования
-- **Dark text on light bg:** #0A0A0A on #F4F2ED (contrast ~18:1)
-- **Secondary text:** #6B6B68 for meta info, labels, hints
-- **Backgrounds:** #F4F2ED (основной), #E8E5DD (для выделения)
-- **No additional colors** — держим минимально
+> Источник истины: `src/styles/tokens.scss`
+> Все переменные подключаются через `@use '../tokens' as *`
 
 ---
 
-## 🔤 Типография
+## Цвета
 
-### Семейства шрифтов
+| Переменная | Hex | Использование |
+|---|---|---|
+| `$color-bg` | `#f4f2ed` | Фон страниц (кремовый) |
+| `$color-text` | `#0a0a0a` | Основной текст, иконки, бордеры |
+| `$color-text-muted` | `#6b6b68` | Лейблы, мета-инфо, вторичный текст |
+| `$color-text-placeholder` | `#a8a8a4` | Placeholder в инпутах |
+| `$color-border` | `#0a0a0a` | Все разделители (1px solid) |
+| `$color-surface` | `#e8e5dd` | Фон карточек, placeholder медиа |
+| `$color-error` | `#d32f2f` | Ошибки валидации |
+| `$color-success` | `#2e7d32` | Успешная отправка |
+
+**Правило:** максимум 8 цветов. Без теней. Без градиентов.
+
+---
+
+## Типографика
+
+```scss
+$font-sans:  'Inter', system-ui, sans-serif;   // заголовки, тело
+$font-serif: 'Georgia', 'Times New Roman', serif; // italic акценты в hero
+$font-mono:  'JetBrains Mono', monospace;      // nav, labels, код
 ```
-font-sans:  Inter, system-ui, sans-serif      — основной (body, headings)
-font-serif: Georgia, serif                     — для emphasis/italics
-font-mono:  JetBrains Mono, monospace          — для навигации, labels, code
-```
 
-### Размеры
-| Токен | Px | Использование |
-|-------|-----|-----------------|
-| `size-xs` | 11 | Meta info, small labels |
-| `size-sm` | 12 | Navigation, buttons (text) |
-| `size-base` | 16 | Body text (стандарт) |
-| `size-lg` | 20 | Subheadings |
-| `size-xl` | 26 | Section headings |
-| `size-2xl` | 32 | Page subheadings |
-| `size-3xl` | 44 | Section titles |
-| `size-4xl` | 64 | Large headings |
-| `size-5xl` | 88 | **Hero headings** |
+### Размеры шрифтов
 
-### Рекомендации по использованию
-- **Hero headings:** size-5xl + line-height: 0.95 + letter-spacing: -0.03
-- **Page headings:** size-3xl + line-height: 1.1
-- **Section titles:** size-2xl
-- **Body text:** size-base (16px) + line-height: 1.5-1.65
-- **Meta/labels:** size-sm (12px) + letter-spacing: 0.08 + mono font
+| Переменная | px | Где используется |
+|---|---|---|
+| `$font-size-xs` | 11 | Section labels, мета |
+| `$font-size-sm` | 12 | Nav, breadcrumb, monospace текст |
+| `$font-size-md` | 14 | Body text, descriptions |
+| `$font-size-lg` | 18 | Contact values, subtext |
+| `$font-size-xl` | 22 | Card titles (маленькие карточки) |
+| `$font-size-2xl` | 26 | Project row titles |
+| `$font-size-3xl` | 36 | Section subtitles (Learning path) |
+| `$font-size-4xl` | 44 | CTA email, approach h3 маленький |
+| `$font-size-5xl` | 56 | Featured project title |
+| `$font-size-6xl` | 88 | **Hero h1 на всех страницах** |
 
----
+### Letter spacing
 
-## 📐 Spacing & Layout
+| Переменная | Значение | Где |
+|---|---|---|
+| `$letter-spacing-hero` | `-0.01em` | Hero h1 |
+| `$letter-spacing-title` | `-0.02em` | CTA email link |
+| `$letter-spacing-tight` | `-0.01em` | Card titles |
+| `$letter-spacing-wide` | `0.08em` | Nav, breadcrumb |
+| `$letter-spacing-label` | `0.10em` | Section labels (caps) |
 
-### Базовый юнит
-- **Base unit:** 8px (всё кратно 8)
-- **Padding:** 16px, 24px, 32px (2x, 3x, 4x base)
-- **Gap:** 8px, 12px, 16px, 24px между элементами
-- **Margin:** 40px, 60px, 80px между секциями
+### Line heights
 
-### Viewport
-- **Width:** 1440px (max-width для контента)
-- **Content padding:** 80px (слева/справа)
-- **Breakpoints:** TBD (мобильная версия позже)
+| Переменная | Значение |
+|---|---|
+| `$line-height-tight` | `0.95` |
+| `$line-height-normal` | `1` |
+| `$line-height-relaxed` | `1.1` |
+| `$line-height-loose` | `1.55` |
+
+**Глобально для h1-h6:** `line-height: 1.15` (в global.scss)
 
 ---
 
-## 🎯 Компоненты (Правила применения токенов)
+## Spacing
 
-### Header
-- **Background:** color-bg (#F4F2ED)
-- **Text:** color-text (#0A0A0A)
-- **Secondary text:** color-text-secondary (#6B6B68)
-- **Font:** font-mono, size-sm (12px)
-- **Height:** 72px
+| Переменная | px |
+|---|---|
+| `$spacing-xs` | 8 |
+| `$spacing-sm` | 12 |
+| `$spacing-md` | 16 |
+| `$spacing-lg` | 24 |
+| `$spacing-xl` | 32 |
+| `$spacing-2xl` | 48 |
+| `$spacing-3xl` | 64 |
+| `$spacing-4xl` | 88 |
 
-### Button
-- **Primary (filled):** 
-  - Background: color-accent (#0A0A0A)
-  - Text: color-bg (#F4F2ED)
-  - Border-radius: 4px
-  
-- **Secondary (outline):**
-  - Background: transparent
-  - Border: 1px color-accent
-  - Text: color-accent
-  - Border-radius: 4px
-
-- **Ghost:**
-  - Background: transparent
-  - Text: color-text
-  - No border
-
-### Text
-- **Headings (h1, h2, h3):** font-sans, color-text
-- **Body:** font-sans, color-text, size-base (16px)
-- **Secondary:** color-text-secondary
-- **Code/Meta:** font-mono, color-text-secondary, size-sm
+**Padding страниц:** `$spacing-xl clamp($spacing-xl, 5.5vw, 80px)` — responsive без медиа-запросов
 
 ---
 
-## 📊 CSS Variables (как писать в коде)
+## Border radius
 
-```css
-:root {
-  /* Colors */
-  --color-accent: #0A0A0A;
-  --color-bg: #F4F2ED;
-  --color-muted: #E8E5DD;
-  --color-text: #0A0A0A;
-  --color-text-secondary: #6B6B68;
+| Переменная | px | Где |
+|---|---|---|
+| `$radius-sm` | 2 | Lang кнопки |
+| `$radius-md` | 4 | Status badges, SEND кнопка |
+| `$radius-lg` | 12 | — |
 
-  /* Typography */
-  --font-sans: Inter, system-ui, sans-serif;
-  --font-serif: Georgia, serif;
-  --font-mono: JetBrains Mono, monospace;
+---
 
-  /* Font sizes */
-  --size-xs: 11px;
-  --size-sm: 12px;
-  --size-base: 16px;
-  --size-lg: 20px;
-  --size-xl: 26px;
-  --size-2xl: 32px;
-  --size-3xl: 44px;
-  --size-4xl: 64px;
-  --size-5xl: 88px;
+## Transitions
 
-  /* Spacing */
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-base: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-}
+```scss
+$transition: 0.2s; // единый токен для всех transitions
 ```
 
 ---
 
-## ⚠️ Важные правила
+## Миксины
 
-1. **Контраст:** Всегда #0A0A0A на #F4F2ED или наоборот
-2. **Единственные цвета:** Только 5 цветов в палитре
-3. **Типография:** 3 семейства, не больше
-4. **Spacing:** Кратно 8px
-5. **Никаких теней:** Clean, minimal дизайн
-6. **Border-radius:** 0 (sharp) или 4px (slight) или 12px (card)
-7. **Letter-spacing:** Для mono font +0.08–0.1, для остального -0.01 to -0.04 (headings)
-8. **Line-height:** Body 1.5-1.65, headings 0.95-1.1
+```scss
+@mixin page-layout     // базовая структура .page
+@mixin hero-section    // .hero с h1 стилями
+@mixin breadcrumb-style
+@mixin section-label
+```
 
----
-
-## 🔗 Где используется
-
-- [[../../PROJECT_PLAN.md]] — основной план
-- [[./COMPONENTS.md]] — как применить к компонентам
-- [[../code/ARCHITECTURE.md]] — как организовать в коде
+Использование:
+```scss
+.page { @include page-layout; }
+.hero { @include hero-section; }
+```
 
 ---
 
-**Last updated:** 2026-05-03
+Last updated: 2026-05-04

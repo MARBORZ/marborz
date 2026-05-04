@@ -15,16 +15,27 @@
               "state": {
                 "file": "MARBORZ_PROJECT.canvas",
                 "viewState": {
-                  "x": 471.53879910881466,
-                  "y": 172.2285040051845,
-                  "zoom": -0.31655349742604155
+                  "x": 270,
+                  "y": 460,
+                  "zoom": -1.19339472464198
                 }
               },
               "icon": "lucide-layout-dashboard",
               "title": "MARBORZ_PROJECT"
             }
+          },
+          {
+            "id": "c62dbd7d24f3ae79",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Граф"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -47,7 +58,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Файловый менеджер"
             }
           },
           {
@@ -81,7 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 249.5
   },
   "right": {
     "id": "849e48133d92fbb4",
@@ -174,20 +185,24 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "bases:Создать новую базу": false
     }
   },
-  "active": "1daaef638d33db83",
+  "active": "c62dbd7d24f3ae79",
   "lastOpenFiles": [
-    "PROJECT_OVERVIEW.md",
-    "design/COMPONENTS.md",
     "MARBORZ_PROJECT.canvas",
+    "resources/LINKS.md",
+    "notes/DECISION_scss-modules-vs-tailwind.md",
+    "code/ARCHITECTURE.md",
+    "PROJECT_OVERVIEW.md",
+    "ROADMAP.canvas",
+    "design/COMPONENTS.md",
     "MARBORZ_PROJECT.canvas.tmp.25260.1777883210698",
     "design/DESIGN_TOKENS.md",
     "notes/SESSION_2026-05-03_styling.md",
