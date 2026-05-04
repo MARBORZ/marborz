@@ -4,25 +4,10 @@
   @include page-layout;
   justify-content: center;
   min-height: calc(100vh - 72px);
-
-  @media (max-width: $breakpoint-laptop) {
-    padding: $spacing-xl $spacing-2xl;
-  }
-
-  @media (max-width: $breakpoint-tablet) {
-    padding: $spacing-xl $spacing-lg;
-  }
-
-  @media (max-width: $breakpoint-mobile) {
-    padding: $spacing-lg $spacing-md;
-  }
 }
 
 .topBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: $spacing-xl 0;
+  @include topBar-layout;
 }
 
 .breadcrumb {
@@ -45,15 +30,15 @@
       letter-spacing: -0.05em;
       color: $color-text;
 
-      @media (max-width: $breakpoint-laptop) {
+      @include laptop {
         font-size: 120px;
       }
 
-      @media (max-width: $breakpoint-tablet) {
+      @include tablet {
         font-size: 96px;
       }
 
-      @media (max-width: $breakpoint-mobile) {
+      @include mobile {
         font-size: 72px;
       }
     }
@@ -64,15 +49,15 @@
       font-size: $font-size-6xl;
       letter-spacing: $letter-spacing-hero;
 
-      @media (max-width: $breakpoint-laptop) {
+      @include laptop {
         font-size: 72px;
       }
 
-      @media (max-width: $breakpoint-tablet) {
+      @include tablet {
         font-size: 56px;
       }
 
-      @media (max-width: $breakpoint-mobile) {
+      @include mobile {
         font-size: 44px;
       }
     }
@@ -98,7 +83,7 @@
   color: $color-text;
   border-bottom: 1px solid $color-text;
   padding-bottom: 2px;
-  transition: opacity $transition;
+  @include transition-opacity;
 
   &:hover {
     opacity: 0.5;
