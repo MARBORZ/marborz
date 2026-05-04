@@ -40,7 +40,6 @@ export default function Home() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
     },
   }
 
@@ -49,7 +48,6 @@ export default function Home() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
     },
   }
 
@@ -74,6 +72,7 @@ export default function Home() {
             initial="hidden"
             animate={projectsRef.isInView ? 'visible' : 'hidden'}
             variants={sectionVariants}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className={styles.sectionLabel}>{t('home.projects.label')}</div>
             <p className={styles.projectsSubtitle}>{t('home.projects.subtitle')}</p>
@@ -83,6 +82,7 @@ export default function Home() {
               variants={containerVariants}
               initial="hidden"
               animate={projectsRef.isInView ? 'visible' : 'hidden'}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
               {previewProjects.map((project) => (
                 <motion.button
@@ -142,6 +142,7 @@ export default function Home() {
             initial="hidden"
             animate={approachRef.isInView ? 'visible' : 'hidden'}
             variants={sectionVariants}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className={styles.sectionLabel}>{t('home.approach.label')}</div>
             <div className={styles.approachContent}>
@@ -168,6 +169,7 @@ export default function Home() {
             initial="hidden"
             animate={ctaRef.isInView ? 'visible' : 'hidden'}
             variants={sectionVariants}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className={styles.sectionLabel}>{t('home.cta.label')}</div>
             <a href={`mailto:${SITE_CONFIG.email}`} className={styles.emailLink}>

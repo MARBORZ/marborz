@@ -14,7 +14,7 @@ function Header() {
 
   // Unified effect for resize and click outside
   useEffect(() => {
-    let resizeTimeout: NodeJS.Timeout
+    let resizeTimeout: ReturnType<typeof setTimeout>
 
     const handleResize = () => {
       clearTimeout(resizeTimeout)
