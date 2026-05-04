@@ -71,7 +71,7 @@ export default function Home() {
           ref={projectsRef.ref}
           className={styles.projectsSection}
           initial={!isMobile ? 'hidden' : false}
-          animate={!isMobile && projectsRef.isInView ? 'visible' : 'hidden'}
+          animate={!isMobile && projectsRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           variants={!isMobile ? sectionVariants : undefined}
         >
           <div className={styles.sectionLabel}>{t('home.projects.label')}</div>
@@ -81,7 +81,7 @@ export default function Home() {
             className={styles.projectsList}
             variants={!isMobile ? containerVariants : undefined}
             initial={!isMobile ? 'hidden' : false}
-            animate={!isMobile && projectsRef.isInView ? 'visible' : 'hidden'}
+            animate={!isMobile && projectsRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           >
             {previewProjects.map((project) => (
               <motion.button
@@ -110,7 +110,7 @@ export default function Home() {
           ref={approachRef.ref}
           className={styles.approach}
           initial={!isMobile ? 'hidden' : false}
-          animate={!isMobile && approachRef.isInView ? 'visible' : 'hidden'}
+          animate={!isMobile && approachRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           variants={!isMobile ? sectionVariants : undefined}
         >
           <div className={styles.sectionLabel}>{t('home.approach.label')}</div>
@@ -125,7 +125,7 @@ export default function Home() {
           ref={ctaRef.ref}
           className={styles.cta}
           initial={!isMobile ? 'hidden' : false}
-          animate={!isMobile && ctaRef.isInView ? 'visible' : 'hidden'}
+          animate={!isMobile && ctaRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           variants={!isMobile ? sectionVariants : undefined}
         >
           <div className={styles.sectionLabel}>{t('home.cta.label')}</div>

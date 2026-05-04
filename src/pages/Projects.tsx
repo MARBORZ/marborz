@@ -117,7 +117,7 @@ export default function Projects() {
             ref={featuredRef.ref}
             className={styles.featuredSection}
             initial={!isMobile ? 'hidden' : false}
-            animate={!isMobile && featuredRef.isInView ? 'visible' : 'hidden'}
+            animate={!isMobile && featuredRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
             variants={!isMobile ? sectionVariants : undefined}
           >
             <div className={styles.featuredLabel}>{t('projects.featured.label')}</div>
@@ -152,7 +152,7 @@ export default function Projects() {
             className={styles.projectsGrid}
             variants={!isMobile ? containerVariants : undefined}
             initial={!isMobile ? 'hidden' : false}
-            animate={!isMobile && gridRef.isInView ? 'visible' : 'hidden'}
+            animate={!isMobile && gridRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           >
             {gridProjects.map((project) => (
               <motion.button
@@ -190,7 +190,7 @@ export default function Projects() {
             ref={archiveRef.ref}
             className={styles.archiveSection}
             initial={!isMobile ? 'hidden' : false}
-            animate={!isMobile && archiveRef.isInView ? 'visible' : 'hidden'}
+            animate={!isMobile && archiveRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
             variants={!isMobile ? sectionVariants : undefined}
           >
             <div className={styles.archiveLabel}>{t('projects.archive.label')}</div>
@@ -198,7 +198,7 @@ export default function Projects() {
               className={styles.archiveList}
               variants={!isMobile ? containerVariants : undefined}
               initial={!isMobile ? 'hidden' : false}
-              animate={!isMobile && archiveRef.isInView ? 'visible' : 'hidden'}
+              animate={!isMobile && archiveRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
             >
               {archiveProjects.map((project) => (
                 <motion.button

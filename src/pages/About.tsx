@@ -75,7 +75,7 @@ export default function About() {
           ref={infoRef.ref}
           className={styles.infoRow}
           initial={!isMobile ? 'hidden' : false}
-          animate={!isMobile && infoRef.isInView ? 'visible' : 'hidden'}
+          animate={!isMobile && infoRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           variants={!isMobile ? sectionVariants : undefined}
         >
           <section className={styles.backgroundSection}>
@@ -100,7 +100,7 @@ export default function About() {
           ref={learningRef.ref}
           className={styles.learningSection}
           initial={!isMobile ? 'hidden' : false}
-          animate={!isMobile && learningRef.isInView ? 'visible' : 'hidden'}
+          animate={!isMobile && learningRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           variants={!isMobile ? sectionVariants : undefined}
         >
           <div className={styles.sectionLabel}>{t('about.learning.label')}</div>
@@ -109,7 +109,7 @@ export default function About() {
             className={styles.learningItems}
             variants={!isMobile ? containerVariants : undefined}
             initial={!isMobile ? 'hidden' : false}
-            animate={!isMobile && learningRef.isInView ? 'visible' : 'hidden'}
+            animate={!isMobile && learningRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           >
             {(t('about.learning.items', { returnObjects: true }) as LearningItem[]).map((item) => (
               <motion.div
@@ -130,7 +130,7 @@ export default function About() {
           ref={principlesRef.ref}
           className={styles.principlesSection}
           initial={!isMobile ? 'hidden' : false}
-          animate={!isMobile && principlesRef.isInView ? 'visible' : 'hidden'}
+          animate={!isMobile && principlesRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           variants={!isMobile ? sectionVariants : undefined}
         >
           <div className={styles.sectionLabel}>{t('about.principles.label')}</div>
@@ -138,7 +138,7 @@ export default function About() {
             className={styles.principlesList}
             variants={!isMobile ? containerVariants : undefined}
             initial={!isMobile ? 'hidden' : false}
-            animate={!isMobile && principlesRef.isInView ? 'visible' : 'hidden'}
+            animate={!isMobile && principlesRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           >
             {(t('about.principles.items', { returnObjects: true }) as Principle[]).map((item) => (
               <motion.div

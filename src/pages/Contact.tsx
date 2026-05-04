@@ -77,7 +77,7 @@ export default function Contact() {
           ref={contentRef.ref}
           className={styles.contactContent}
           initial={!isMobile ? 'hidden' : false}
-          animate={!isMobile && contentRef.isInView ? 'visible' : 'hidden'}
+          animate={!isMobile && contentRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
           variants={!isMobile ? sectionVariants : undefined}
         >
           <section className={styles.formSection}>
