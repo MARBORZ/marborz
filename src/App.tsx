@@ -1,7 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import Layout from "./components/Layout";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import PageSkeleton from "./components/skeletons/PageSkeleton";
 import { useIsMobile } from "./hooks/useIsMobile";
 
@@ -13,11 +14,37 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
   const { pathname } = useLocation();
+  const { i18n } = useTranslation();
   const isMobile = useIsMobile();
+  const [isChangingLanguage, setIsChangingLanguage] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  // Show skeleton when language changes
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setIsChangingLanguage(true);
+      setTimeout(() => {
+        setIsChangingLanguage(false);
+      }, 400);
+    };
+
+    i18n.on('languageChanged', handleLanguageChange);
+
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, [i18n]);
+
+  if (isChangingLanguage) {
+    return (
+      <Layout>
+        <PageSkeleton />
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
