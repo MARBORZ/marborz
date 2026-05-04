@@ -111,13 +111,14 @@ export default function Projects() {
           <span className={styles.filterCount}>{filtered.length} / {allProjects.length}</span>
         </div>
 
-        {featured && (
+        {featured && !isMobile && (
           <motion.div
             ref={featuredRef.ref}
             className={styles.featuredSection}
-            initial={!isMobile ? 'hidden' : false}
-            animate={!isMobile && featuredRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
-            variants={!isMobile ? sectionVariants : undefined}
+            initial="hidden"
+            animate={featuredRef.isInView ? 'visible' : 'hidden'}
+            variants={sectionVariants}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className={styles.featuredLabel}>{t('projects.featured.label')}</div>
             <button
@@ -145,13 +146,42 @@ export default function Projects() {
           </motion.div>
         )}
 
-        {gridProjects.length > 0 && (
+        {featured && isMobile && (
+          <div ref={featuredRef.ref} className={styles.featuredSection}>
+            <div className={styles.featuredLabel}>{t('projects.featured.label')}</div>
+            <button
+              type="button"
+              className={styles.featuredProject}
+              onClick={() => setActiveId(featured.id)}
+            >
+              <div className={styles.featuredMedia}>
+                {featured.imageUrl
+                  ? <img src={featured.imageUrl} alt={featured.title} className={styles.featuredImg} />
+                  : <span>[ DEMO VIDEO PLACEHOLDER ]</span>
+                }
+              </div>
+              <div className={styles.featuredBody}>
+                <div className={styles.featuredMeta}>
+                  <span className={styles.featuredNum}>/{featured.number}</span>
+                  <span className={styles.featuredStatus}>{t(`common.statuses.${featured.status}`)}</span>
+                </div>
+                <span className={styles.featuredTitle}>{featured.title}</span>
+                <p className={styles.featuredDescription}>
+                  {t(`projects.list.${featured.id}.description`, { defaultValue: featured.stack })}
+                </p>
+              </div>
+            </button>
+          </div>
+        )}
+
+        {gridProjects.length > 0 && !isMobile && (
           <motion.div
             ref={gridRef.ref}
             className={styles.projectsGrid}
-            variants={!isMobile ? containerVariants : undefined}
-            initial={!isMobile ? 'hidden' : false}
-            animate={!isMobile && gridRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
+            variants={containerVariants}
+            initial="hidden"
+            animate={gridRef.isInView ? 'visible' : 'hidden'}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             {gridProjects.map((project) => (
               <motion.button
@@ -159,7 +189,7 @@ export default function Projects() {
                 type="button"
                 className={styles.projectCard}
                 onClick={() => setActiveId(project.id)}
-                variants={!isMobile ? itemVariants : undefined}
+                variants={itemVariants}
               >
                 <div className={styles.cardMedia}>
                   {project.imageUrl
@@ -184,20 +214,54 @@ export default function Projects() {
           </motion.div>
         )}
 
-        {archiveProjects.length > 0 && (
+        {gridProjects.length > 0 && isMobile && (
+          <div ref={gridRef.ref} className={styles.projectsGrid}>
+            {gridProjects.map((project) => (
+              <button
+                key={project.id}
+                type="button"
+                className={styles.projectCard}
+                onClick={() => setActiveId(project.id)}
+              >
+                <div className={styles.cardMedia}>
+                  {project.imageUrl
+                    ? <img src={project.imageUrl} alt={project.title} className={styles.cardImg} />
+                    : <span>[ IMAGE PLACEHOLDER ]</span>
+                  }
+                </div>
+                <div className={styles.cardBody}>
+                  <div className={styles.cardMeta}>
+                    <span className={styles.cardNum}>/{project.number}</span>
+                    <span className={styles.cardStatus}>
+                      {t(`common.statuses.${project.status}`)}
+                    </span>
+                  </div>
+                  <span className={styles.cardTitle}>{project.title}</span>
+                  <p className={styles.cardDescription}>
+                    {t(`projects.list.${project.id}.description`, { defaultValue: project.stack })}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {archiveProjects.length > 0 && !isMobile && (
           <motion.div
             ref={archiveRef.ref}
             className={styles.archiveSection}
-            initial={!isMobile ? 'hidden' : false}
-            animate={!isMobile && archiveRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
-            variants={!isMobile ? sectionVariants : undefined}
+            initial="hidden"
+            animate={archiveRef.isInView ? 'visible' : 'hidden'}
+            variants={sectionVariants}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className={styles.archiveLabel}>{t('projects.archive.label')}</div>
             <motion.div
               className={styles.archiveList}
-              variants={!isMobile ? containerVariants : undefined}
-              initial={!isMobile ? 'hidden' : false}
-              animate={!isMobile && archiveRef.isInView ? 'visible' : !isMobile ? 'hidden' : false}
+              variants={containerVariants}
+              initial="hidden"
+              animate={archiveRef.isInView ? 'visible' : 'hidden'}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
               {archiveProjects.map((project) => (
                 <motion.button
@@ -205,7 +269,7 @@ export default function Projects() {
                   type="button"
                   className={styles.archiveRow}
                   onClick={() => setActiveId(project.id)}
-                  variants={!isMobile ? itemVariants : undefined}
+                  variants={itemVariants}
                 >
                   <span className={styles.archiveNum}>/{project.number}</span>
                   <span className={styles.archiveTitle}>{project.title}</span>
@@ -216,6 +280,28 @@ export default function Projects() {
               ))}
             </motion.div>
           </motion.div>
+        )}
+
+        {archiveProjects.length > 0 && isMobile && (
+          <div ref={archiveRef.ref} className={styles.archiveSection}>
+            <div className={styles.archiveLabel}>{t('projects.archive.label')}</div>
+            <div className={styles.archiveList}>
+              {archiveProjects.map((project) => (
+                <button
+                  key={project.id}
+                  type="button"
+                  className={styles.archiveRow}
+                  onClick={() => setActiveId(project.id)}
+                >
+                  <span className={styles.archiveNum}>/{project.number}</span>
+                  <span className={styles.archiveTitle}>{project.title}</span>
+                  <span className={styles.archiveSub}>— {project.subtitle}</span>
+                  <span className={styles.archiveStack}>{project.stack}</span>
+                  <span className={styles.archiveArrow}>→</span>
+                </button>
+              ))}
+            </div>
+          </div>
         )}
         <Footer title={t('projects.footer.next')} href="/about" />
       </section>
