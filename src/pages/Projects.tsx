@@ -1,14 +1,22 @@
 import { useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { motion } from 'framer-motion'
 import Footer from '@/components/Footer'
 import ProjectModal from '@/components/ProjectModal'
 import { allProjects, PROJECT_FILTERS, type ProjectStatus } from '@/shared/projects'
+import { useIsMobile } from '@/hooks/useIsMobile'
+import { useInView } from '@/hooks/useInView'
 import styles from '@/styles/Projects/projects.module.scss'
 
 export default function Projects() {
   const { t } = useTranslation()
   const [filter, setFilter] = useState<ProjectStatus | 'all'>('all')
   const [activeId, setActiveId] = useState<string | null>(null)
+  const isMobile = useIsMobile()
+
+  const featuredRef = useInView({ threshold: 0.1 })
+  const gridRef = useInView({ threshold: 0.1 })
+  const archiveRef = useInView({ threshold: 0.1 })
 
   const filterKeys: Record<'all' | ProjectStatus, string> = {
     all: 'all',
@@ -29,6 +37,34 @@ export default function Projects() {
   const featured = filtered.find((p) => p.status === 'active') ?? filtered[0]
   const gridProjects = filtered.filter((p) => p.id !== featured?.id && (p.status === 'active' || p.status === 'shipped')).slice(0, 4)
   const archiveProjects = filtered.filter((p) => p.id !== featured?.id && (p.status === 'experiment' || p.status === 'planned'))
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: 'easeOut' },
+    },
+  }
+
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: 'easeOut' },
+    },
+  }
 
   return (
     <>
@@ -77,7 +113,13 @@ export default function Projects() {
         </div>
 
         {featured && (
-          <div className={styles.featuredSection}>
+          <motion.div
+            ref={featuredRef.ref}
+            className={styles.featuredSection}
+            initial={!isMobile ? 'hidden' : false}
+            animate={!isMobile && featuredRef.isInView ? 'visible' : 'hidden'}
+            variants={!isMobile ? sectionVariants : undefined}
+          >
             <div className={styles.featuredLabel}>{t('projects.featured.label')}</div>
             <button
               type="button"
@@ -101,17 +143,24 @@ export default function Projects() {
                 </p>
               </div>
             </button>
-          </div>
+          </motion.div>
         )}
 
         {gridProjects.length > 0 && (
-          <div className={styles.projectsGrid}>
+          <motion.div
+            ref={gridRef.ref}
+            className={styles.projectsGrid}
+            variants={!isMobile ? containerVariants : undefined}
+            initial={!isMobile ? 'hidden' : false}
+            animate={!isMobile && gridRef.isInView ? 'visible' : 'hidden'}
+          >
             {gridProjects.map((project) => (
-              <button
+              <motion.button
                 key={project.id}
                 type="button"
                 className={styles.projectCard}
                 onClick={() => setActiveId(project.id)}
+                variants={!isMobile ? itemVariants : undefined}
               >
                 <div className={styles.cardMedia}>
                   {project.imageUrl
@@ -131,31 +180,43 @@ export default function Projects() {
                     {t(`projects.list.${project.id}.description`, { defaultValue: project.stack })}
                   </p>
                 </div>
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         )}
 
         {archiveProjects.length > 0 && (
-          <div className={styles.archiveSection}>
+          <motion.div
+            ref={archiveRef.ref}
+            className={styles.archiveSection}
+            initial={!isMobile ? 'hidden' : false}
+            animate={!isMobile && archiveRef.isInView ? 'visible' : 'hidden'}
+            variants={!isMobile ? sectionVariants : undefined}
+          >
             <div className={styles.archiveLabel}>{t('projects.archive.label')}</div>
-            <div className={styles.archiveList}>
+            <motion.div
+              className={styles.archiveList}
+              variants={!isMobile ? containerVariants : undefined}
+              initial={!isMobile ? 'hidden' : false}
+              animate={!isMobile && archiveRef.isInView ? 'visible' : 'hidden'}
+            >
               {archiveProjects.map((project) => (
-                <button
+                <motion.button
                   key={project.id}
                   type="button"
                   className={styles.archiveRow}
                   onClick={() => setActiveId(project.id)}
+                  variants={!isMobile ? itemVariants : undefined}
                 >
                   <span className={styles.archiveNum}>/{project.number}</span>
                   <span className={styles.archiveTitle}>{project.title}</span>
                   <span className={styles.archiveSub}>— {project.subtitle}</span>
                   <span className={styles.archiveStack}>{project.stack}</span>
                   <span className={styles.archiveArrow}>→</span>
-                </button>
+                </motion.button>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
         <Footer title={t('projects.footer.next')} href="/about" />
       </section>

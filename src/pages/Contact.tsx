@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { motion } from 'framer-motion'
 import Footer from '@/components/Footer'
 import { SITE_CONFIG } from '@/shared/config'
+import { useIsMobile } from '@/hooks/useIsMobile'
+import { useInView } from '@/hooks/useInView'
 import styles from '@/styles/Contact/contact.module.scss'
 
 interface ContactFormData {
@@ -13,6 +16,9 @@ interface ContactFormData {
 
 export default function Contact() {
   const { t } = useTranslation()
+  const isMobile = useIsMobile()
+  const contentRef = useInView({ threshold: 0.1 })
+
   const {
     register,
     handleSubmit,
@@ -45,6 +51,15 @@ export default function Contact() {
     }
   }
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: 'easeOut' },
+    },
+  }
+
   return (
     <>
       <section className={styles.page}>
@@ -58,7 +73,13 @@ export default function Contact() {
           <h1>{t("contact.hero.line2")}</h1>
         </div>
 
-        <div className={styles.contactContent}>
+        <motion.div
+          ref={contentRef.ref}
+          className={styles.contactContent}
+          initial={!isMobile ? 'hidden' : false}
+          animate={!isMobile && contentRef.isInView ? 'visible' : 'hidden'}
+          variants={!isMobile ? sectionVariants : undefined}
+        >
           <section className={styles.formSection}>
             <div className={styles.sectionLabel}>{t("contact.form.label")}</div>
             <form
@@ -205,7 +226,7 @@ export default function Contact() {
               </div>
             </div>
           </section>
-        </div>
+        </motion.div>
         <Footer title={t("contact.footer.next")} href="/" />
       </section>
     </>
