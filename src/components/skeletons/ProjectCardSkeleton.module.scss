@@ -1,0 +1,72 @@
+@use '../../styles/tokens' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1.25px solid $color-border;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.media {
+  width: 100%;
+  height: 220px;
+  background-color: $color-surface;
+  animation: pulse 1.5s ease-in-out infinite;
+
+  @include mobile {
+    height: 180px;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: $spacing-lg;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.num {
+  width: 40px;
+  height: 16px;
+  background-color: $color-surface;
+  border-radius: $radius-sm;
+}
+
+.status {
+  width: 80px;
+  height: 20px;
+  background-color: $color-surface;
+  border-radius: $radius-md;
+}
+
+.title {
+  width: 70%;
+  height: 28px;
+  background-color: $color-surface;
+  border-radius: $radius-sm;
+  margin-top: $spacing-xs;
+}
+
+.description {
+  width: 100%;
+  height: 16px;
+  background-color: $color-surface;
+  border-radius: $radius-sm;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

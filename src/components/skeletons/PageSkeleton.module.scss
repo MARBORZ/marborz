@@ -1,0 +1,83 @@
+@use '../../styles/tokens' as *;
+
+.page {
+  @include page-layout;
+}
+
+.topBar {
+  @include topBar-layout;
+}
+
+.breadcrumb,
+.status {
+  width: 120px;
+  height: 14px;
+  background-color: $color-surface;
+  border-radius: $radius-sm;
+}
+
+.hero {
+  @include hero-section;
+}
+
+.heroTitle {
+  width: 60%;
+  height: 80px;
+  background-color: $color-surface;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-md;
+
+  @include tablet {
+    height: 60px;
+  }
+
+  @include mobile {
+    height: 48px;
+    width: 80%;
+  }
+}
+
+.heroSubtitle {
+  width: 40%;
+  height: 32px;
+  background-color: $color-surface;
+  border-radius: $radius-md;
+
+  @include mobile {
+    width: 60%;
+    height: 24px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-3xl 0;
+}
+
+.line {
+  width: 100%;
+  height: 20px;
+  background-color: $color-surface;
+  border-radius: $radius-sm;
+  animation: pulse 1.5s ease-in-out infinite;
+
+  &:nth-child(2) {
+    width: 90%;
+  }
+
+  &:nth-child(3) {
+    width: 75%;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
