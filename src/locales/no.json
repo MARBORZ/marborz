@@ -18,20 +18,20 @@
     "breadcrumb": "001 / HJEM",
     "location": "PORSGRUNN, 59.14°N · 2026",
     "hero": {
-      "line1": "Bygger",
-      "line2": "grensesnitt",
-      "line3": "som tenker."
+      "line1": "Fullstack-utvikler.",
+      "line2": "Førsteklassing.",
+      "line3": "Bygger ting, lærer fort."
     },
     "projects": {
       "label": "— UTVALGTE PROSJEKTER / 2025–2026",
-      "subtitle": "Fire prosjekter under utvikling.",
+      "subtitle": "Det jeg har bygget i år.",
       "viewAll": "SE ALLE →"
     },
     "approach": {
       "label": "— TILNÆRMING",
       "line1": "Jeg vil forstå",
-      "line2": "arkitektur, ikke bare kode.",
-      "body": "Lær hvorfor før hvordan. Bygg små ting godt før du skalerer. Det er hele planen."
+      "line2": "det jeg bygger.",
+      "body": "Begynte å kode i mai 2025. Jobber meg gjennom fullstack — React, TypeScript, Node, Postgres. Langsiktig mål: ML-ingeniør. Akkurat nå: får grunnlaget riktig."
     },
     "cta": {
       "label": "— TA KONTAKT",
@@ -43,10 +43,10 @@
   },
   "projects": {
     "breadcrumb": "002 / PROSJEKTER",
-    "count": "12 PROSJEKTER · 4 AKTIVE",
+    "count": "9 PROSJEKTER",
     "hero": {
-      "line1": "Alt jeg har bygget",
-      "line2": "og lært av."
+      "line1": "Det jeg har bygget",
+      "line2": "på ett år."
     },
     "filter": {
       "label": "FILTER:",
@@ -63,18 +63,33 @@
       "label": "— EKSPERIMENTER OG ARKIV"
     },
     "list": {
-      "aether": { "description": "Moderne landingsside som utforsker minimalistische designprinsipper og glatte interaksjoner." },
-      "2048": { "description": "Klassisk implementasjon av puslespillet 2048. Fokus på ren spellogikk og tilstandshåndtering." },
-      "yatzy": { "description": "Tradisjonelt Yatzy-spill med full regelimplementering og poengtakking." },
-      "stasis": { "description": "Eksperimentell landingsside med fokus på typografi og visuell hierarki." },
-      "hdufndsk": { "description": "Sosial plattform bygget i samarbeid med Deathtrip. Brukergodkjenning, innlegg og fellesskapsinteraksjoner." },
-      "kropp-fitness": { "description": "Min første landingsside. Bygget med ren HTML og CSS for å mestre grunnleggende webdesign- og layout-prinsipper." },
-      "skrekkeparken": { "description": "Interaktiv Halloween-kartspill for skoleprosjekt. Kombinerer historie med interaktive elementer og animasjoner." },
-      "date-time": { "description": "Vakker animert temaside for Wallpaper Engine med direkte klokke og datumopdateringer. Demonstrerer elegant bruk av setInterval() og CSS-animasjoner." },
-      "redbeardvfx": { "description": "Portefølje-landingsside for VFX-veileder som spesialiserer seg på film, serier og kommersiell visuell effekt. Inneholder kontaktskjema og prosjektvisning." },
-      "todo-react": { "description": "Fullstack todo-applikasjon som demonstrerer React-grunnleggende med komplett CRUD-operasjoner. Enkel backend med riktig API-struktur. Første seriøse React-prosjekt som beviser junior-nivå kompetanse." },
-      "interactive-dashboard": { "description": "Datavisualiseringsdashbord med sanntidsoppdateringer og interaktive diagrammer. Fokus på responsivt design og brukeropplevelse." },
-      "nordic-market": { "description": "E-handelsplattform som viser nordiske designprodukter. Fullstendig handlevogn, betalingsintegrasjon og admin-panel." }
+      "aether": {
+        "description": "Eksperiment med landingsside. Minimalt design, smooth scroll, egendefinert markør."
+      },
+      "2048": {
+        "description": "Klassisk 2048 i vanilla JS. Bygget mens jeg lærte OOP og async-mønstre."
+      },
+      "yatzy": {
+        "description": "Komplett Yatzy-spill i vanilla JS. Bygget på 2 dager for skoleoppgave. Logikk og DOM holdt adskilt."
+      },
+      "stasis": {
+        "description": "Landingsside for en fiktiv longevity-klinikk. React 19, Tailwind v4, Framer Motion."
+      },
+      "hdufndsk": {
+        "description": "Informasjonsside om kjøring i påvirket tilstand. Bygget med tematikken i tankene, ikke bare visuelt."
+      },
+      "kropp-fitness": {
+        "description": "Min første landingsside. Ren HTML og CSS. Her lærte jeg hva semantisk markup betyr."
+      },
+      "skrekkeparken": {
+        "description": "Halloween-kartspill, skoleprosjekt. Leaflet, geolokasjon, JSON-drevne scenarioer."
+      },
+      "date-time": {
+        "description": "Wallpaper engine-tema med levende klokke og dato. Vanilla JS, Date API, CSS-animasjoner."
+      },
+      "redbeardvfx": {
+        "description": "Landingsside for en VFX-supervisor. Avsluttet prosjekt — bygget, ikke lansert."
+      }
     },
     "footer": {
       "next": "→ OM MEG"
@@ -90,14 +105,14 @@
     },
     "background": {
       "label": "— BAKGRUNN",
-      "body": "Jeg er Amadi Masuev — førsteklassing ved Porsgrunn videregående skole, IT og medieproduksjon. Jeg begynte med programmering fordi jeg ville forstå hvordan ting er bygget, ikke bare hvordan man bruker dem.\n\nJobber mot en karriere i norsk teknologiindustri som fullstack-utvikler. Særlig interessert i systemarkitektur og AI-integrasjon."
+      "body": "Jeg heter Amadi Masuev. 18 år, flyttet til Norge fra Tsjetsjenia i 2023. Førsteklassing ved Porsgrunn videregående skole — IT og medieproduksjon.\n\nBegynte å programmere i mai 2025 fordi jeg ble nysgjerrig på hvordan nettsider faktisk fungerer. Et år senere bygger jeg mine egne.\n\nMål: bli ML-ingeniør. Vei: fullstack nå, matte og Python til sommeren, universitet etter."
     },
     "quickInfo": {
       "label": "— KORT FORTALT",
       "location": { "key": "STED", "value": "Porsgrunn, Norge" },
       "status": { "key": "STATUS", "value": "Åpen for junior-stillinger" },
       "codingSince": { "key": "KODER SIDEN", "value": "Mai 2025" },
-      "focus": { "key": "FOKUS", "value": "Fullstack + AI" },
+      "focus": { "key": "FOKUS", "value": "Fullstack → ML" },
       "stack": { "key": "STACK", "value": "React · TS · Node" },
       "editor": { "key": "EDITOR", "value": "VS Code" }
     },
@@ -105,10 +120,26 @@
       "label": "— LÆRINGSSTI",
       "subtitle": "Hvor jeg er, og hvor jeg skal.",
       "items": [
-        { "level": "01", "name": "React, HTML, CSS, JavaScript", "status": "KOMFORTABEL" },
-        { "level": "02", "name": "TypeScript, Node, Express", "status": "PÅGÅR" },
-        { "level": "03", "name": "Next.js, NestJS, PostgreSQL", "status": "NESTE" },
-        { "level": "04", "name": "ML, statistikk, AI-integrasjon", "status": "LANGSIKTIG" }
+        {
+          "level": "01",
+          "name": "React, HTML, CSS, JavaScript",
+          "status": "KOMFORTABEL"
+        },
+        {
+          "level": "02",
+          "name": "TypeScript, Node, Express",
+          "status": "PÅGÅR"
+        },
+        {
+          "level": "03",
+          "name": "Next.js, NestJS, PostgreSQL",
+          "status": "NESTE"
+        },
+        {
+          "level": "04",
+          "name": "Python, matte, ML-grunnlag",
+          "status": "LANGSIKTIG"
+        }
       ]
     },
     "principles": {
@@ -116,18 +147,18 @@
       "items": [
         {
           "number": "01",
-          "title": "Hvorfor før hvordan.",
-          "body": "Jeg vil forstå arkitektur og avveininger, ikke bare lime sammen kode som kjører."
+          "title": "Forstå før du bygger.",
+          "body": "Hvis jeg kopierer kode uten å forstå den, glemmer jeg den om en uke. Så jeg leser først, så skriver."
         },
         {
           "number": "02",
-          "title": "Små ting, godt bygget.",
-          "body": "Fire ordentlig leverte prosjekter er bedre enn tjue halvferdige eksperimenter."
+          "title": "Fullfør før du starter.",
+          "body": "Bedre å fullføre ett prosjekt og lære hva 'ferdig' betyr enn å starte ti og forlate dem."
         },
         {
           "number": "03",
-          "title": "Tydelig struktur.",
-          "body": "Ren kode, klare navn, lite støy. Samme følelse jeg vil ha visuelt."
+          "title": "Navn betyr noe.",
+          "body": "Dårlige variabelnavn er bugs som venter. Jeg gir nye navn helt til ting blir åpenbare."
         }
       ]
     },
@@ -167,7 +198,7 @@
   "notFound": {
     "breadcrumb": "404 / IKKE FUNNET",
     "line2": "Siden finnes ikke.",
-    "body": "Siden du leter etter finnes ikke eller er flyttet. Ingenting ødelagt — bare feil sving.",
+    "body": "Denne siden finnes ikke eller er flyttet. Tilbake til hjem.",
     "link": "← HJEM"
   }
 }

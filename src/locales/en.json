@@ -18,20 +18,20 @@
     "breadcrumb": "001 / HOME",
     "location": "PORSGRUNN, 59.14°N · 2026",
     "hero": {
-      "line1": "Building",
-      "line2": "interfaces",
-      "line3": "that think."
+      "line1": "Fullstack developer.",
+      "line2": "First-year student.",
+      "line3": "Building things, learning fast."
     },
     "projects": {
       "label": "— SELECTED PROJECTS / 2025–2026",
-      "subtitle": "Four projects in progress.",
+      "subtitle": "What I've been building this year.",
       "viewAll": "VIEW ALL →"
     },
     "approach": {
       "label": "— APPROACH",
       "line1": "I want to understand",
-      "line2": "architecture, not just code.",
-      "body": "Learn the why before the how. Build small things well before scaling. That's the whole plan."
+      "line2": "what I'm building.",
+      "body": "Started coding in May 2025. Working through fullstack — React, TypeScript, Node, Postgres. Long-term goal: ML engineering. Right now: getting solid at the foundation."
     },
     "cta": {
       "label": "— GET IN TOUCH",
@@ -43,10 +43,10 @@
   },
   "projects": {
     "breadcrumb": "002 / PROJECTS",
-    "count": "12 PROJECTS · 4 ACTIVE",
+    "count": "9 PROJECTS",
     "hero": {
-      "line1": "Everything I've built",
-      "line2": "and learned from."
+      "line1": "What I've built",
+      "line2": "in one year."
     },
     "filter": {
       "label": "FILTER:",
@@ -64,40 +64,31 @@
     },
     "list": {
       "aether": {
-        "description": "Modern landing page exploring minimalist design principles and smooth interactions."
+        "description": "Landing page experiment. Minimal design, smooth scroll, custom cursor."
       },
       "2048": {
-        "description": "Classic 2048 puzzle game implementation. Focused on clean game logic and state management."
+        "description": "Classic 2048 game in vanilla JS. Built while learning OOP and async patterns."
       },
       "yatzy": {
-        "description": "Traditional Yatzy game with full rules implementation and score tracking."
+        "description": "Full Yatzy game in vanilla JS. Built in 2 days for a school assignment. Logic and DOM kept separate."
       },
       "stasis": {
-        "description": "Experimental landing page with focus on typography and visual hierarchy."
+        "description": "Landing page for a fictional longevity clinic. React 19, Tailwind v4, Framer Motion."
       },
       "hdufndsk": {
-        "description": "Social platform built in collaboration with Deathtrip. Features user authentication, posts, and community interactions."
+        "description": "Awareness landing about driving under influence. Built with serious topic in mind, not just visuals."
       },
       "kropp-fitness": {
-        "description": "My first landing page. Built with pure HTML and CSS to master fundamentals of web design and layout."
+        "description": "My first landing page. Pure HTML and CSS. Where I learned what semantic markup means."
       },
       "skrekkeparken": {
-        "description": "Interactive Halloween map-game for school project. Combines storytelling with interactive elements and animations."
+        "description": "Halloween map-game school project. Leaflet, geolocation, JSON-driven scenarios."
       },
       "date-time": {
-        "description": "Beautiful animated wallpaper engine theme featuring live clock and date updates. Demonstrates elegant use of setInterval() and CSS animations."
+        "description": "Wallpaper engine theme with live clock and date. Vanilla JS, Date API, CSS animations."
       },
       "redbeardvfx": {
-        "description": "Portfolio landing page for VFX supervisor specializing in film, series, and commercial visual effects. Features contact form and project showcase."
-      },
-      "todo-react": {
-        "description": "Full-stack todo application demonstrating React fundamentals with complete CRUD operations. Vanilla backend with proper API structure. First serious React project proving junior-level competency."
-      },
-      "interactive-dashboard": {
-        "description": "Data visualization dashboard with real-time updates and interactive charts. Focus on responsive design and user experience."
-      },
-      "nordic-market": {
-        "description": "E-commerce platform showcasing Nordic design products. Full shopping cart, payment integration, and admin panel."
+        "description": "Landing page for a VFX supervisor. Closed project — built, not launched."
       }
     },
     "footer": {
@@ -114,14 +105,14 @@
     },
     "background": {
       "label": "— BACKGROUND",
-      "body": "I'm Amadi Masuev — a first-year student at Porsgrunn videregående skole, IT and media production. I got into programming because I wanted to understand how things are built, not just how to use them.\n\nWorking toward a career in the Norwegian tech industry as a fullstack developer. Particularly interested in system architecture and AI integration."
+      "body": "I'm Amadi Masuev. 18 years old, moved to Norway from Chechnya in 2023. First year at Porsgrunn videregående skole — IT and media production.\n\nStarted programming in May 2025 because I got curious about how websites actually work. A year later, I build my own.\n\nGoal: become an ML engineer. Path: fullstack now, math and Python next summer, university after."
     },
     "quickInfo": {
       "label": "— QUICK INFO",
       "location": { "key": "LOCATION", "value": "Porsgrunn, Norway" },
       "status": { "key": "STATUS", "value": "Open to junior roles" },
       "codingSince": { "key": "CODING SINCE", "value": "May 2025" },
-      "focus": { "key": "FOCUS", "value": "Fullstack + AI" },
+      "focus": { "key": "FOCUS", "value": "Fullstack → ML" },
       "stack": { "key": "STACK", "value": "React · TS · Node" },
       "editor": { "key": "EDITOR", "value": "VS Code" }
     },
@@ -146,7 +137,7 @@
         },
         {
           "level": "04",
-          "name": "ML, statistics, AI integration",
+          "name": "Python, math, ML fundamentals",
           "status": "LONG-TERM"
         }
       ]
@@ -156,18 +147,18 @@
       "items": [
         {
           "number": "01",
-          "title": "Why before how.",
-          "body": "I want to understand architecture and trade-offs, not just glue together code that runs."
+          "title": "Understand before you build.",
+          "body": "If I copy code without understanding it, I forget it in a week. So I read first, then write."
         },
         {
           "number": "02",
-          "title": "Small things, well built.",
-          "body": "Four projects shipped properly beat twenty half-finished experiments."
+          "title": "Finish before you start.",
+          "body": "Better to finish one project and learn what 'done' means than start ten and abandon them."
         },
         {
           "number": "03",
-          "title": "Clear structure.",
-          "body": "Clean code, clear names, low noise. Same feeling I want visually."
+          "title": "Names matter.",
+          "body": "Bad variable names are bugs waiting to happen. I rename until things become obvious."
         }
       ]
     },
@@ -207,7 +198,7 @@
   "notFound": {
     "breadcrumb": "404 / NOT FOUND",
     "line2": "Page not found.",
-    "body": "The page you're looking for doesn't exist or was moved. Nothing broken — just a wrong turn.",
+    "body": "This page doesn't exist or got moved. Head back home.",
     "link": "← HOME"
   }
 }
