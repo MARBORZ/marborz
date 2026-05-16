@@ -31,7 +31,7 @@
       "label": "— APPROACH",
       "line1": "I want to understand",
       "line2": "what I'm building.",
-      "body": "Started coding in May 2025. Working through fullstack — React, TypeScript, Node, Postgres. Long-term goal: ML engineering. Right now: getting solid at the foundation."
+      "body": "Started coding in May 2025. Working through fullstack — React, TypeScript, Node, Postgres. Right now: building a solid foundation."
     },
     "cta": {
       "label": "— GET IN TOUCH",
@@ -65,7 +65,7 @@
     "list": {
       "aether": {
         "description": "Landing page experiment. Minimal design, smooth scroll, custom cursor.",
-        "fullDescription": "Landing page for a UI library concept. Custom cursor, scroll animations, minimal type. First time I tried to make something that actually looked intentional. Spent more time on spacing than on anything else."
+        "fullDescription": "Landing page for a UI library concept. Custom cursor, scroll animations, minimal type. First time I tried to make something that actually looked intentional. Focused heavily on spacing and visual rhythm."
       },
       "2048": {
         "description": "Classic 2048 game in vanilla JS. Built while learning OOP and async patterns.",
@@ -85,7 +85,7 @@
       },
       "kropp-fitness": {
         "description": "My first landing page. Pure HTML and CSS. Where I learned what semantic markup means.",
-        "fullDescription": "My very first landing page. Pure HTML and CSS, zero JavaScript. I had no idea what semantic markup was when I started writing it. By the time I finished, I did."
+        "fullDescription": "My very first landing page. Pure HTML and CSS, zero JavaScript. I had no idea what semantic markup was when I started. By the time I finished, I did."
       },
       "skrekkeparken": {
         "description": "Halloween map-game school project. Leaflet, geolocation, JSON-driven scenarios.",
@@ -93,11 +93,11 @@
       },
       "date-time": {
         "description": "Wallpaper engine theme with live clock and date. Vanilla JS, Date API, CSS animations.",
-        "fullDescription": "Wallpaper Engine theme — live clock and date that updates every second. Vanilla JS, the Date API, and a lot of CSS transitions. Small thing, but actually useful."
+        "fullDescription": "Wallpaper Engine theme — live clock and date that updates every second. Vanilla JS, the Date API, and a lot of CSS transitions. Compact utility with practical daily use."
       },
       "redbeardvfx": {
-        "description": "Landing page for a VFX supervisor. Closed project — built, not launched.",
-        "fullDescription": "Portfolio for a VFX supervisor. Closed project — we built it but the client changed direction before it launched. First time I built something for someone else's creative vision, not mine."
+        "description": "Portfolio site for a VFX supervisor. Active client project, currently live.",
+        "fullDescription": "Portfolio for a VFX supervisor. The site is live. Active project — working through the remaining requirements before final handoff. First time building something to someone else's creative vision, not my own."
       },
       "todo-react": {
         "description": "Fullstack task manager. React, Node, Express, connected to a real database.",
@@ -117,7 +117,7 @@
       },
       "nordic-market": {
         "description": "E-commerce with Nordic design. In progress.",
-        "fullDescription": "E-commerce site with a Nordic aesthetic. In progress — planning the data layer and component structure."
+        "fullDescription": "E-commerce site with Nordic aesthetic. Designing the data layer and component architecture."
       }
     },
     "footer": {
@@ -134,7 +134,7 @@
     },
     "background": {
       "label": "— BACKGROUND",
-      "body": "I'm Amadi Masuev. 18 years old, moved to Norway from Chechnya in 2023. First year at Porsgrunn videregående skole — IT and media production.\n\nStarted programming in May 2025 because I got curious about how websites actually work. A year later, I build my own.\n\nGoal: become an ML engineer. Path: fullstack now, math and Python next summer, university after."
+      "body": "I'm Amadi Masuev. First year at Porsgrunn videregående skole — IT and media production.\n\nStarted programming in May 2025. Build fullstack projects with React and Node.js. Currently learning Next.js and expanding into backend architecture."
     },
     "quickInfo": {
       "label": "— QUICK INFO",

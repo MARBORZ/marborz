@@ -31,7 +31,7 @@
       "label": "— TILNÆRMING",
       "line1": "Jeg vil forstå",
       "line2": "det jeg bygger.",
-      "body": "Begynte å kode i mai 2025. Jobber meg gjennom fullstack — React, TypeScript, Node, Postgres. Langsiktig mål: ML-ingeniør. Akkurat nå: får grunnlaget riktig."
+      "body": "Begynte å kode i mai 2025. Jobber meg gjennom fullstack — React, TypeScript, Node, Postgres. Akkurat nå: bygger et solid grunnlag."
     },
     "cta": {
       "label": "— TA KONTAKT",
@@ -65,7 +65,7 @@
     "list": {
       "aether": {
         "description": "Eksperiment med landingsside. Minimalt design, smooth scroll, egendefinert markør.",
-        "fullDescription": "Landingsside for et UI-bibliotek-konsept. Egendefinert markør, rulleanimasjoner, minimalt typografi. Første gang jeg prøvde å lage noe som faktisk så gjennomtenkt ut. Brukte mer tid på spacing enn noe annet."
+        "fullDescription": "Landingsside for et UI-bibliotek-konsept. Egendefinert markør, rulleanimasjoner, minimalt typografi. Første gang jeg prøvde å lage noe som faktisk så gjennomtenkt ut. Fokuserte mye på spacing og visuell rytme."
       },
       "2048": {
         "description": "Klassisk 2048 i vanilla JS. Bygget mens jeg lærte OOP og async-mønstre.",
@@ -73,7 +73,7 @@
       },
       "yatzy": {
         "description": "Komplett Yatzy-spill i vanilla JS. Bygget på 2 dager for skoleoppgave. Logikk og DOM holdt adskilt.",
-        "fullDescription": "Komplett Yatzy med alle poengregler — Yatzy, fullhus, og resten. Logikk og DOM i helt adskilte filer — trodde det var overkill til jeg måtte feilsøke. Bygget på to dager for skolen, ryddet opp etterpå."
+        "fullDescription": "Komplett Yatzy med alle poengregler — Yatzy, fullhus, og resten. Logikk og DOM i helt adskilte filer — trodde det var overkill til jeg måtte feilsøke. Bygget på to dager for skolen, deretter forbedret."
       },
       "stasis": {
         "description": "Landingsside for en fiktiv longevity-klinikk. React 19, Tailwind v4, Framer Motion.",
@@ -93,11 +93,11 @@
       },
       "date-time": {
         "description": "Wallpaper engine-tema med levende klokke og dato. Vanilla JS, Date API, CSS-animasjoner.",
-        "fullDescription": "Wallpaper Engine-tema — levende klokke og dato som oppdateres hvert sekund. Vanilla JS, Date API, og mye CSS-overganger. Lite, men faktisk nyttig."
+        "fullDescription": "Wallpaper Engine-tema — levende klokke og dato som oppdateres hvert sekund. Vanilla JS, Date API, og mye CSS-overganger. Kompakt verktøy med praktisk daglig bruk."
       },
       "redbeardvfx": {
-        "description": "Landingsside for en VFX-supervisor. Avsluttet prosjekt — bygget, ikke lansert.",
-        "fullDescription": "Portfolio for en VFX-supervisor. Avsluttet prosjekt — vi bygget det, men kunden endret retning før lansering. Første gang jeg bygget for noens kreative visjon, ikke min egen."
+        "description": "Porteføljenettsted for en VFX-supervisor. Aktivt klientprosjekt, live.",
+        "fullDescription": "Portefølje for en VFX-supervisor. Nettstedet er live. Aktivt prosjekt — gjenstår å arbeide gjennom de siste kravene før endelig levering. Første gang jeg bygget for noens kreative visjon, ikke min egen."
       },
       "todo-react": {
         "description": "Fullstack oppgavebehandler. React, Node, Express, koblet til ekte database.",
@@ -117,7 +117,7 @@
       },
       "nordic-market": {
         "description": "Nettbutikk med nordisk design. Under utvikling.",
-        "fullDescription": "Nettbutikk med nordisk estetikk. Under utvikling — planlegger datalaget og komponentstrukturen."
+        "fullDescription": "Nettbutikk med nordisk estetikk. Designer datalaget og komponentarkitekturen."
       }
     },
     "footer": {
@@ -134,7 +134,7 @@
     },
     "background": {
       "label": "— BAKGRUNN",
-      "body": "Jeg heter Amadi Masuev. 18 år, flyttet til Norge fra Tsjetsjenia i 2023. Førsteklassing ved Porsgrunn videregående skole — IT og medieproduksjon.\n\nBegynte å programmere i mai 2025 fordi jeg ble nysgjerrig på hvordan nettsider faktisk fungerer. Et år senere bygger jeg mine egne.\n\nMål: bli ML-ingeniør. Vei: fullstack nå, matte og Python til sommeren, universitet etter."
+      "body": "Jeg heter Amadi Masuev. Førsteklassing ved Porsgrunn videregående skole — IT og medieproduksjon.\n\nBegynte å programmere i mai 2025. Bygger fullstack-prosjekter med React og Node.js. Lærer for tiden Next.js og fordyper meg i backend-arkitektur."
     },
     "quickInfo": {
       "label": "— KORT FORTALT",
