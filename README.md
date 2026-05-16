@@ -8,13 +8,11 @@ A fullstack portfolio website showcasing engineering thinking and architecture o
 
 ## 🎯 Project Goal
 
-Build a junior+ level portfolio that demonstrates:
+Portfolio that shows how I think about code, not just that I can write it:
 - Clean architecture and component design
 - Type-safe frontend with TypeScript
-- Proper state management and i18n
-- Understanding of trade-offs and design decisions
-
-Not just "I can code" — but "I understand why code is built this way."
+- State management and i18n
+- Understanding trade-offs and design decisions
 
 ---
 
