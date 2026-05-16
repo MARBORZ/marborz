@@ -57,8 +57,6 @@ src/
 │   └── ru.json
 ├── App.tsx              # Router setup
 └── main.tsx             # Entry point
-vault/                   # Project documentation (Obsidian)
-└── PROJECT_PLAN.md      # Development plan & architecture decisions
 ```
 
 ---
