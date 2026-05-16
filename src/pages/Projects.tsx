@@ -12,6 +12,24 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { useInView } from "@/hooks/useInView";
 import styles from "@/styles/Projects/projects.module.scss";
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function Projects() {
   const { t } = useTranslation();
   const [filter, setFilter] = useState<ProjectStatus | "all">("all");
@@ -50,32 +68,6 @@ export default function Projects() {
       p.id !== featured?.id &&
       (p.status === "experiment" || p.status === "planned"),
   );
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
-
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
 
   return (
     <>

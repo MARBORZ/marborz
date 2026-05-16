@@ -76,9 +76,9 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo} onClick={() => navigate('/')}>
+      <button type="button" className={styles.logo} onClick={() => navigate('/')}>
         [ MARBORZ.ONE ]
-      </div>
+      </button>
 
       {/* Desktop nav - only render on desktop */}
       {!isMobile && (

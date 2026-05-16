@@ -13,7 +13,8 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const { pathname } = location;
   const { i18n } = useTranslation();
   const isMobile = useIsMobile();
   const [isChangingLanguage, setIsChangingLanguage] = useState(false);
@@ -58,7 +59,7 @@ function App() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              <Routes location={{ pathname } as any}>
+              <Routes location={location}>
                 <Route path="/" element={<Home />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/about" element={<About />} />

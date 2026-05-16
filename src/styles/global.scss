@@ -8,6 +8,12 @@
 
 button {
   outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  transition: background-color $transition, opacity $transition, color $transition, border-color $transition;
 
   &:focus-visible {
     outline: none;
@@ -16,8 +22,6 @@ button {
   &:hover {
     background-color: rgba(10, 10, 10, 0.04);
   }
-
-  transition: background-color $transition, opacity $transition, color $transition, border-color $transition;
 }
 
 html,
@@ -45,15 +49,6 @@ a {
   &:hover {
     opacity: 0.7;
   }
-}
-
-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  transition: background-color $transition, opacity $transition, color $transition, border-color $transition;
 }
 
 input,

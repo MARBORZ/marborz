@@ -45,6 +45,7 @@ function ProjectModal({ projectId, onClose }: ProjectModalProps) {
           {youtubeEmbed ? (
             <iframe
               src={youtubeEmbed}
+              title={project.title}
               className={styles.iframe}
               allow="autoplay; encrypted-media"
               allowFullScreen

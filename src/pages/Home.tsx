@@ -10,6 +10,24 @@ import { useIsMobile } from '@/hooks/useIsMobile'
 import { useInView } from '@/hooks/useInView'
 import styles from '@/styles/Home/home.module.scss'
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+}
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+}
+
 export default function Home() {
   const { t } = useTranslation()
   const [activeId, setActiveId] = useState<string | null>(null)
@@ -24,32 +42,6 @@ export default function Home() {
   }, [])
 
   const previewProjects = allProjects.slice(0, 4)
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  }
-
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  }
 
   return (
     <>

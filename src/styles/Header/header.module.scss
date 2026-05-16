@@ -9,7 +9,7 @@
   top: 0;
   justify-content: space-between;
   align-items: center;
-  padding: $spacing-sm 80px;
+  padding: $spacing-sm clamp($spacing-xl, 5.5vw, 80px);
   border-bottom: 1px solid $color-border;
 
   @media (max-width: $breakpoint-laptop) {
@@ -159,7 +159,7 @@
   // Mobile menu
   .mobileMenu {
     position: fixed;
-    top: 60px;
+    top: $header-height;
     left: 0;
     right: 0;
     background-color: $color-bg;
