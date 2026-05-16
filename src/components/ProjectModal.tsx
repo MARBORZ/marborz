@@ -1,4 +1,5 @@
 import { useEffect, useMemo, memo } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { allProjects } from '@/shared/projects'
 import styles from '@/styles/ProjectModal/projectModal.module.scss'
@@ -36,7 +37,7 @@ function ProjectModal({ projectId, onClose }: ProjectModalProps) {
 
   const youtubeEmbed = project.videoUrl ? getYoutubeEmbedUrl(project.videoUrl) : null
 
-  return (
+  return createPortal(
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
 
@@ -76,9 +77,10 @@ function ProjectModal({ projectId, onClose }: ProjectModalProps) {
           <h2 className={styles.title}>{project.title}</h2>
           <p className={styles.stack}>{project.stack}</p>
 
-          {project.fullDescription && (
-            <p className={styles.description}>{project.fullDescription}</p>
-          )}
+          {(() => {
+            const desc = t(`projects.list.${project.id}.fullDescription`, { defaultValue: '' })
+            return desc ? <p className={styles.description}>{desc}</p> : null
+          })()}
 
           {project.demoUrl && (
             <a
@@ -93,7 +95,8 @@ function ProjectModal({ projectId, onClose }: ProjectModalProps) {
         </div>
 
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 

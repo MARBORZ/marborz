@@ -64,31 +64,60 @@
     },
     "list": {
       "aether": {
-        "description": "Landing page experiment. Minimal design, smooth scroll, custom cursor."
+        "description": "Landing page experiment. Minimal design, smooth scroll, custom cursor.",
+        "fullDescription": "Landing page for a UI library concept. Custom cursor, scroll animations, minimal type. First time I tried to make something that actually looked intentional. Spent more time on spacing than on anything else."
       },
       "2048": {
-        "description": "Classic 2048 game in vanilla JS. Built while learning OOP and async patterns."
+        "description": "Classic 2048 game in vanilla JS. Built while learning OOP and async patterns.",
+        "fullDescription": "Classic 2048 in vanilla JS — no framework, no libraries, just the DOM. First project where I had to think through a real algorithm before writing a single line. Learned what OOP actually feels like in practice."
       },
       "yatzy": {
-        "description": "Full Yatzy game in vanilla JS. Built in 2 days for a school assignment. Logic and DOM kept separate."
+        "description": "Full Yatzy game in vanilla JS. Built in 2 days for a school assignment. Logic and DOM kept separate.",
+        "fullDescription": "Full Yatzy with all the scoring rules — Yatzy, full house, and the rest. Logic and DOM in completely separate files, which I thought was overkill until I had to debug it. Built in two days for school, cleaned up after."
       },
       "stasis": {
-        "description": "Landing page for a fictional longevity clinic. React 19, Tailwind v4, Framer Motion."
+        "description": "Landing page for a fictional longevity clinic. React 19, Tailwind v4, Framer Motion.",
+        "fullDescription": "Landing page for a fictional longevity clinic. The brief I gave myself: make it feel expensive. React 19, Tailwind v4, Framer Motion. Probably the most design-focused thing I've built."
       },
       "hdufndsk": {
-        "description": "Awareness landing about driving under influence. Built with serious topic in mind, not just visuals."
+        "description": "Awareness landing about driving under influence. Built with serious topic in mind, not just visuals.",
+        "fullDescription": "Awareness site about driving under influence. Social platform that stayed an experiment — the backend is there, Node and Express, first real API I wrote myself. Still live, still rough."
       },
       "kropp-fitness": {
-        "description": "My first landing page. Pure HTML and CSS. Where I learned what semantic markup means."
+        "description": "My first landing page. Pure HTML and CSS. Where I learned what semantic markup means.",
+        "fullDescription": "My very first landing page. Pure HTML and CSS, zero JavaScript. I had no idea what semantic markup was when I started writing it. By the time I finished, I did."
       },
       "skrekkeparken": {
-        "description": "Halloween map-game school project. Leaflet, geolocation, JSON-driven scenarios."
+        "description": "Halloween map-game school project. Leaflet, geolocation, JSON-driven scenarios.",
+        "fullDescription": "Halloween park map-game built as a school project with three classmates. Leaflet.js for the interactive map, geolocation for player tracking, JSON-driven event scenarios. Built in a week."
       },
       "date-time": {
-        "description": "Wallpaper engine theme with live clock and date. Vanilla JS, Date API, CSS animations."
+        "description": "Wallpaper engine theme with live clock and date. Vanilla JS, Date API, CSS animations.",
+        "fullDescription": "Wallpaper Engine theme — live clock and date that updates every second. Vanilla JS, the Date API, and a lot of CSS transitions. Small thing, but actually useful."
       },
       "redbeardvfx": {
-        "description": "Landing page for a VFX supervisor. Closed project — built, not launched."
+        "description": "Landing page for a VFX supervisor. Closed project — built, not launched.",
+        "fullDescription": "Portfolio for a VFX supervisor. Closed project — we built it but the client changed direction before it launched. First time I built something for someone else's creative vision, not mine."
+      },
+      "todo-react": {
+        "description": "Fullstack task manager. React, Node, Express, connected to a real database.",
+        "fullDescription": "Fullstack task manager. React on the front, Node and Express on the back, connected to a real database. First time all the pieces were actually talking to each other end to end."
+      },
+      "skan-jus": {
+        "description": "Landing page for a fictional Norwegian law firm. Dark theme, gold accents, custom cursor.",
+        "fullDescription": "Landing page for a fictional Norwegian law firm called Skan Jus. Dark theme, gold accents, custom triangle cursor. Built to practice Tailwind v4 design tokens and get comfortable with custom cursor logic."
+      },
+      "norden-verk": {
+        "description": "Landing page for a fictional Norwegian furniture workshop. Custom hammer cursor.",
+        "fullDescription": "Landing page for a fictional Norwegian furniture workshop. Custom hammer cursor that changes shape on hover and click. Smooth scroll with Lenis, scroll animations with Framer Motion. Context API for global state."
+      },
+      "greenfield-farms": {
+        "description": "Multi-page farm site. React Router, Feature-Sliced Design, component tests.",
+        "fullDescription": "Multi-page site for a fictional farm. Home, visit, and 404 pages with React Router. First project I structured with Feature-Sliced Design — widgets, pages, shared. Also the first time I wrote component tests."
+      },
+      "nordic-market": {
+        "description": "E-commerce with Nordic design. In progress.",
+        "fullDescription": "E-commerce site with a Nordic aesthetic. In progress — planning the data layer and component structure."
       }
     },
     "footer": {

@@ -90,6 +90,7 @@ export default function Home() {
                   type="button"
                   className={styles.projectRow}
                   onClick={() => setActiveId(project.id)}
+                  disabled={project.status === 'planned'}
                   variants={itemVariants}
                 >
                   <span className={styles.rowNum}>/{project.number}</span>
@@ -118,6 +119,7 @@ export default function Home() {
                   type="button"
                   className={styles.projectRow}
                   onClick={() => setActiveId(project.id)}
+                  disabled={project.status === 'planned'}
                 >
                   <span className={styles.rowNum}>/{project.number}</span>
                   <span className={styles.rowTitle}>{project.title}</span>

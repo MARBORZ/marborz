@@ -1,184 +1,147 @@
-# marborz.one — Portfolio Redesign 2026
+# marborz.one — Personal Portfolio
 
-A fullstack portfolio website showcasing engineering thinking and architecture over code showcasing.
+Personal portfolio site. Built from scratch while learning fullstack development — started coding in May 2025.
 
-**Live:** [marborz.one](http://marborz.one)
-
----
-
-## 🎯 Project Goal
-
-Portfolio that shows how I think about code, not just that I can write it:
-- Clean architecture and component design
-- Type-safe frontend with TypeScript
-- State management and i18n
-- Understanding trade-offs and design decisions
+**Live:** [marborz.one](https://marborz.one)
 
 ---
 
-## 🛠️ Stack
+## Stack
 
-**Frontend:**
-- **Vite** — Fast build tool
-- **React 19** — Latest with hooks
-- **TypeScript** — Type safety
-- **React Router DOM** — Client-side routing
-- **react-i18next** — Internationalization (EN, RU, NO)
-- **react-hook-form** — Form handling
-- **CSS Variables** — Design tokens
-
-**Backend:**
-- **Express** — API server
-- **Resend** — Email delivery
-- **Node.js** — Runtime
+| Layer | Technology |
+|---|---|
+| Framework | React 19 + TypeScript |
+| Build tool | Vite |
+| Styling | SCSS Modules + CSS custom properties (design tokens) |
+| Routing | React Router DOM |
+| Animations | Framer Motion (desktop only) |
+| i18n | react-i18next (EN / RU / NO) |
+| Forms | react-hook-form |
+| Backend | Express + Resend (contact form email) |
+| Deploy | Vercel |
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
-├── components/          # Reusable React components
-│   ├── primitives/      # Base components (Heading, Text, Divider)
-│   ├── Button.tsx
+├── assets/
+│   ├── project_images/      # Project screenshots
+│   └── project_videos/      # Project screen recordings
+├── components/
 │   ├── Header.tsx
 │   ├── Footer.tsx
-│   └── FormField.tsx
-├── pages/               # Page components (routed)
+│   ├── ProjectModal.tsx      # Portal-based modal (escapes motion.div stacking context)
+│   └── ...
+├── hooks/
+│   ├── useIsMobile.ts        # Disables animations on mobile
+│   └── useInView.ts          # Intersection observer for scroll animations
+├── locales/
+│   ├── en.json
+│   ├── ru.json
+│   └── no.json
+├── pages/
 │   ├── Home.tsx
 │   ├── Projects.tsx
 │   ├── About.tsx
 │   └── Contact.tsx
-├── hooks/               # Custom React hooks
-│   └── useLanguage.ts   # Language context hook
-├── locales/             # i18n translations
-│   ├── en.json
-│   ├── no.json
-│   └── ru.json
-├── App.tsx              # Router setup
-└── main.tsx             # Entry point
+├── shared/
+│   └── projects.ts           # Project data + asset URL resolution
+├── styles/
+│   ├── tokens.scss           # Design tokens (colors, spacing, typography)
+│   └── [Page]/[page].module.scss
+├── App.tsx
+└── main.tsx
 ```
 
 ---
 
-## 🚀 Getting Started
+## Pages
 
-### Prerequisites
-- Node.js 18+
-- Bun (package manager)
+- **Home** — hero, selected projects, approach
+- **Projects** — all 14 projects with status filters, featured section, card grid, archive list
+- **About** — background, learning path, principles
+- **Contact** — form with backend email delivery
 
-### Installation
+---
+
+## Projects (14)
+
+| # | Title | Status |
+|---|---|---|
+| 01 | Aether | experiment |
+| 02 | 2048 | experiment |
+| 03 | Yatzy | experiment |
+| 04 | Stasis | shipped |
+| 05 | HDUFNDSK | active |
+| 06 | Kropp Fitness | experiment |
+| 07 | Skrekkeparken | experiment |
+| 08 | Date Time Wallpaper | experiment |
+| 09 | Redbeard VFX | shipped |
+| 10 | Todo React | shipped |
+| 11 | Skan Jus | shipped |
+| 12 | Norden Verk | shipped |
+| 13 | Greenfield Farms | shipped |
+| 14 | Nordic Market | planned |
+
+Planned projects are disabled (no modal) and show `[ COMING SOON ]` on hover.
+
+---
+
+## i18n
+
+Three languages supported, stored via `i18next-browser-languagedetector`:
+
+```typescript
+import { useTranslation } from 'react-i18next';
+
+const { t } = useTranslation();
+t('projects.list.stasis.fullDescription')
+```
+
+All UI text, project descriptions, and full descriptions are translated in `src/locales/{en,ru,no}.json`.
+
+---
+
+## Key Technical Decisions
+
+**ProjectModal rendered via `createPortal`**
+Framer Motion's `motion.div` with `transform` creates a new CSS containing block, which breaks `position: fixed` descendants. The modal is portaled to `document.body` so it positions relative to the viewport regardless of animation wrappers.
+
+**No double borders**
+Each section only has `border-bottom`. Adjacent sections share that single line — no `border-top` on the next section.
+
+**Animations only on desktop**
+`useIsMobile()` guards all Framer Motion wrappers. Mobile renders plain `div` elements to avoid layout issues from transform-based animations on small screens.
+
+**Vite static asset URLs**
+Asset paths in `src/shared/projects.ts` use the Vite-idiomatic pattern so they survive production builds:
+```typescript
+videoUrl: new URL('../assets/project_videos/stasis.mp4', import.meta.url).href
+```
+
+---
+
+## Getting Started
 
 ```bash
 # Install dependencies
 bun install
 
-# Start dev server
+# Start dev server (http://localhost:5173)
 bun run dev
 
 # Build for production
 bun run build
 ```
 
-Dev server runs at `http://localhost:5173`
-
 ---
 
-## 🌍 Languages
+## Author
 
-Supports 3 languages with cookie-based persistence:
-- **EN** — English (default)
-- **RU** — Russian
-- **NO** — Norwegian
-
-Language selection stored in `lang` cookie. First user preference overrides system language detection.
-
----
-
-## 📄 Pages
-
-- **Home** — Hero + selected projects + approach
-- **Projects** — Full project gallery with filters
-- **About** — Background, learning path, principles
-- **Contact** — Contact form (connected to backend)
-
----
-
-## 🎨 Design System
-
-See [vault/design/DESIGN_TOKENS.md](vault/design/DESIGN_TOKENS.md) for:
-- Color palette
-- Typography rules
-- Spacing system
-- Component guidelines
-
----
-
-## 📚 Project Planning
-
-Development follows INPUT → PROCESSING → OUTPUT methodology.
-
-See [vault/project/PROJECT_PLAN.md](vault/project/PROJECT_PLAN.md) for:
-- 8 development stages
-- Architecture decisions
-- Component specs
-- Implementation priorities
-
----
-
-## 🔧 Development
-
-### Adding Components
-
-1. Create in `src/components/ComponentName.tsx`
-2. Export from `src/components/index.ts`
-3. Use TypeScript for props
-4. Follow design tokens (no hardcoded colors)
-
-### Adding Pages
-
-1. Create in `src/pages/PageName.tsx`
-2. Add route in `App.tsx`
-3. Use `useLanguage()` for translations
-4. Export from `src/pages/index.ts`
-
-### Working with i18n
-
-```typescript
-import { useTranslation } from 'react-i18next';
-
-export function MyComponent() {
-  const { t } = useTranslation();
-  return <h1>{t('home.title')}</h1>;
-}
-```
-
----
-
-## 📊 What's Next
-
-- [ ] Implement core pages
-- [ ] Setup contact form with backend
-- [ ] Add animations (Framer Motion)
-- [ ] Performance optimization
-- [ ] Deploy to Vercel
-
----
-
-## 👤 Author
-
-**Amadi Masuev**  
-First-year IT student at Porsgrunn videregående skole, Norway.
+Amadi Masuev — first-year IT student at Porsgrunn videregående skole, Norway.
+Started coding May 2025. Building toward ML engineering.
 
 Email: masuevamadi@gmail.com  
-GitHub: [@marborz](https://github.com/marborz)
-
----
-
-## 📜 License
-
-MIT — Feel free to use as reference or inspiration.
-
----
-
-**Built with intentional architecture, not accidental complexity.**
+GitHub: [github.com/MARBORZ](https://github.com/MARBORZ)

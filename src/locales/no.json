@@ -64,31 +64,60 @@
     },
     "list": {
       "aether": {
-        "description": "Eksperiment med landingsside. Minimalt design, smooth scroll, egendefinert markør."
+        "description": "Eksperiment med landingsside. Minimalt design, smooth scroll, egendefinert markør.",
+        "fullDescription": "Landingsside for et UI-bibliotek-konsept. Egendefinert markør, rulleanimasjoner, minimalt typografi. Første gang jeg prøvde å lage noe som faktisk så gjennomtenkt ut. Brukte mer tid på spacing enn noe annet."
       },
       "2048": {
-        "description": "Klassisk 2048 i vanilla JS. Bygget mens jeg lærte OOP og async-mønstre."
+        "description": "Klassisk 2048 i vanilla JS. Bygget mens jeg lærte OOP og async-mønstre.",
+        "fullDescription": "Klassisk 2048 i vanilla JS — ingen rammeverk, bare DOM-manipulasjon. Første prosjekt der jeg måtte tenke gjennom en ekte algoritme før jeg skrev en linje. Lærte hva OOP faktisk føles som i praksis."
       },
       "yatzy": {
-        "description": "Komplett Yatzy-spill i vanilla JS. Bygget på 2 dager for skoleoppgave. Logikk og DOM holdt adskilt."
+        "description": "Komplett Yatzy-spill i vanilla JS. Bygget på 2 dager for skoleoppgave. Logikk og DOM holdt adskilt.",
+        "fullDescription": "Komplett Yatzy med alle poengregler — Yatzy, fullhus, og resten. Logikk og DOM i helt adskilte filer — trodde det var overkill til jeg måtte feilsøke. Bygget på to dager for skolen, ryddet opp etterpå."
       },
       "stasis": {
-        "description": "Landingsside for en fiktiv longevity-klinikk. React 19, Tailwind v4, Framer Motion."
+        "description": "Landingsside for en fiktiv longevity-klinikk. React 19, Tailwind v4, Framer Motion.",
+        "fullDescription": "Landingsside for en fiktiv longevity-klinikk. Briefen jeg ga meg selv: få det til å se dyrt ut. React 19, Tailwind v4, Framer Motion. Sannsynligvis det mest designfokuserte jeg har laget."
       },
       "hdufndsk": {
-        "description": "Informasjonsside om kjøring i påvirket tilstand. Bygget med tematikken i tankene, ikke bare visuelt."
+        "description": "Informasjonsside om kjøring i påvirket tilstand. Bygget med tematikken i tankene, ikke bare visuelt.",
+        "fullDescription": "Informasjonsside om kjøring i påvirket tilstand. Sosial plattform som ble et eksperiment — backend er der, Node og Express, første ekte API jeg laget selv. Fortsatt live, fortsatt uferdig."
       },
       "kropp-fitness": {
-        "description": "Min første landingsside. Ren HTML og CSS. Her lærte jeg hva semantisk markup betyr."
+        "description": "Min første landingsside. Ren HTML og CSS. Her lærte jeg hva semantisk markup betyr.",
+        "fullDescription": "Min aller første landingsside. Ren HTML og CSS, null JavaScript. Hadde ingen anelse om semantisk markup da jeg startet. Det hadde jeg da jeg var ferdig."
       },
       "skrekkeparken": {
-        "description": "Halloween-kartspill, skoleprosjekt. Leaflet, geolokasjon, JSON-drevne scenarioer."
+        "description": "Halloween-kartspill, skoleprosjekt. Leaflet, geolokasjon, JSON-drevne scenarioer.",
+        "fullDescription": "Halloween-kartspill laget som skoleprosjekt med tre klassekamerater. Leaflet.js for interaktivt kart, geolokasjon for spillersporing, JSON-drevne hendelsesscenarioer. Bygget på en uke."
       },
       "date-time": {
-        "description": "Wallpaper engine-tema med levende klokke og dato. Vanilla JS, Date API, CSS-animasjoner."
+        "description": "Wallpaper engine-tema med levende klokke og dato. Vanilla JS, Date API, CSS-animasjoner.",
+        "fullDescription": "Wallpaper Engine-tema — levende klokke og dato som oppdateres hvert sekund. Vanilla JS, Date API, og mye CSS-overganger. Lite, men faktisk nyttig."
       },
       "redbeardvfx": {
-        "description": "Landingsside for en VFX-supervisor. Avsluttet prosjekt — bygget, ikke lansert."
+        "description": "Landingsside for en VFX-supervisor. Avsluttet prosjekt — bygget, ikke lansert.",
+        "fullDescription": "Portfolio for en VFX-supervisor. Avsluttet prosjekt — vi bygget det, men kunden endret retning før lansering. Første gang jeg bygget for noens kreative visjon, ikke min egen."
+      },
+      "todo-react": {
+        "description": "Fullstack oppgavebehandler. React, Node, Express, koblet til ekte database.",
+        "fullDescription": "Fullstack oppgavebehandler. React i front, Node og Express i back, koblet til en ekte database. Første gang alle delene faktisk snakket med hverandre fra ende til ende."
+      },
+      "skan-jus": {
+        "description": "Landingsside for et fiktivt norsk advokatfirma. Mørkt tema, gullaksenter, egendefinert markør.",
+        "fullDescription": "Landingsside for et fiktivt norsk advokatfirma kalt Skan Jus. Mørkt tema, gullaksenter, egendefinert trekantet markør. Bygget for å øve på Tailwind v4 design tokens og egendefinert markørlogikk."
+      },
+      "norden-verk": {
+        "description": "Landingsside for et fiktivt norsk møbelverksted. Egendefinert hammermarkør.",
+        "fullDescription": "Landingsside for et fiktivt norsk møbelverksted. Egendefinert hammermarkør som endrer form ved hover og klikk. Smooth scroll med Lenis, rulleanimasjoner med Framer Motion. Context API for global tilstand."
+      },
+      "greenfield-farms": {
+        "description": "Flersidig gårdsnettsted. React Router, Feature-Sliced Design, komponenttester.",
+        "fullDescription": "Flersidig nettsted for en fiktiv gård. Hjem, besøk og 404-sider med React Router. Første prosjekt jeg strukturerte med Feature-Sliced Design — widgets, sider, delte komponenter. Også første gang jeg laget komponenttester."
+      },
+      "nordic-market": {
+        "description": "Nettbutikk med nordisk design. Under utvikling.",
+        "fullDescription": "Nettbutikk med nordisk estetikk. Under utvikling — planlegger datalaget og komponentstrukturen."
       }
     },
     "footer": {
