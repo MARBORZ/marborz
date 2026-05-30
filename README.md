@@ -18,7 +18,7 @@ Personal portfolio site. Built from scratch while learning fullstack development
 | i18n | react-i18next (EN / RU / NO) |
 | Forms | react-hook-form |
 | Backend | Express + Resend (contact form email) |
-| Deploy | Vercel |
+| Deploy | Vercel + Render |
 
 ---
 
