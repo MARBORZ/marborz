@@ -140,7 +140,7 @@ bun run build
 
 ## Author
 
-Amadi Masuev — first-year IT student at Porsgrunn videregående skole, Norway.
+Amadi Masuev — Vg2 Information Technology (development focus), Porsgrunn videregående skole, Sør campus, Norway.
 Started coding May 2025. Building toward ML engineering.
 
 Email: masuevamadi@gmail.com  

@@ -19,19 +19,19 @@
     "location": "PORSGRUNN, 59.14°N · 2026",
     "hero": {
       "line1": "Fullstack developer.",
-      "line2": "First-year student.",
-      "line3": "Building things, learning fast."
+      "line2": "Vg2 IT student.",
+      "line3": "Learning by building."
     },
     "projects": {
       "label": "— SELECTED PROJECTS / 2025–2026",
-      "subtitle": "What I've been building this year.",
+      "subtitle": "Some of what I've built so far.",
       "viewAll": "VIEW ALL →"
     },
     "approach": {
       "label": "— APPROACH",
       "line1": "I want to understand",
       "line2": "what I'm building.",
-      "body": "Started coding in May 2025. Working through fullstack — React, TypeScript, Node, Postgres. Right now: building a solid foundation."
+      "body": "Started coding in May 2025. Now I'm learning fullstack: React, TypeScript, Node and Postgres. Right now the goal is a solid foundation."
     },
     "cta": {
       "label": "— GET IN TOUCH",
@@ -43,10 +43,10 @@
   },
   "projects": {
     "breadcrumb": "002 / PROJECTS",
-    "count": "9 PROJECTS",
+    "count": "14 PROJECTS",
     "hero": {
       "line1": "What I've built",
-      "line2": "in one year."
+      "line2": "so far."
     },
     "filter": {
       "label": "FILTER:",
@@ -64,60 +64,60 @@
     },
     "list": {
       "aether": {
-        "description": "Landing page experiment. Minimal design, smooth scroll, custom cursor.",
-        "fullDescription": "Landing page for a UI library concept. Custom cursor, scroll animations, minimal type. First time I tried to make something that actually looked intentional. Focused heavily on spacing and visual rhythm."
+        "description": "Landing page experiment. Minimal design, smooth scrolling and a custom cursor.",
+        "fullDescription": "Landing page for a made-up UI library. Custom cursor, scroll animations and simple type. The first time I tried to make something that actually looked deliberate. I spent most of the time on spacing and rhythm."
       },
       "2048": {
-        "description": "Classic 2048 game in vanilla JS. Built while learning OOP and async patterns.",
-        "fullDescription": "Classic 2048 in vanilla JS — no framework, no libraries, just the DOM. First project where I had to think through a real algorithm before writing a single line. Learned what OOP actually feels like in practice."
+        "description": "Classic 2048 in plain JavaScript. Built while I was learning OOP and async code.",
+        "fullDescription": "Classic 2048 in plain JavaScript, no framework and no libraries. The first project where I had to work out a real algorithm before writing any code. This is where OOP finally clicked for me."
       },
       "yatzy": {
-        "description": "Full Yatzy game in vanilla JS. Built in 2 days for a school assignment. Logic and DOM kept separate.",
-        "fullDescription": "Full Yatzy with all the scoring rules — Yatzy, full house, and the rest. Logic and DOM in completely separate files, which I thought was overkill until I had to debug it. Built in two days for school, cleaned up after."
+        "description": "Full Yatzy game in plain JavaScript. Built in two days for a school assignment, with game logic and DOM kept apart.",
+        "fullDescription": "Yatzy with every scoring rule: yatzy, full house and the rest. Game logic and DOM code live in separate files. It felt like overkill until I had to debug it. Built in two days for school and cleaned up afterwards."
       },
       "stasis": {
-        "description": "Landing page for a fictional longevity clinic. React 19, Tailwind v4, Framer Motion.",
-        "fullDescription": "Landing page for a fictional longevity clinic. The brief I gave myself: make it feel expensive. React 19, Tailwind v4, Framer Motion. Probably the most design-focused thing I've built."
+        "description": "Landing page for a made-up longevity clinic. React 19, Tailwind v4 and Framer Motion.",
+        "fullDescription": "Landing page for a made-up longevity clinic. The goal was to make it look expensive. React 19, Tailwind v4 and Framer Motion. Probably the most design-heavy thing I've made."
       },
       "hdufndsk": {
-        "description": "Awareness landing about driving under influence. Built with serious topic in mind, not just visuals.",
-        "fullDescription": "Awareness site about driving under influence. Social platform that stayed an experiment — the backend is there, Node and Express, first real API I wrote myself. Still live, still rough."
+        "description": "Awareness site about drunk and drugged driving. Built with a serious topic in mind, not just for looks.",
+        "fullDescription": "Awareness site about drunk and drugged driving. It was meant to become a social platform but stayed an experiment. The backend is there, Node and Express, and it's the first API I wrote on my own. Still online, still unfinished."
       },
       "kropp-fitness": {
-        "description": "My first landing page. Pure HTML and CSS. Where I learned what semantic markup means.",
-        "fullDescription": "My very first landing page. Pure HTML and CSS, zero JavaScript. I had no idea what semantic markup was when I started. By the time I finished, I did."
+        "description": "My first landing page. Just HTML and CSS. This is where I learned what semantic HTML is.",
+        "fullDescription": "My very first landing page. Just HTML and CSS, not a single line of JavaScript. I didn't know what semantic HTML was when I started. By the end, I did."
       },
       "skrekkeparken": {
-        "description": "Halloween map-game school project. Leaflet, geolocation, JSON-driven scenarios.",
-        "fullDescription": "Halloween park map-game built as a school project with three classmates. Leaflet.js for the interactive map, geolocation for player tracking, JSON-driven event scenarios. Built in a week."
+        "description": "Halloween map game, built as a school project. Leaflet, geolocation and events loaded from JSON.",
+        "fullDescription": "Halloween map game we built at school in a group of four. Leaflet.js for the interactive map, geolocation to track the player and events loaded from JSON. Done in a week."
       },
       "date-time": {
-        "description": "Wallpaper engine theme with live clock and date. Vanilla JS, Date API, CSS animations.",
-        "fullDescription": "Wallpaper Engine theme — live clock and date that updates every second. Vanilla JS, the Date API, and a lot of CSS transitions. Compact utility with practical daily use."
+        "description": "Wallpaper Engine theme with a live clock and date. Plain JavaScript, the Date API and CSS animations.",
+        "fullDescription": "Wallpaper Engine theme with a clock and date that update every second. Plain JavaScript, the Date API and a lot of CSS transitions. Small, but I use it every day."
       },
       "redbeardvfx": {
-        "description": "Portfolio site for a VFX supervisor. Active client project, currently live.",
-        "fullDescription": "Portfolio for a VFX supervisor. The site is live. Active project — working through the remaining requirements before final handoff. First time building something to someone else's creative vision, not my own."
+        "description": "Portfolio site for a VFX supervisor. Real client project, already live.",
+        "fullDescription": "Portfolio site for a VFX supervisor. The site is live, and I'm working through the last requirements before handing it over. The first time I built something around someone else's creative vision instead of my own."
       },
       "todo-react": {
-        "description": "Fullstack task manager. React, Node, Express, connected to a real database.",
-        "fullDescription": "Fullstack task manager. React on the front, Node and Express on the back, connected to a real database. First time all the pieces were actually talking to each other end to end."
+        "description": "Fullstack task app. React, Node and Express, connected to a real database.",
+        "fullDescription": "Fullstack task app. React on the frontend, Node and Express on the backend, connected to a real database. The first time every piece actually talked to each other from start to finish."
       },
       "skan-jus": {
-        "description": "Landing page for a fictional Norwegian law firm. Dark theme, gold accents, custom cursor.",
-        "fullDescription": "Landing page for a fictional Norwegian law firm called Skan Jus. Dark theme, gold accents, custom triangle cursor. Built to practice Tailwind v4 design tokens and get comfortable with custom cursor logic."
+        "description": "Landing page for a made-up Norwegian law firm. Dark theme, gold details and a custom cursor.",
+        "fullDescription": "Landing page for Skan Jus, a made-up Norwegian law firm. Dark theme, gold details and a custom triangle cursor. Built to practice Tailwind v4 design tokens and custom cursor logic."
       },
       "norden-verk": {
-        "description": "Landing page for a fictional Norwegian furniture workshop. Custom hammer cursor.",
-        "fullDescription": "Landing page for a fictional Norwegian furniture workshop. Custom hammer cursor that changes shape on hover and click. Smooth scroll with Lenis, scroll animations with Framer Motion. Context API for global state."
+        "description": "Landing page for a made-up Norwegian furniture workshop. Hammer-shaped cursor.",
+        "fullDescription": "Landing page for a made-up Norwegian furniture workshop. The cursor is a hammer that changes shape on hover and click. Smooth scrolling with Lenis, animations with Framer Motion and the Context API for global state."
       },
       "greenfield-farms": {
-        "description": "Multi-page farm site. React Router, Feature-Sliced Design, component tests.",
-        "fullDescription": "Multi-page site for a fictional farm. Home, visit, and 404 pages with React Router. First project I structured with Feature-Sliced Design — widgets, pages, shared. Also the first time I wrote component tests."
+        "description": "Multi-page site for a farm. React Router, Feature-Sliced Design and component tests.",
+        "fullDescription": "Site for a made-up farm with a home page, a visit page and a 404 page in React Router. The first project I structured with Feature-Sliced Design: widgets, pages and shared. Also the first time I wrote component tests."
       },
       "nordic-market": {
-        "description": "E-commerce with Nordic design. In progress.",
-        "fullDescription": "E-commerce site with Nordic aesthetic. Designing the data layer and component architecture."
+        "description": "Online store with a Nordic look. Work in progress.",
+        "fullDescription": "Online store with a Nordic look. Right now I'm planning the data model and how the components fit together."
       }
     },
     "footer": {
@@ -126,7 +126,7 @@
   },
   "about": {
     "breadcrumb": "003 / ABOUT",
-    "status": "YEAR 1 / 3 · IT & MEDIA PRODUCTION",
+    "status": "VG2 · INFORMATION TECHNOLOGY",
     "hero": {
       "line1": "Three languages at home,",
       "line2": "one at school,",
@@ -134,7 +134,7 @@
     },
     "background": {
       "label": "— BACKGROUND",
-      "body": "I'm Amadi Masuev. First year at Porsgrunn videregående skole — IT and media production.\n\nStarted programming in May 2025. Build fullstack projects with React and Node.js. Currently learning Next.js and expanding into backend architecture."
+      "body": "I'm Amadi Masuev. I'm in Vg2 Information Technology at Porsgrunn videregående skole, Sør campus, where I've chosen to focus on development.\n\nI started programming in May 2025 and build fullstack projects with React and Node.js. Right now I'm learning Next.js and digging deeper into backend."
     },
     "quickInfo": {
       "label": "— QUICK INFO",
@@ -147,7 +147,7 @@
     },
     "learning": {
       "label": "— LEARNING PATH",
-      "subtitle": "Where I am, where I'm going.",
+      "subtitle": "Where I am now, and where I'm headed.",
       "items": [
         {
           "level": "01",
@@ -157,7 +157,7 @@
         {
           "level": "02",
           "name": "TypeScript, Node, Express",
-          "status": "IN PROGRESS"
+          "status": "LEARNING NOW"
         },
         {
           "level": "03",
@@ -166,7 +166,7 @@
         },
         {
           "level": "04",
-          "name": "Python, math, ML fundamentals",
+          "name": "Python, math, ML basics",
           "status": "LONG-TERM"
         }
       ]
@@ -176,18 +176,18 @@
       "items": [
         {
           "number": "01",
-          "title": "Understand before you build.",
-          "body": "If I copy code without understanding it, I forget it in a week. So I read first, then write."
+          "title": "Understand it before you build it.",
+          "body": "If I copy code I don't understand, I've forgotten it a week later. So I read up first and write after."
         },
         {
           "number": "02",
-          "title": "Finish before you start.",
-          "body": "Better to finish one project and learn what 'done' means than start ten and abandon them."
+          "title": "Finish before you start something new.",
+          "body": "I'd rather finish one project and learn what \"done\" means than start ten and drop them all."
         },
         {
           "number": "03",
           "title": "Names matter.",
-          "body": "Bad variable names are bugs waiting to happen. I rename until things become obvious."
+          "body": "Bad variable names are bugs waiting to happen. I keep renaming until the code explains itself."
         }
       ]
     },
@@ -197,15 +197,15 @@
   },
   "contact": {
     "breadcrumb": "004 / CONTACT",
-    "status": "REPLIES WITHIN 24H",
+    "status": "REPLIES WITHIN 24 HOURS",
     "hero": {
-      "line1": "Let's talk.",
-      "line2": "Short or long, I'll read it."
+      "line1": "Get in touch.",
+      "line2": "Short or long, I read everything."
     },
     "form": {
       "label": "— SEND A MESSAGE",
       "name": { "label": "NAME", "placeholder": "your name" },
-      "email": { "label": "EMAIL", "placeholder": "example@gmail.com" },
+      "email": { "label": "EMAIL", "placeholder": "you@example.com" },
       "message": { "label": "MESSAGE", "placeholder": "what's on your mind?" },
       "send": "SEND →"
     },
@@ -227,7 +227,7 @@
   "notFound": {
     "breadcrumb": "404 / NOT FOUND",
     "line2": "Page not found.",
-    "body": "This page doesn't exist or got moved. Head back home.",
+    "body": "This page doesn't exist or has moved. Head back to the home page.",
     "link": "← HOME"
   }
 }
