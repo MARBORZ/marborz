@@ -9,6 +9,8 @@ import SegmentedControl from "@/components/SegmentedControl";
 import HeroTitle from "@/components/motion/HeroTitle";
 import { Reveal, RevealGroup } from "@/components/motion/Reveal";
 import { EASE_APPLE, revealVariants } from "@/shared/motion";
+import { MEDIA } from "@/shared/breakpoints";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import {
   allProjects,
   PROJECT_FILTERS,
@@ -16,13 +18,6 @@ import {
   type ProjectFilter,
 } from "@/shared/projects";
 import styles from "@/styles/Projects/projects.module.scss";
-
-const filterKeys: Record<ProjectFilter, string> = {
-  all: "all",
-  active: "active",
-  shipped: "shipped",
-  experiment: "experiments",
-};
 
 function FeaturedProject({
   project,
@@ -33,7 +28,9 @@ function FeaturedProject({
 }) {
   const { t } = useTranslation();
   const ref = useRef<HTMLButtonElement>(null);
-  // The screenshot settles from slightly zoomed in as the card scrolls into place
+  // On mouse devices the screenshot settles from slightly zoomed in as the card scrolls into place.
+  // Skipped on touch, where JS-driven scroll effects lag behind native scrolling.
+  const finePointer = useMediaQuery(MEDIA.finePointer);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "center center"],
@@ -52,7 +49,10 @@ function FeaturedProject({
         whileTap={{ scale: 0.985 }}
       >
         <div className={styles.featuredMedia}>
-          <motion.div className={styles.featuredMediaInner} style={{ scale }}>
+          <motion.div
+            className={styles.featuredMediaInner}
+            style={finePointer ? { scale } : undefined}
+          >
             <MediaImage src={project.imageUrl} alt={project.title} eager />
           </motion.div>
         </div>
@@ -101,7 +101,7 @@ export default function Projects() {
 
   const filterOptions = PROJECT_FILTERS.map((f) => ({
     value: f,
-    label: t(`projects.filter.${filterKeys[f]}`),
+    label: t(`projects.filter.${f}`),
   }));
 
   return (
@@ -122,7 +122,6 @@ export default function Projects() {
             {t("projects.filter.label")}
           </span>
           <SegmentedControl
-            id="project-filter"
             options={filterOptions}
             value={filter}
             onChange={setFilter}
@@ -198,7 +197,7 @@ export default function Projects() {
                       <span className={styles.archiveNum}>/{project.number}</span>
                       <span className={styles.archiveTitle}>{project.title}</span>
                       <span className={styles.archiveSub}>
-                        {project.subtitle}
+                        {t(`projects.list.${project.id}.tagline`)}
                       </span>
                       <span className={styles.archiveStack}>{project.stack}</span>
                       <span className={styles.archiveArrow} aria-hidden="true">→</span>

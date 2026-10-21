@@ -17,16 +17,15 @@ export const SPRING_SNAPPY: Transition = {
   bounce: 0.2,
 };
 
+// Only opacity and transform, so reveals stay on the compositor and never fight scrolling.
+// Pass a delay through `custom`; it's left out otherwise so parent staggering still applies.
 export const revealVariants: Variants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
-  visible: {
+  hidden: { opacity: 0, y: 24 },
+  visible: (delay?: number) => ({
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    // Drop the filter afterwards so it doesn't keep a GPU layer or trap fixed children
-    transitionEnd: { filter: "none" },
-    transition: { duration: 0.9, ease: EASE_OUT_EXPO },
-  },
+    transition: { duration: 0.7, ease: EASE_OUT_EXPO, ...(delay ? { delay } : {}) },
+  }),
 };
 
 export const staggerVariants = (stagger = 0.08, delayChildren = 0): Variants => ({

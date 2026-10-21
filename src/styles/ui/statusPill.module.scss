@@ -1,7 +1,19 @@
 @use '../tokens' as *;
 
 .pill {
-  @include status-pill;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: $radius-pill;
+  font-family: $font-mono;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: $letter-spacing-wide;
+  line-height: 1.2;
+  color: $color-bg;
+  background-color: $color-text;
+  white-space: nowrap;
 }
 
 .shipped {

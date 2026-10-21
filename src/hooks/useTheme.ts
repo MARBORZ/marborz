@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
+import { EASE_OUT_EXPO } from '@/shared/motion'
 
 export type Theme = 'light' | 'dark'
 
 const STORAGE_KEY = 'theme'
-const THEME_COLORS: Record<Theme, string> = { light: '#f4f2ed', dark: '#0e0e0d' }
 
 function readTheme(): Theme {
   return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
@@ -12,7 +12,9 @@ function readTheme(): Theme {
 
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLORS[theme])
+  // Browser UI color follows the page background defined in global.scss
+  const bg = getComputedStyle(document.documentElement).getPropertyValue('--c-bg').trim()
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', bg)
 }
 
 function hasStoredTheme() {
@@ -70,7 +72,7 @@ export function useTheme() {
         { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
         {
           duration: 650,
-          easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          easing: `cubic-bezier(${EASE_OUT_EXPO.join(', ')})`,
           pseudoElement: '::view-transition-new(root)',
         },
       )

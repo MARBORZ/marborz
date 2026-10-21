@@ -9,6 +9,7 @@
 }
 
 .block {
+  position: relative;
   @include shimmer;
   border-radius: $radius-md;
 }

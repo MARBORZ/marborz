@@ -1,10 +1,12 @@
-import { useEffect, useMemo, useRef, useState, memo } from 'react'
+import { useEffect, useRef, useState, memo } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { AnimatePresence, motion, useDragControls, type PanInfo } from 'framer-motion'
 import { allProjects, type Project } from '@/shared/projects'
-import { useIsMobile } from '@/hooks/useIsMobile'
-import { EASE_APPLE, EASE_OUT_EXPO, SPRING_SOFT } from '@/shared/motion'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useOverlay } from '@/hooks/useOverlay'
+import { MEDIA } from '@/shared/breakpoints'
+import { EASE_APPLE, SPRING_SOFT, revealVariants, staggerVariants } from '@/shared/motion'
 import MediaImage from '@/components/MediaImage'
 import StatusPill from '@/components/StatusPill'
 import styles from '@/styles/ProjectModal/projectModal.module.scss'
@@ -21,15 +23,7 @@ function getYoutubeEmbedUrl(url: string): string | null {
     : null
 }
 
-const contentVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } },
-}
+const contentVariants = staggerVariants(0.06, 0.15)
 
 function ModalMedia({ project }: { project: Project }) {
   const { t } = useTranslation()
@@ -90,28 +84,15 @@ function ModalMedia({ project }: { project: Project }) {
 
 function ModalPanel({ project, onClose }: { project: Project; onClose: () => void }) {
   const { t } = useTranslation()
-  const isMobile = useIsMobile(601)
+  const isMobile = useMediaQuery(MEDIA.mobileLg)
   const dragControls = useDragControls()
   const closeRef = useRef<HTMLButtonElement>(null)
 
+  useOverlay(true, onClose)
+
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', onKey)
-
-    // Lock page scroll without the layout jumping when the scrollbar disappears
-    const scrollbar = window.innerWidth - document.documentElement.clientWidth
-    document.body.style.overflow = 'hidden'
-    document.body.style.paddingRight = `${scrollbar}px`
     closeRef.current?.focus({ preventScroll: true })
-
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
-    }
-  }, [onClose])
+  }, [])
 
   const handleDragEnd = (_: unknown, info: PanInfo) => {
     if (info.offset.y > 120 || info.velocity.y > 600) onClose()
@@ -171,22 +152,22 @@ function ModalPanel({ project, onClose }: { project: Project; onClose: () => voi
           </div>
 
           <motion.div className={styles.body} variants={contentVariants} initial="hidden" animate="visible">
-            <motion.div className={styles.topRow} variants={itemVariants}>
+            <motion.div className={styles.topRow} variants={revealVariants}>
               <div className={styles.meta}>
                 <span className={styles.num}>/{project.number}</span>
                 <StatusPill status={project.status} />
               </div>
             </motion.div>
 
-            <motion.h2 id="project-modal-title" className={styles.title} variants={itemVariants}>
+            <motion.h2 id="project-modal-title" className={styles.title} variants={revealVariants}>
               {project.title}
             </motion.h2>
-            <motion.p className={styles.stack} variants={itemVariants}>
+            <motion.p className={styles.stack} variants={revealVariants}>
               {project.stack}
             </motion.p>
 
             {desc && (
-              <motion.p className={styles.description} variants={itemVariants}>
+              <motion.p className={styles.description} variants={revealVariants}>
                 {desc}
               </motion.p>
             )}
@@ -197,7 +178,7 @@ function ModalPanel({ project, onClose }: { project: Project; onClose: () => voi
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.demoLink}
-                variants={itemVariants}
+                variants={revealVariants}
                 whileTap={{ scale: 0.97 }}
               >
                 {t('projects.modal.openDemo')}
@@ -226,10 +207,7 @@ function ModalPanel({ project, onClose }: { project: Project; onClose: () => voi
 }
 
 function ProjectModal({ projectId, onClose }: ProjectModalProps) {
-  const project = useMemo(
-    () => (projectId ? (allProjects.find((p) => p.id === projectId) ?? null) : null),
-    [projectId],
-  )
+  const project = projectId ? allProjects.find((p) => p.id === projectId) : undefined
 
   return createPortal(
     <AnimatePresence>

@@ -62,56 +62,6 @@
   }
 }
 
-// Shared "coming soon" overlay for planned projects
-@mixin coming-soon($size: $font-size-sm) {
-  &:disabled {
-    cursor: default;
-    opacity: 0.5;
-    position: relative;
-
-    &::after {
-      content: '[ COMING SOON ]';
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: $font-mono;
-      font-size: $size;
-      letter-spacing: $letter-spacing-wide;
-      color: $color-text;
-      background: bg-alpha(0.75);
-      opacity: 0;
-      transition: opacity $transition;
-    }
-
-    &:hover::after {
-      opacity: 1;
-    }
-  }
-}
-
-// Card base: soft surface, hairline edge, lifts on hover
-@mixin card-surface {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  overflow: hidden;
-  border-radius: $radius-xl;
-  background-color: $color-card;
-  box-shadow: inset 0 0 0 1px $color-border, $shadow-card;
-  padding: 0;
-  text-align: left;
-  cursor: pointer;
-  transition: box-shadow 0.5s $ease-apple, translate 0.5s $ease-apple;
-  -webkit-tap-highlight-color: transparent;
-
-  @include hover {
-    translate: 0 -4px;
-    box-shadow: inset 0 0 0 1px ink(0.24), $shadow-card-hover;
-  }
-}
-
 // ── Featured ───────────────────────────────────────────
 
 .featuredSection {
@@ -354,31 +304,15 @@
 }
 
 .archiveRow {
-  display: flex;
-  align-items: center;
-  width: 100%;
   min-height: 80px;
-  border-bottom: 1px solid $color-border;
   gap: $spacing-lg;
-  padding: 0;
-  border-radius: $radius-md;
-  text-align: left;
-  position: relative;
-  transition: background-color 0.3s $ease-apple;
-  -webkit-tap-highlight-color: transparent;
-
+  @include list-row;
   @include coming-soon($font-size-xs);
 
   @include hover {
-    background-color: ink(0.04);
-
     .archiveArrow {
       transform: translateX(4px);
     }
-  }
-
-  &:first-child {
-    border-top: 1px solid $color-border;
   }
 
   @include tablet {
@@ -443,21 +377,6 @@
     flex-shrink: 0;
     margin-left: auto;
     transition: transform 0.3s $ease-apple;
-
-    @include tablet {
-      margin-left: auto;
-    }
   }
 }
 
-// Bleed the row's hover background past the text, but only on pointer devices.
-// Higher specificity than the row itself so it wins over its width/padding.
-@media (hover: hover) and (pointer: fine) {
-  .archiveList > .archiveRow {
-    width: calc(100% + #{$spacing-sm * 2});
-    margin-left: -$spacing-sm;
-    margin-right: -$spacing-sm;
-    padding-left: $spacing-sm;
-    padding-right: $spacing-sm;
-  }
-}

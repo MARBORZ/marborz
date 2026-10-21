@@ -9,10 +9,10 @@
     }
   },
   "nav": {
-    "home": "HOME",
-    "projects": "PROJECTS",
-    "about": "ABOUT",
-    "contact": "CONTACT",
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
     "menu": "Menu",
     "closeMenu": "Close menu",
     "language": "Language",
@@ -58,7 +58,7 @@
       "all": "ALL",
       "active": "ACTIVE",
       "shipped": "SHIPPED",
-      "experiments": "EXPERIMENTS",
+      "experiment": "EXPERIMENTS",
       "view": "VIEW: GRID / LIST"
     },
     "featured": {
@@ -69,58 +69,72 @@
     },
     "list": {
       "aether": {
+        "tagline": "landing for a UI library",
         "description": "Landing page experiment. Minimal design, smooth scrolling and a custom cursor.",
         "fullDescription": "Landing page for a made-up UI library. Custom cursor, scroll animations and simple type. The first time I tried to make something that actually looked deliberate. I spent most of the time on spacing and rhythm."
       },
       "2048": {
+        "tagline": "the classic puzzle in plain JS",
         "description": "Classic 2048 in plain JavaScript. Built while I was learning OOP and async code.",
         "fullDescription": "Classic 2048 in plain JavaScript, no framework and no libraries. The first project where I had to work out a real algorithm before writing any code. This is where OOP finally clicked for me."
       },
       "yatzy": {
+        "tagline": "dice game with every scoring rule",
         "description": "Full Yatzy game in plain JavaScript. Built in two days for a school assignment, with game logic and DOM kept apart.",
         "fullDescription": "Yatzy with every scoring rule: yatzy, full house and the rest. Game logic and DOM code live in separate files. It felt like overkill until I had to debug it. Built in two days for school and cleaned up afterwards."
       },
       "stasis": {
+        "tagline": "landing for a longevity clinic",
         "description": "Landing page for a made-up longevity clinic. React 19, Tailwind v4 and Framer Motion.",
         "fullDescription": "Landing page for a made-up longevity clinic. The goal was to make it look expensive. React 19, Tailwind v4 and Framer Motion. Probably the most design-heavy thing I've made."
       },
       "hdufndsk": {
+        "tagline": "site about drunk driving",
         "description": "Awareness site about drunk and drugged driving. Built with a serious topic in mind, not just for looks.",
         "fullDescription": "Awareness site about drunk and drugged driving. It was meant to become a social platform but stayed an experiment. The backend is there, Node and Express, and it's the first API I wrote on my own. Still online, still unfinished."
       },
       "kropp-fitness": {
+        "tagline": "my first landing page",
         "description": "My first landing page. Just HTML and CSS. This is where I learned what semantic HTML is.",
         "fullDescription": "My very first landing page. Just HTML and CSS, not a single line of JavaScript. I didn't know what semantic HTML was when I started. By the end, I did."
       },
       "skrekkeparken": {
+        "tagline": "Halloween game on a map",
         "description": "Halloween map game, built as a school project. Leaflet, geolocation and events loaded from JSON.",
         "fullDescription": "Halloween map game we built at school in a group of four. Leaflet.js for the interactive map, geolocation to track the player and events loaded from JSON. Done in a week."
       },
       "date-time": {
+        "tagline": "clock for Wallpaper Engine",
         "description": "Wallpaper Engine theme with a live clock and date. Plain JavaScript, the Date API and CSS animations.",
         "fullDescription": "Wallpaper Engine theme with a clock and date that update every second. Plain JavaScript, the Date API and a lot of CSS transitions. Small, but I use it every day."
       },
       "redbeardvfx": {
+        "tagline": "portfolio for a VFX supervisor",
         "description": "Portfolio site for a VFX supervisor. Real client project, already live.",
         "fullDescription": "Portfolio site for a VFX supervisor. The site is live, and I'm working through the last requirements before handing it over. The first time I built something around someone else's creative vision instead of my own."
       },
       "todo-react": {
+        "tagline": "fullstack to-do app",
         "description": "Fullstack task app. React, Node and Express, connected to a real database.",
         "fullDescription": "Fullstack task app. React on the frontend, Node and Express on the backend, connected to a real database. The first time every piece actually talked to each other from start to finish."
       },
       "skan-jus": {
+        "tagline": "landing for a law firm",
         "description": "Landing page for a made-up Norwegian law firm. Dark theme, gold details and a custom cursor.",
         "fullDescription": "Landing page for Skan Jus, a made-up Norwegian law firm. Dark theme, gold details and a custom triangle cursor. Built to practice Tailwind v4 design tokens and custom cursor logic."
       },
       "norden-verk": {
+        "tagline": "landing for a furniture workshop",
         "description": "Landing page for a made-up Norwegian furniture workshop. Hammer-shaped cursor.",
         "fullDescription": "Landing page for a made-up Norwegian furniture workshop. The cursor is a hammer that changes shape on hover and click. Smooth scrolling with Lenis, animations with Framer Motion and the Context API for global state."
       },
       "greenfield-farms": {
+        "tagline": "multi-page site for a farm",
         "description": "Multi-page site for a farm. React Router, Feature-Sliced Design and component tests.",
         "fullDescription": "Site for a made-up farm with a home page, a visit page and a 404 page in React Router. The first project I structured with Feature-Sliced Design: widgets, pages and shared. Also the first time I wrote component tests."
       },
       "nordic-market": {
+        "tagline": "online store, in progress",
         "description": "Online store with a Nordic look. Work in progress.",
         "fullDescription": "Online store with a Nordic look. Right now I'm planning the data model and how the components fit together."
       }
@@ -217,7 +231,17 @@
       "name": { "label": "NAME", "placeholder": "your name" },
       "email": { "label": "EMAIL", "placeholder": "you@example.com" },
       "message": { "label": "MESSAGE", "placeholder": "what's on your mind?" },
-      "send": "SEND →"
+      "send": "SEND →",
+      "errors": {
+        "required": "Fill in this field",
+        "nameShort": "At least 2 characters",
+        "emailInvalid": "That email doesn't look right",
+        "messageShort": "At least 10 characters",
+        "failed": "Couldn't send. Try again or email me directly.",
+        "network": "No connection. Try again in a bit."
+      },
+      "sending": "SENDING…",
+      "sent": "Sent. I'll get back to you soon."
     },
     "direct": {
       "label": "— DIRECT",

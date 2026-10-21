@@ -13,8 +13,8 @@ interface RevealProps extends HTMLMotionProps<"div"> {
   delay?: number;
 }
 
-// Fades, lifts and un-blurs its content once it scrolls into view
-export function Reveal({ as = "div", delay = 0, children, ...rest }: RevealProps) {
+// Fades and lifts its content once it scrolls into view
+export function Reveal({ as = "div", delay, children, ...rest }: RevealProps) {
   const Component = tags[as];
   return (
     <Component
@@ -22,7 +22,7 @@ export function Reveal({ as = "div", delay = 0, children, ...rest }: RevealProps
       whileInView="visible"
       viewport={VIEWPORT}
       variants={revealVariants}
-      transition={{ delay }}
+      custom={delay}
       {...rest}
     >
       {children}

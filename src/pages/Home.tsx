@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useMotionValue, useSpring } from 'framer-motion'
@@ -11,7 +12,8 @@ import { Reveal, RevealGroup } from '@/components/motion/Reveal'
 import { allProjects } from '@/shared/projects'
 import { SITE_CONFIG } from '@/shared/config'
 import { EASE_APPLE, revealVariants } from '@/shared/motion'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import { MEDIA } from '@/shared/breakpoints'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import styles from '@/styles/Home/home.module.scss'
 
 const previewProjects = allProjects.slice(0, 4)
@@ -20,7 +22,7 @@ export default function Home() {
   const { t } = useTranslation()
   const [activeId, setActiveId] = useState<string | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
-  const isTouch = useIsMobile(1025)
+  const finePointer = useMediaQuery(MEDIA.finePointer)
 
   // Floating preview that trails the cursor over the project list
   const mouseX = useMotionValue(0)
@@ -78,7 +80,7 @@ export default function Home() {
                   setActiveId(project.id)
                 }}
                 onPointerEnter={(e) => {
-                  if (e.pointerType === 'mouse' && !isTouch) setHoveredId(project.id)
+                  if (e.pointerType === 'mouse' && finePointer) setHoveredId(project.id)
                 }}
                 disabled={project.status === 'planned'}
                 variants={revealVariants}
@@ -86,10 +88,12 @@ export default function Home() {
               >
                 <span className={styles.rowNum}>/{project.number}</span>
                 <span className={styles.rowTitle}>{project.title}</span>
-                <span className={styles.rowSub}>{project.subtitle}</span>
+                <span className={styles.rowSub}>{t(`projects.list.${project.id}.tagline`)}</span>
                 <span className={styles.rowStack}>{project.stack}</span>
                 <StatusPill status={project.status} className={styles.rowStatus} />
-                <span className={styles.rowArrow} aria-hidden="true">→</span>
+                <span className={styles.rowArrow} aria-hidden="true">
+                  →
+                </span>
               </motion.button>
             ))}
           </RevealGroup>
@@ -114,38 +118,44 @@ export default function Home() {
           <div className={styles.sectionLabel}>{t('home.cta.label')}</div>
           <a href={`mailto:${SITE_CONFIG.email}`} className={styles.emailLink}>
             <span className={styles.emailText}>{SITE_CONFIG.email}</span>
-            <span className={styles.emailArrow} aria-hidden="true">→</span>
+            <span className={styles.emailArrow} aria-hidden="true">
+              →
+            </span>
           </a>
         </Reveal>
         <Footer title={t('home.footer.next')} href="/projects" />
       </section>
 
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            className={styles.hoverPreview}
-            style={{ x, y }}
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.85 }}
-            transition={{ duration: 0.35, ease: EASE_APPLE }}
-            aria-hidden="true"
-          >
-            <AnimatePresence initial={false}>
-              <motion.div
-                key={hovered.id}
-                className={styles.hoverPreviewImage}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25, ease: EASE_APPLE }}
-              >
-                <MediaImage src={hovered.imageUrl} alt="" eager />
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Portaled so the page's enter transform can't offset this fixed element */}
+      {createPortal(
+        <AnimatePresence>
+          {hovered && (
+            <motion.div
+              className={styles.hoverPreview}
+              style={{ x, y }}
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.85 }}
+              transition={{ duration: 0.35, ease: EASE_APPLE }}
+              aria-hidden="true"
+            >
+              <AnimatePresence initial={false}>
+                <motion.div
+                  key={hovered.id}
+                  className={styles.hoverPreviewImage}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25, ease: EASE_APPLE }}
+                >
+                  <MediaImage src={hovered.imageUrl} alt="" eager />
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body,
+      )}
 
       <ProjectModal projectId={activeId} onClose={handleCloseModal} />
     </>

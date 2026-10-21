@@ -1,9 +1,9 @@
+import { useId } from "react";
 import { motion } from "framer-motion";
 import { SPRING_SNAPPY } from "@/shared/motion";
 import styles from "@/styles/ui/segmented.module.scss";
 
 interface SegmentedControlProps<T extends string> {
-  id: string;
   options: readonly { value: T; label: string }[];
   value: T;
   onChange: (value: T) => void;
@@ -14,7 +14,6 @@ interface SegmentedControlProps<T extends string> {
 
 // iOS-style segmented control: the active pill slides between options
 export default function SegmentedControl<T extends string>({
-  id,
   options,
   value,
   onChange,
@@ -22,6 +21,9 @@ export default function SegmentedControl<T extends string>({
   className,
   stretch = false,
 }: SegmentedControlProps<T>) {
+  // Unique per instance so two controls on screen don't share one sliding pill
+  const pillId = `${useId()}-pill`;
+
   return (
     <div
       role="group"
@@ -40,7 +42,7 @@ export default function SegmentedControl<T extends string>({
           >
             {active && (
               <motion.span
-                layoutId={`${id}-pill`}
+                layoutId={pillId}
                 className={styles.pill}
                 transition={SPRING_SNAPPY}
               />

@@ -3,16 +3,15 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 10, 10, 0.45);
+  // Plain dim, no backdrop-filter: re-blurring the whole page under a springing sheet drops frames
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
   padding: $spacing-lg;
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
 
-  @media (max-width: $breakpoint-mobile-lg) {
+  @include mobile-lg {
     align-items: flex-end;
     padding: 0;
   }
@@ -30,7 +29,7 @@
   border-radius: $radius-xl;
   box-shadow: $shadow-modal;
 
-  @media (max-width: $breakpoint-mobile-lg) {
+  @include mobile-lg {
     max-height: 92dvh;
     border-radius: $radius-xl $radius-xl 0 0;
     padding-bottom: env(safe-area-inset-bottom);
@@ -77,7 +76,7 @@
   overflow: hidden;
   position: relative;
 
-  @media (max-width: $breakpoint-mobile-lg) {
+  @include mobile-lg {
     touch-action: none;
   }
 }
@@ -111,9 +110,7 @@
   font-size: 10px;
   letter-spacing: $letter-spacing-wide;
   color: #fff;
-  background: rgba(10, 10, 10, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 10, 10, 0.72);
 }
 
 .loadingDot {
@@ -139,11 +136,11 @@
 .body {
   padding: $spacing-xl $spacing-2xl $spacing-2xl;
 
-  @media (max-width: $breakpoint-tablet) {
+  @include tablet {
     padding: $spacing-lg $spacing-lg $spacing-xl;
   }
 
-  @media (max-width: $breakpoint-mobile) {
+  @include mobile {
     padding: $spacing-lg $spacing-md $spacing-xl;
   }
 }
@@ -180,13 +177,11 @@
   justify-content: center;
   border-radius: 50%;
   color: #fff;
-  background: rgba(10, 10, 10, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 10, 10, 0.65);
   transition: background-color $transition, transform 0.3s $ease-apple;
 
   @include hover {
-    background: rgba(10, 10, 10, 0.75);
+    background: rgba(10, 10, 10, 0.85);
     transform: scale(1.06);
   }
 
@@ -204,11 +199,11 @@
   margin-bottom: $spacing-sm;
   color: $color-text;
 
-  @media (max-width: $breakpoint-tablet) {
+  @include tablet {
     font-size: $font-size-3xl;
   }
 
-  @media (max-width: $breakpoint-mobile) {
+  @include mobile {
     font-size: $font-size-2xl;
   }
 }
@@ -229,7 +224,7 @@
   max-width: 640px;
   margin-bottom: $spacing-xl;
 
-  @media (max-width: $breakpoint-mobile) {
+  @include mobile {
     font-size: 16px;
   }
 }
@@ -257,7 +252,7 @@
     }
   }
 
-  @media (max-width: $breakpoint-mobile-lg) {
+  @include mobile-lg {
     width: 100%;
     justify-content: center;
   }

@@ -59,22 +59,11 @@
 }
 
 .projectRow {
-  display: flex;
-  align-items: center;
-  width: 100%;
   min-height: 84px;
-  padding: 0;
   gap: $spacing-lg;
-  border-bottom: 1px solid $color-border;
-  border-radius: $radius-md;
-  text-align: left;
-  position: relative;
-  transition: background-color 0.3s $ease-apple;
-  -webkit-tap-highlight-color: transparent;
+  @include list-row;
 
   @include hover {
-    background-color: ink(0.04);
-
     .rowArrow {
       transform: translateX(4px);
     }
@@ -82,10 +71,6 @@
     .rowTitle {
       transform: translateX(6px);
     }
-  }
-
-  &:first-child {
-    border-top: 1px solid $color-border;
   }
 
   &:disabled {
@@ -334,14 +319,3 @@
   inset: 0;
 }
 
-// Bleed the row's hover background past the text, but only on pointer devices.
-// Higher specificity than the row itself so it wins over its width/padding.
-@media (hover: hover) and (pointer: fine) {
-  .projectsList > .projectRow {
-    width: calc(100% + #{$spacing-sm * 2});
-    margin-left: -$spacing-sm;
-    margin-right: -$spacing-sm;
-    padding-left: $spacing-sm;
-    padding-right: $spacing-sm;
-  }
-}

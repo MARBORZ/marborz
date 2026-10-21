@@ -9,10 +9,10 @@
     }
   },
   "nav": {
-    "home": "HJEM",
-    "projects": "PROSJEKTER",
-    "about": "OM MEG",
-    "contact": "KONTAKT",
+    "home": "Hjem",
+    "projects": "Prosjekter",
+    "about": "Om meg",
+    "contact": "Kontakt",
     "menu": "Meny",
     "closeMenu": "Lukk meny",
     "language": "Språk",
@@ -58,7 +58,7 @@
       "all": "ALLE",
       "active": "AKTIVE",
       "shipped": "FERDIGE",
-      "experiments": "EKSPERIMENTER",
+      "experiment": "EKSPERIMENTER",
       "view": "VISNING: RUTENETT / LISTE"
     },
     "featured": {
@@ -69,58 +69,72 @@
     },
     "list": {
       "aether": {
+        "tagline": "landingsside for et UI-bibliotek",
         "description": "Eksperiment med en landingsside. Minimalistisk design, myk skrolling og egen musepeker.",
         "fullDescription": "Landingsside for et tenkt UI-bibliotek, med egen musepeker, animasjoner når du skroller og enkel typografi. Første gang jeg prøvde å lage noe som faktisk så gjennomtenkt ut. Brukte mye tid på luft og rytme mellom elementene."
       },
       "2048": {
+        "tagline": "klassikeren i ren JavaScript",
         "description": "Klassisk 2048 i ren JavaScript. Laget mens jeg lærte OOP og asynkron kode.",
         "fullDescription": "Klassisk 2048 i ren JavaScript, uten rammeverk eller biblioteker. Første prosjekt der jeg måtte tenke ut en ordentlig algoritme før jeg skrev noe kode. Her skjønte jeg hvordan OOP fungerer i praksis."
       },
       "yatzy": {
+        "tagline": "terningspill med alle reglene",
         "description": "Fullt Yatzy-spill i ren JavaScript. Laget på to dager som skoleoppgave, med logikk og DOM holdt hver for seg.",
         "fullDescription": "Yatzy med alle reglene for poeng: yatzy, hus og resten. Spillogikken og DOM-koden ligger i hver sin fil. Det virket unødvendig helt til jeg måtte feilsøke. Laget på to dager for skolen og pusset på etterpå."
       },
       "stasis": {
+        "tagline": "landingsside for en klinikk",
         "description": "Landingsside for en oppdiktet klinikk for lang levetid. React 19, Tailwind v4 og Framer Motion.",
         "fullDescription": "Landingsside for en oppdiktet klinikk for lang levetid. Målet var at det skulle se dyrt ut. React 19, Tailwind v4 og Framer Motion. Antakelig det mest designfokuserte jeg har laget."
       },
       "hdufndsk": {
+        "tagline": "nettside om ruskjøring",
         "description": "Nettside om ruskjøring. Laget med tanke på at temaet er alvorlig, ikke bare for å se bra ut.",
         "fullDescription": "Nettside om ruskjøring. Det skulle bli en sosial plattform, men ble et eksperiment. Backend finnes, med Node og Express, og det er det første API-et jeg skrev helt selv. Siden er fortsatt oppe, men den er ikke ferdig."
       },
       "kropp-fitness": {
+        "tagline": "min første landingsside",
         "description": "Min første landingsside. Bare HTML og CSS. Her lærte jeg hva semantisk HTML er.",
         "fullDescription": "Den aller første landingssiden min. Bare HTML og CSS, ikke en linje JavaScript. Jeg visste ikke hva semantisk HTML var da jeg begynte. Da jeg var ferdig, visste jeg det."
       },
       "skrekkeparken": {
+        "tagline": "Halloween-spill på kart",
         "description": "Halloween-spill på kart, laget som skoleprosjekt. Leaflet, geolokasjon og hendelser fra JSON.",
         "fullDescription": "Halloween-spill på kart som vi laget i en gruppe på fire i skolen. Leaflet.js til det interaktive kartet, geolokasjon for å følge spilleren og hendelser som lastes fra JSON. Ferdig på en uke."
       },
       "date-time": {
+        "tagline": "klokke til Wallpaper Engine",
         "description": "Tema til Wallpaper Engine med klokke og dato. Ren JavaScript, Date API og CSS-animasjoner.",
         "fullDescription": "Tema til Wallpaper Engine med klokke og dato som oppdateres hvert sekund. Ren JavaScript, Date API og mange CSS-overganger. Lite, men jeg bruker det hver dag."
       },
       "redbeardvfx": {
+        "tagline": "portefølje for en VFX-supervisor",
         "description": "Porteføljeside for en VFX-supervisor. Ekte kundeprosjekt, allerede publisert.",
         "fullDescription": "Porteføljeside for en VFX-supervisor. Siden er publisert, og jeg jobber med de siste kravene før den leveres. Første gang jeg bygde noe ut fra en annen persons kreative visjon og ikke min egen."
       },
       "todo-react": {
+        "tagline": "fullstack-app for oppgaver",
         "description": "Fullstack-app for oppgaver. React, Node og Express, koblet til en ekte database.",
         "fullDescription": "Fullstack-app for oppgaver. React på frontend, Node og Express på backend, koblet til en ekte database. Første gang alle delene faktisk snakket sammen fra start til slutt."
       },
       "skan-jus": {
+        "tagline": "landingsside for et advokatfirma",
         "description": "Landingsside for et oppdiktet norsk advokatfirma. Mørkt tema, gulldetaljer og egen musepeker.",
         "fullDescription": "Landingsside for Skan Jus, et oppdiktet norsk advokatfirma. Mørkt tema, gulldetaljer og en egen trekantet musepeker. Laget for å øve på design tokens i Tailwind v4 og logikken bak en egen musepeker."
       },
       "norden-verk": {
+        "tagline": "landingsside for et møbelsnekkeri",
         "description": "Landingsside for et oppdiktet norsk møbelsnekkeri. Musepeker formet som en hammer.",
         "fullDescription": "Landingsside for et oppdiktet norsk møbelsnekkeri. Musepekeren er en hammer som endrer form når du holder over eller klikker. Myk skrolling med Lenis, animasjoner med Framer Motion og Context API for global state."
       },
       "greenfield-farms": {
+        "tagline": "nettside for en gård",
         "description": "Nettside med flere sider for en gård. React Router, Feature-Sliced Design og komponenttester.",
         "fullDescription": "Nettside for en oppdiktet gård, med forside, besøksside og 404-side i React Router. Første prosjekt der jeg brukte Feature-Sliced Design med widgets, pages og shared. Også første gang jeg skrev komponenttester."
       },
       "nordic-market": {
+        "tagline": "nettbutikk, under arbeid",
         "description": "Nettbutikk med nordisk design. Under arbeid.",
         "fullDescription": "Nettbutikk med nordisk stil. Akkurat nå planlegger jeg datamodellen og hvordan komponentene skal henge sammen."
       }
@@ -217,7 +231,17 @@
       "name": { "label": "NAVN", "placeholder": "navnet ditt" },
       "email": { "label": "E-POST", "placeholder": "navn@eksempel.no" },
       "message": { "label": "MELDING", "placeholder": "hva tenker du på?" },
-      "send": "SEND →"
+      "send": "SEND →",
+      "errors": {
+        "required": "Fyll ut dette feltet",
+        "nameShort": "Minst 2 tegn",
+        "emailInvalid": "E-postadressen ser ikke riktig ut",
+        "messageShort": "Minst 10 tegn",
+        "failed": "Fikk ikke sendt. Prøv igjen, eller send meg en e-post.",
+        "network": "Ingen forbindelse. Prøv igjen om litt."
+      },
+      "sending": "SENDER…",
+      "sent": "Sendt. Jeg svarer så fort jeg kan."
     },
     "direct": {
       "label": "— DIREKTE",

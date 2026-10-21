@@ -14,7 +14,6 @@
   --c-placeholder: #a8a8a4;
   --c-border: rgba(10, 10, 10, 0.16);
   --c-surface: #e8e5dd;
-  --c-surface-2: #dedad0;
   --c-card: #f8f7f3;
   --c-shimmer: rgba(255, 255, 255, 0.55);
   --c-error: #d32f2f;
@@ -34,7 +33,6 @@
   --c-placeholder: #5c5b57;
   --c-border: rgba(236, 235, 230, 0.14);
   --c-surface: #1c1c1a;
-  --c-surface-2: #262623;
   --c-card: #151514;
   --c-shimmer: rgba(255, 255, 255, 0.06);
   --c-error: #ef6461;
@@ -163,11 +161,7 @@ h4 {
 }
 
 @keyframes shimmer {
-  from {
-    background-position: 150% 0;
-  }
-
   to {
-    background-position: -50% 0;
+    transform: translateX(100%);
   }
 }

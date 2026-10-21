@@ -154,6 +154,7 @@
 .learningItem {
   display: grid;
   grid-template-columns: 32px minmax(0, 1fr) auto 160px;
+  grid-template-areas: "num name status track";
   align-items: center;
   gap: $spacing-lg;
   padding: $spacing-lg 0;
@@ -210,24 +211,6 @@
     border-radius: inherit;
     background-color: $color-text;
     transform-origin: 0 50%;
-  }
-
-  @media (min-width: #{$breakpoint-mobile-lg + 1}) {
-    .levelNum {
-      grid-area: auto;
-    }
-
-    .levelName {
-      grid-area: auto;
-    }
-
-    .levelStatus {
-      grid-area: auto;
-    }
-
-    .levelTrack {
-      grid-area: auto;
-    }
   }
 }
 
