@@ -200,7 +200,7 @@
     position: relative;
     height: 4px;
     border-radius: $radius-pill;
-    background-color: rgba(10, 10, 10, 0.08);
+    background-color: ink(0.1);
     overflow: hidden;
   }
 

@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { useState, useEffect, memo } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import SegmentedControl from '@/components/SegmentedControl'
+import ThemeToggle from '@/components/ThemeToggle'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import { useTheme } from '@/hooks/useTheme'
 import { EASE_APPLE, EASE_OUT_EXPO, SPRING_SNAPPY } from '@/shared/motion'
 import styles from '@/styles/Header/header.module.scss'
 
@@ -30,6 +32,7 @@ function Header() {
   const [hidden, setHidden] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { scrollY } = useScroll()
+  const { theme, toggleTheme } = useTheme()
 
   const currentLang = (i18n.resolvedLanguage ?? 'en') as Lang
   const menuOpen = isMenuOpen && isMobile
@@ -89,7 +92,11 @@ function Header() {
                     aria-current={active ? 'page' : undefined}
                   >
                     {active && (
-                      <motion.span layoutId="nav-pill" className={styles.navPill} transition={SPRING_SNAPPY} />
+                      <motion.span
+                        layoutId="nav-pill"
+                        className={styles.navPill}
+                        transition={SPRING_SNAPPY}
+                      />
                     )}
                     <span className={styles.navLabel}>{t(`nav.${item.key}`)}</span>
                   </Link>
@@ -97,35 +104,41 @@ function Header() {
               })}
             </nav>
 
-            <SegmentedControl
-              id="lang"
-              options={languages}
-              value={currentLang}
-              onChange={changeLanguage}
-              ariaLabel={t('nav.language')}
-            />
+            <div className={styles.actions}>
+              <SegmentedControl
+                id="lang"
+                options={languages}
+                value={currentLang}
+                onChange={changeLanguage}
+                ariaLabel={t('nav.language')}
+              />
+              <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            </div>
           </>
         )}
 
         {isMobile && (
-          <button
-            type="button"
-            className={styles.burger}
-            onClick={() => setIsMenuOpen((open) => !open)}
-            aria-label={menuOpen ? t('nav.closeMenu') : t('nav.menu')}
-            aria-expanded={menuOpen}
-          >
-            <motion.span
-              className={styles.burgerLine}
-              animate={menuOpen ? { y: 0, rotate: 45 } : { y: -4, rotate: 0 }}
-              transition={SPRING_SNAPPY}
-            />
-            <motion.span
-              className={styles.burgerLine}
-              animate={menuOpen ? { y: 0, rotate: -45 } : { y: 4, rotate: 0 }}
-              transition={SPRING_SNAPPY}
-            />
-          </button>
+          <div className={styles.actions}>
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            <button
+              type="button"
+              className={styles.burger}
+              onClick={() => setIsMenuOpen((open) => !open)}
+              aria-label={menuOpen ? t('nav.closeMenu') : t('nav.menu')}
+              aria-expanded={menuOpen}
+            >
+              <motion.span
+                className={styles.burgerLine}
+                animate={menuOpen ? { y: 0, rotate: 45 } : { y: -4, rotate: 0 }}
+                transition={SPRING_SNAPPY}
+              />
+              <motion.span
+                className={styles.burgerLine}
+                animate={menuOpen ? { y: 0, rotate: -45 } : { y: 4, rotate: 0 }}
+                transition={SPRING_SNAPPY}
+              />
+            </button>
+          </div>
         )}
       </motion.header>
 

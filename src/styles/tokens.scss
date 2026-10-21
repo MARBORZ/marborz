@@ -1,16 +1,26 @@
 // Colors
-$color-bg: #f4f2ed;
-$color-text: #0a0a0a;
-$color-text-muted: #6b6b68;
-$color-text-placeholder: #a8a8a4;
-$color-border: rgba(10, 10, 10, 0.16);
-$color-border-strong: #0a0a0a;
-$color-surface: #e8e5dd;
-$color-surface-2: #dedad0;
-$color-card: #f8f7f3;
-$color-accent: #2f7d4f;
-$color-error: #d32f2f;
-$color-success: #2e7d32;
+// Colors resolve to CSS custom properties so the theme can switch at runtime.
+// The actual values for light and dark live in global.scss.
+$color-bg: var(--c-bg);
+$color-text: var(--c-text);
+$color-text-muted: var(--c-muted);
+$color-text-placeholder: var(--c-placeholder);
+$color-border: var(--c-border);
+$color-border-strong: var(--c-text);
+$color-surface: var(--c-surface);
+$color-surface-2: var(--c-surface-2);
+$color-card: var(--c-card);
+$color-error: var(--c-error);
+$color-success: var(--c-success);
+
+// Translucent versions of the page background and the ink color
+@function bg-alpha($alpha) {
+  @return rgba(var(--c-bg-rgb), $alpha);
+}
+
+@function ink($alpha) {
+  @return rgba(var(--c-ink-rgb), $alpha);
+}
 
 // Typography
 $font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
@@ -55,9 +65,9 @@ $radius-xl: 20px;
 $radius-pill: 999px;
 
 // Shadows
-$shadow-card: 0 1px 2px rgba(10, 10, 10, 0.04), 0 8px 24px -12px rgba(10, 10, 10, 0.12);
-$shadow-card-hover: 0 2px 4px rgba(10, 10, 10, 0.04), 0 24px 48px -20px rgba(10, 10, 10, 0.25);
-$shadow-modal: 0 40px 120px -20px rgba(10, 10, 10, 0.45);
+$shadow-card: 0 1px 2px rgba(0, 0, 0, var(--shadow-weak)), 0 8px 24px -12px rgba(0, 0, 0, var(--shadow-mid));
+$shadow-card-hover: 0 2px 4px rgba(0, 0, 0, var(--shadow-weak)), 0 24px 48px -20px rgba(0, 0, 0, var(--shadow-strong));
+$shadow-modal: 0 40px 120px -20px rgba(0, 0, 0, 0.5);
 
 // Layout
 $header-height: 60px;
@@ -127,9 +137,9 @@ $line-height-loose-2xl: 1.65;
   background-color: $color-surface;
   background-image: linear-gradient(
     100deg,
-    rgba(255, 255, 255, 0) 30%,
-    rgba(255, 255, 255, 0.55) 50%,
-    rgba(255, 255, 255, 0) 70%
+    transparent 30%,
+    var(--c-shimmer) 50%,
+    transparent 70%
   );
   background-size: 200% 100%;
   background-repeat: no-repeat;

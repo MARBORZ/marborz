@@ -15,7 +15,9 @@
     "contact": "KONTAKT",
     "menu": "Meny",
     "closeMenu": "Lukk meny",
-    "language": "Språk"
+    "language": "Språk",
+    "toDark": "Bytt til mørkt tema",
+    "toLight": "Bytt til lyst tema"
   },
   "home": {
     "breadcrumb": "001 / HJEM",

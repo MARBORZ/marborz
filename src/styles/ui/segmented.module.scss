@@ -6,8 +6,8 @@
   gap: 2px;
   padding: 3px;
   border-radius: $radius-pill;
-  background-color: rgba(10, 10, 10, 0.05);
-  box-shadow: inset 0 0 0 1px rgba(10, 10, 10, 0.06);
+  background-color: ink(0.06);
+  box-shadow: inset 0 0 0 1px ink(0.06);
   max-width: 100%;
   overflow-x: auto;
   scrollbar-width: none;

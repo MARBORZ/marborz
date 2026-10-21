@@ -15,7 +15,9 @@
     "contact": "CONTACT",
     "menu": "Menu",
     "closeMenu": "Close menu",
-    "language": "Language"
+    "language": "Language",
+    "toDark": "Switch to dark theme",
+    "toLight": "Switch to light theme"
   },
   "home": {
     "breadcrumb": "001 / HOME",

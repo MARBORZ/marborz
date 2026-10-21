@@ -1,5 +1,56 @@
 @use './tokens' as *;
 
+// ── Theme palettes ─────────────────────────────────────
+// index.html sets data-theme before first paint; these are the values the tokens point at.
+
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+  --c-bg: #f4f2ed;
+  --c-bg-rgb: 244, 242, 237;
+  --c-text: #0a0a0a;
+  --c-ink-rgb: 10, 10, 10;
+  --c-muted: #6b6b68;
+  --c-placeholder: #a8a8a4;
+  --c-border: rgba(10, 10, 10, 0.16);
+  --c-surface: #e8e5dd;
+  --c-surface-2: #dedad0;
+  --c-card: #f8f7f3;
+  --c-shimmer: rgba(255, 255, 255, 0.55);
+  --c-error: #d32f2f;
+  --c-success: #2e7d32;
+  --shadow-weak: 0.04;
+  --shadow-mid: 0.12;
+  --shadow-strong: 0.25;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --c-bg: #0e0e0d;
+  --c-bg-rgb: 14, 14, 13;
+  --c-text: #ecebe6;
+  --c-ink-rgb: 236, 235, 230;
+  --c-muted: #92918b;
+  --c-placeholder: #5c5b57;
+  --c-border: rgba(236, 235, 230, 0.14);
+  --c-surface: #1c1c1a;
+  --c-surface-2: #262623;
+  --c-card: #151514;
+  --c-shimmer: rgba(255, 255, 255, 0.06);
+  --c-error: #ef6461;
+  --c-success: #6cc070;
+  --shadow-weak: 0.3;
+  --shadow-mid: 0.4;
+  --shadow-strong: 0.6;
+}
+
+// Theme switch uses the View Transitions API; the circular reveal is driven from JS
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 * {
   margin: 0;
   padding: 0;

@@ -73,7 +73,7 @@
   -webkit-tap-highlight-color: transparent;
 
   @include hover {
-    background-color: rgba(10, 10, 10, 0.03);
+    background-color: ink(0.04);
 
     .rowArrow {
       transform: translateX(4px);
