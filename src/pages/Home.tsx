@@ -8,6 +8,7 @@ import ProjectModal from '@/components/ProjectModal'
 import MediaImage from '@/components/MediaImage'
 import StatusPill from '@/components/StatusPill'
 import HeroTitle from '@/components/motion/HeroTitle'
+import ScrollText from '@/components/motion/ScrollText'
 import { Reveal, RevealGroup } from '@/components/motion/Reveal'
 import { allProjects } from '@/shared/projects'
 import { SITE_CONFIG } from '@/shared/config'
@@ -83,6 +84,7 @@ export default function Home() {
                   if (e.pointerType === 'mouse' && finePointer) setHoveredId(project.id)
                 }}
                 disabled={project.status === 'planned'}
+                data-soon={t('common.comingSoon')}
                 variants={revealVariants}
                 whileTap={{ scale: 0.99 }}
               >
@@ -105,14 +107,16 @@ export default function Home() {
           </Reveal>
         </section>
 
-        <Reveal as="section" className={styles.approach}>
-          <div className={styles.sectionLabel}>{t('home.approach.label')}</div>
-          <div className={styles.approachContent}>
-            <h3>{t('home.approach.line1')}</h3>
-            <h3>{t('home.approach.line2')}</h3>
-          </div>
-          <p className={styles.body}>{t('home.approach.body')}</p>
-        </Reveal>
+        <section className={styles.approach}>
+          <Reveal>
+            <div className={styles.sectionLabel}>{t('home.approach.label')}</div>
+            <div className={styles.approachContent}>
+              <h3>{t('home.approach.line1')}</h3>
+              <h3>{t('home.approach.line2')}</h3>
+            </div>
+          </Reveal>
+          <ScrollText text={t('home.approach.body')} className={styles.body} />
+        </section>
 
         <Reveal as="section" className={styles.cta}>
           <div className={styles.sectionLabel}>{t('home.cta.label')}</div>

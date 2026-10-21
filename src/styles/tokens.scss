@@ -179,7 +179,7 @@ $line-height-loose-2xl: 1.65;
     position: relative;
 
     &::after {
-      content: '[ COMING SOON ]';
+      content: '[ ' attr(data-soon) ' ]';
       position: absolute;
       inset: 0;
       display: flex;

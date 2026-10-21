@@ -10,3 +10,8 @@
   display: block;
   transform-origin: 0 100%;
 }
+
+// Words in ScrollText keep their own box so opacity changes don't reflow the line
+.word {
+  display: inline;
+}

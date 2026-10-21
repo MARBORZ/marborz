@@ -237,11 +237,14 @@
     }
   }
 
+  // Large reading text that lights up word by word on scroll (ScrollText)
   .body {
-    font-size: 16px;
-    line-height: 1.6;
-    color: $color-text-muted;
-    max-width: 600px;
+    font-size: clamp(24px, 3.4vw, 44px);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: $color-text;
+    max-width: 980px;
   }
 }
 

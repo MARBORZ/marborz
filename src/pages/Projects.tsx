@@ -46,6 +46,7 @@ function FeaturedProject({
         className={styles.featuredProject}
         onClick={() => onOpen(project.id)}
         disabled={project.status === "planned"}
+        data-soon={t("common.comingSoon")}
         whileTap={{ scale: 0.985 }}
       >
         <div className={styles.featuredMedia}>
@@ -83,20 +84,14 @@ export default function Projects() {
   }, []);
 
   const filtered =
-    filter === "all"
-      ? allProjects
-      : allProjects.filter((p) => p.status === filter);
+    filter === "all" ? allProjects : allProjects.filter((p) => p.status === filter);
 
   const featured = filtered.find((p) => p.status === "active") ?? filtered[0];
   const gridProjects = filtered.filter(
-    (p) =>
-      p.id !== featured?.id &&
-      (p.status === "active" || p.status === "shipped"),
+    (p) => p.id !== featured?.id && (p.status === "active" || p.status === "shipped"),
   );
   const archiveProjects = filtered.filter(
-    (p) =>
-      p.id !== featured?.id &&
-      (p.status === "experiment" || p.status === "planned"),
+    (p) => p.id !== featured?.id && (p.status === "experiment" || p.status === "planned"),
   );
 
   const filterOptions = PROJECT_FILTERS.map((f) => ({
@@ -118,9 +113,7 @@ export default function Projects() {
         />
 
         <div className={styles.filters}>
-          <span className={styles.filterLabel}>
-            {t("projects.filter.label")}
-          </span>
+          <span className={styles.filterLabel}>{t("projects.filter.label")}</span>
           <SegmentedControl
             options={filterOptions}
             value={filter}
@@ -142,9 +135,7 @@ export default function Projects() {
             exit={{ opacity: 0, transition: { duration: 0.2, ease: EASE_APPLE } }}
             transition={{ duration: 0.3, ease: EASE_APPLE }}
           >
-            {featured && (
-              <FeaturedProject project={featured} onOpen={setActiveId} />
-            )}
+            {featured && <FeaturedProject project={featured} onOpen={setActiveId} />}
 
             {gridProjects.length > 0 && (
               <RevealGroup className={styles.projectsGrid} stagger={0.07}>
@@ -155,6 +146,7 @@ export default function Projects() {
                     className={styles.projectCard}
                     onClick={() => setActiveId(project.id)}
                     disabled={project.status === "planned"}
+                    data-soon={t("common.comingSoon")}
                     variants={revealVariants}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -191,6 +183,7 @@ export default function Projects() {
                       className={styles.archiveRow}
                       onClick={() => setActiveId(project.id)}
                       disabled={project.status === "planned"}
+                      data-soon={t("common.comingSoon")}
                       variants={revealVariants}
                       whileTap={{ scale: 0.99 }}
                     >
@@ -200,7 +193,9 @@ export default function Projects() {
                         {t(`projects.list.${project.id}.tagline`)}
                       </span>
                       <span className={styles.archiveStack}>{project.stack}</span>
-                      <span className={styles.archiveArrow} aria-hidden="true">→</span>
+                      <span className={styles.archiveArrow} aria-hidden="true">
+                        →
+                      </span>
                     </motion.button>
                   ))}
                 </RevealGroup>
