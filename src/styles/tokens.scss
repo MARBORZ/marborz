@@ -3,15 +3,19 @@ $color-bg: #f4f2ed;
 $color-text: #0a0a0a;
 $color-text-muted: #6b6b68;
 $color-text-placeholder: #a8a8a4;
-$color-border: #0a0a0a;
+$color-border: rgba(10, 10, 10, 0.16);
+$color-border-strong: #0a0a0a;
 $color-surface: #e8e5dd;
+$color-surface-2: #dedad0;
+$color-card: #f8f7f3;
+$color-accent: #2f7d4f;
 $color-error: #d32f2f;
 $color-success: #2e7d32;
 
 // Typography
-$font-mono: 'JetBrains Mono', monospace;
-$font-sans: 'Inter', system-ui, sans-serif;
-$font-serif: 'Georgia', 'Times New Roman', serif;
+$font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+$font-sans: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+$font-serif: 'Instrument Serif', 'Georgia', 'Times New Roman', serif;
 
 $letter-spacing-hero: -0.01em;
 $letter-spacing-title: -0.02em;
@@ -32,6 +36,9 @@ $spacing-4xl: 88px;
 
 // Transitions
 $transition: 0.2s;
+// Apple-style easing curves
+$ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 // Breakpoints
 $breakpoint-mobile: 430px;
@@ -44,6 +51,13 @@ $breakpoint-desktop: 1440px;
 $radius-sm: 2px;
 $radius-md: 4px;
 $radius-lg: 12px;
+$radius-xl: 20px;
+$radius-pill: 999px;
+
+// Shadows
+$shadow-card: 0 1px 2px rgba(10, 10, 10, 0.04), 0 8px 24px -12px rgba(10, 10, 10, 0.12);
+$shadow-card-hover: 0 2px 4px rgba(10, 10, 10, 0.04), 0 24px 48px -20px rgba(10, 10, 10, 0.25);
+$shadow-modal: 0 40px 120px -20px rgba(10, 10, 10, 0.45);
 
 // Layout
 $header-height: 60px;
@@ -99,6 +113,49 @@ $line-height-loose-2xl: 1.65;
   }
 }
 
+// Only apply hover effects on devices that actually hover
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// Skeleton shimmer
+@mixin shimmer {
+  background-color: $color-surface;
+  background-image: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: shimmer 1.4s $ease-apple infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@mixin status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: $radius-pill;
+  font-family: $font-mono;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: $letter-spacing-wide;
+  line-height: 1.2;
+  color: $color-bg;
+  background-color: $color-text;
+  white-space: nowrap;
+}
+
 // Transition mixins
 @mixin transition-opacity {
   transition: opacity $transition;
@@ -144,9 +201,10 @@ $line-height-loose-2xl: 1.65;
     font-family: $font-sans;
     font-size: $font-size-6xl;
     font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: $letter-spacing-hero;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
     margin: 0;
+    text-wrap: balance;
 
     @include laptop {
       font-size: 72px;
@@ -163,6 +221,7 @@ $line-height-loose-2xl: 1.65;
     &:nth-child(2) {
       font-family: $font-serif;
       font-style: italic;
+      letter-spacing: -0.01em;
     }
   }
 }

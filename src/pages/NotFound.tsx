@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import HeroTitle from '@/components/motion/HeroTitle'
+import { Reveal } from '@/components/motion/Reveal'
 import styles from '@/styles/NotFound/notFound.module.scss'
 
 export default function NotFound() {
@@ -12,18 +14,17 @@ export default function NotFound() {
         <div className={styles.status}>{t('home.location')}</div>
       </div>
 
-      <div className={styles.hero}>
-        <h1>404</h1>
-        <h1>{t('notFound.line2')}</h1>
-      </div>
+      <HeroTitle className={styles.hero} lines={['404', t('notFound.line2')]} />
 
-      <p className={styles.body}>
-        {t('notFound.body')}
-      </p>
+      <Reveal delay={0.3}>
+        <p className={styles.body}>
+          {t('notFound.body')}
+        </p>
 
-      <Link to="/" className={styles.homeLink}>
-        {t('notFound.link')}
-      </Link>
+        <Link to="/" className={styles.homeLink}>
+          {t('notFound.link')}
+        </Link>
+      </Reveal>
     </section>
   )
 }

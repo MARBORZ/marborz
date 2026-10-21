@@ -2,28 +2,20 @@ import { useState, useEffect } from 'react'
 
 const MOBILE_BREAKPOINT = 768
 
+const query = (breakpoint: number) => `(max-width: ${breakpoint - 0.02}px)`
+
 export function useIsMobile(breakpoint: number = MOBILE_BREAKPOINT): boolean {
-  const [isMobile, setIsMobile] = useState(false)
+  // Read the real value on first render so mobile doesn't flash the desktop layout
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(query(breakpoint)).matches,
+  )
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < breakpoint)
-    }
-
-    checkMobile()
-
-    let resizeTimeout: ReturnType<typeof setTimeout>
-    const handleResize = () => {
-      clearTimeout(resizeTimeout)
-      resizeTimeout = setTimeout(checkMobile, 150)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      clearTimeout(resizeTimeout)
-      window.removeEventListener('resize', handleResize)
-    }
+    const mql = window.matchMedia(query(breakpoint))
+    const onChange = () => setIsMobile(mql.matches)
+    onChange()
+    mql.addEventListener('change', onChange)
+    return () => mql.removeEventListener('change', onChange)
   }, [breakpoint])
 
   return isMobile

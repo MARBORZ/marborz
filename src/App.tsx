@@ -1,10 +1,10 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import Layout from "./components/Layout";
-import { lazy, Suspense, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { lazy, Suspense } from "react";
+import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import PageSkeleton from "./components/skeletons/PageSkeleton";
-import { useIsMobile } from "./hooks/useIsMobile";
+import { EASE_APPLE } from "./shared/motion";
 
 const Home = lazy(() => import("./pages/Home"));
 const Projects = lazy(() => import("./pages/Projects"));
@@ -14,71 +14,41 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
   const location = useLocation();
-  const { pathname } = location;
   const { i18n } = useTranslation();
-  const isMobile = useIsMobile();
-  const [isChangingLanguage, setIsChangingLanguage] = useState(false);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  // Show skeleton when language changes
-  useEffect(() => {
-    const handleLanguageChange = () => {
-      setIsChangingLanguage(true);
-      setTimeout(() => {
-        setIsChangingLanguage(false);
-      }, 400);
-    };
-
-    i18n.on('languageChanged', handleLanguageChange);
-
-    return () => {
-      i18n.off('languageChanged', handleLanguageChange);
-    };
-  }, [i18n]);
-
-  if (isChangingLanguage) {
-    return (
-      <Layout>
-        <PageSkeleton />
-      </Layout>
-    );
-  }
 
   return (
-    <Layout>
-      <Suspense fallback={<PageSkeleton />}>
-        <AnimatePresence mode="wait">
-          {!isMobile ? (
+    // Respect the OS "reduce motion" setting everywhere
+    <MotionConfig reducedMotion="user">
+      <Layout>
+        <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
+          <motion.main
+            key={location.pathname}
+            initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
+            exit={{ opacity: 0, y: -8, filter: "blur(4px)" }}
+            transition={{ duration: 0.45, ease: EASE_APPLE }}
+          >
+            {/* Re-keying on language gives a soft crossfade instead of a hard text swap */}
             <motion.div
-              key={pathname}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              key={i18n.resolvedLanguage}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, ease: EASE_APPLE }}
             >
-              <Routes location={location}>
-                <Route path="/" element={<Home />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+              <Suspense fallback={<PageSkeleton />}>
+                <Routes location={location}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
             </motion.div>
-          ) : (
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          )}
+          </motion.main>
         </AnimatePresence>
-      </Suspense>
-    </Layout>
+      </Layout>
+    </MotionConfig>
   );
 }
 

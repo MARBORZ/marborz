@@ -3,231 +3,175 @@
 .header {
   display: flex;
   position: fixed;
-  width: 100%;
-  z-index: 9999;
-  background-color: $color-bg;
   top: 0;
+  left: 0;
+  width: 100%;
+  height: $header-height;
+  z-index: 9999;
   justify-content: space-between;
   align-items: center;
-  padding: $spacing-sm clamp($spacing-xl, 5.5vw, 80px);
-  border-bottom: 1px solid $color-border;
+  gap: $spacing-lg;
+  padding: 0 clamp($spacing-xl, 5.5vw, 80px);
+  background-color: rgba($color-bg, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s $ease-apple, background-color 0.3s $ease-apple;
+
+  &.scrolled {
+    border-bottom-color: $color-border;
+  }
 
   @media (max-width: $breakpoint-laptop) {
-    padding: $spacing-sm $spacing-xl;
+    padding: 0 $spacing-xl;
   }
 
   @media (max-width: $breakpoint-tablet) {
-    padding: $spacing-sm $spacing-lg;
+    padding: 0 $spacing-lg;
   }
 
   @media (max-width: $breakpoint-mobile) {
-    padding: $spacing-sm $spacing-md;
+    padding: 0 $spacing-md;
   }
 
   .logo {
     font-family: $font-mono;
     font-size: $font-size-sm;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: $letter-spacing-wide;
     color: $color-text;
-    cursor: pointer;
-    transition: opacity $transition;
-
-    &:hover {
-      opacity: 0.5;
-    }
-  }
-
-  // Desktop nav
-  .desktopNav {
-    @media (max-width: $breakpoint-mobile-lg) {
-      display: none !important;
-    }
-  }
-
-  .desktopLang {
-    @media (max-width: $breakpoint-mobile-lg) {
-      display: none !important;
-    }
+    white-space: nowrap;
   }
 
   .nav {
     display: flex;
-    gap: $spacing-lg;
-
-    @media (max-width: $breakpoint-tablet) {
-      gap: $spacing-md;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    @media (max-width: $breakpoint-mobile) {
-      gap: $spacing-sm;
-    }
+    gap: 2px;
+    padding: 3px;
+    border-radius: $radius-pill;
 
     .navItem {
       position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 14px;
+      border-radius: $radius-pill;
       font-family: $font-mono;
       font-size: $font-size-sm;
-      text-align: center;
       letter-spacing: $letter-spacing-wide;
       color: $color-text-muted;
-      transition:
-        color $transition,
-        filter $transition;
+      transition: color 0.3s $ease-apple;
 
-      &:hover {
+      @include hover {
+        opacity: 1;
         color: $color-text;
       }
 
       &.active {
         color: $color-text;
-
-        &::before {
-          content: "";
-          position: absolute;
-          bottom: 0px;
-          left: 50%;
-          translate: -50%;
-          background-color: $color-text;
-          width: 60%;
-          height: 1px;
-
-          @media (max-width: $breakpoint-mobile-lg) {
-            display: none;
-          }
-
-          @media (max-width: $breakpoint-mobile) {
-            width: 80%;
-          }
-        }
       }
+
+      @media (max-width: $breakpoint-tablet) {
+        padding: 7px 10px;
+        font-size: $font-size-xs;
+      }
+    }
+
+    .navPill {
+      position: absolute;
+      inset: 0;
+      border-radius: $radius-pill;
+      background-color: rgba(10, 10, 10, 0.07);
+    }
+
+    .navLabel {
+      position: relative;
     }
   }
 
-  .lang {
-    display: flex;
-    gap: $spacing-sm;
-    align-items: center;
-
-    .langBtn {
-      padding: $spacing-xs;
-      min-width: 40px;
-      font-family: $font-mono;
-      font-size: $font-size-sm;
-      letter-spacing: $letter-spacing-wide;
-      border-radius: $radius-sm;
-      border: 1px solid transparent;
-      color: $color-text-muted;
-      background-color: transparent;
-      text-align: center;
-      transition: all $transition;
-
-      &.active {
-        color: $color-bg;
-        background-color: $color-text;
-        border-color: $color-text;
-      }
-
-      &:hover:not(.active) {
-        color: $color-text;
-        border-color: $color-text;
-      }
-    }
-  }
-
-  // Burger button
+  // Burger: two lines that morph into an X
   .burger {
-    display: none;
-    font-size: 24px;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .burgerLine {
+    position: absolute;
+    width: 20px;
+    height: 1.5px;
+    border-radius: 2px;
+    background-color: $color-text;
+  }
+}
+
+// Fullscreen mobile menu
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(#{$header-height} + #{$spacing-xl}) $spacing-md calc(#{$spacing-xl} + env(safe-area-inset-bottom));
+  background-color: $color-bg;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNavItem {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-md;
+  padding: $spacing-sm 0;
+  font-family: $font-sans;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: $color-text-muted;
+
+  &.active {
     color: $color-text;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: $spacing-xs;
-    transition: opacity $transition;
-
-    &:hover {
-      opacity: 0.7;
-    }
-
-    @media (max-width: $breakpoint-mobile-lg) {
-      display: block;
-    }
   }
 
-  // Mobile menu
-  .mobileMenu {
-    position: fixed;
-    top: $header-height;
-    left: 0;
-    right: 0;
-    background-color: $color-bg;
-    border-bottom: 1px solid $color-border;
-    padding: $spacing-lg;
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-lg;
-    z-index: 9998;
+  &:active {
+    opacity: 0.6;
   }
+}
 
-  .mobileNav {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-sm;
+.mobileNavLabel {
+  display: inline-block;
+  text-transform: lowercase;
 
-    .mobileNavItem {
-      font-family: $font-mono;
-      font-size: $font-size-sm;
-      letter-spacing: $letter-spacing-wide;
-      color: $color-text-muted;
-      background: none;
-      border: none;
-      padding: $spacing-sm 0;
-      text-align: left;
-      cursor: pointer;
-      transition: color $transition;
-
-      &:hover {
-        color: $color-text;
-      }
-
-      &.active {
-        color: $color-text;
-      }
-    }
+  // Nav labels are uppercase in the locales; "Om meg" reads better than "OM MEG" at this size
+  &::first-letter {
+    text-transform: uppercase;
   }
+}
 
-  .mobileLang {
-    display: flex;
-    gap: $spacing-sm;
-    padding-top: $spacing-sm;
-    border-top: 1px solid $color-border;
+.mobileNavNum {
+  font-family: $font-mono;
+  font-size: $font-size-xs;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-text-muted;
+  transform: translateY(-1.4em);
+}
 
-    .mobileLangBtn {
-      flex: 1;
-      padding: $spacing-xs;
-      font-family: $font-mono;
-      font-size: $font-size-sm;
-      letter-spacing: $letter-spacing-wide;
-      border-radius: $radius-sm;
-      border: 1px solid transparent;
-      color: $color-text-muted;
-      background-color: transparent;
-      text-align: center;
-      cursor: pointer;
-      transition: all $transition;
+.mobileLang {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
 
-      &.active {
-        color: $color-bg;
-        background-color: $color-text;
-        border-color: $color-text;
-      }
-
-      &:hover:not(.active) {
-        color: $color-text;
-        border-color: $color-text;
-      }
-    }
-  }
+.mobileLangLabel {
+  @include section-label;
+  text-transform: uppercase;
 }

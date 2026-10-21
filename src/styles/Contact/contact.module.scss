@@ -15,6 +15,10 @@
 .status {
   @include breadcrumb-style;
   text-align: right;
+
+  @include mobile {
+    text-align: left;
+  }
 }
 
 .hero {
@@ -81,18 +85,19 @@
     padding: $spacing-sm 0;
     background-color: transparent;
     font-family: $font-sans;
-    font-size: $font-size-md;
+    font-size: 16px;
     color: $color-text;
     width: 100%;
-    transition: border-bottom-color $transition;
+    transition: border-bottom-color 0.3s $ease-apple;
 
     &::placeholder {
       color: $color-text-placeholder;
     }
 
-    &:focus {
+    &:focus,
+    &:focus-visible {
       outline: none;
-      border-bottom-color: $color-text;
+      border-bottom-color: $color-border-strong;
     }
 
     &[aria-invalid='true'] {
@@ -121,27 +126,31 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  height: 48px;
+  align-self: flex-start;
+  min-width: 200px;
+  height: 52px;
+  padding: 0 28px;
   background-color: $color-text;
   color: $color-bg;
-  border: 1px solid $color-bg;
   font-family: $font-mono;
   font-size: $font-size-sm;
   font-weight: 600;
   letter-spacing: $letter-spacing-wide;
-  border-radius: $radius-md;
-  cursor: pointer;
-  transition: filter $transition;
-  margin-top: $spacing-md;
+  border-radius: $radius-pill;
+  margin-top: $spacing-sm;
+  transition: opacity 0.3s $ease-apple, box-shadow 0.3s $ease-apple;
 
-  &:hover:not(:disabled) {
-    filter: invert(1);
+  @include hover {
+    box-shadow: 0 10px 30px -12px rgba(10, 10, 10, 0.6);
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  @include mobile-lg {
+    align-self: stretch;
   }
 }
 

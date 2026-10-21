@@ -19,6 +19,10 @@
 .location {
   @include breadcrumb-style;
   text-align: right;
+
+  @include mobile {
+    text-align: left;
+  }
 }
 
 .projectsSection {
@@ -27,6 +31,10 @@
   border-top: 1px solid $color-border;
   border-bottom: 1px solid $color-border;
   padding: $spacing-3xl 0;
+
+  @include mobile-lg {
+    padding: $spacing-2xl 0;
+  }
 }
 
 .sectionLabel {
@@ -40,7 +48,7 @@
   margin-bottom: $spacing-xl;
 
   @include mobile {
-    font-size: $font-size-md;
+    font-size: 16px;
     margin-bottom: $spacing-lg;
   }
 }
@@ -54,68 +62,35 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 80px;
-  border-bottom: 1px solid $color-border;
+  min-height: 84px;
+  padding: 0;
   gap: $spacing-lg;
-  background: none;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  padding: 0 $spacing-xs 0 0;
-  cursor: pointer;
+  border-bottom: 1px solid $color-border;
+  border-radius: $radius-md;
   text-align: left;
-  transition: background-color $transition;
-  overflow: hidden;
   position: relative;
+  transition: background-color 0.3s $ease-apple;
+  -webkit-tap-highlight-color: transparent;
 
-  @include tablet {
-    height: auto;
-    min-height: 60px;
-    padding: $spacing-md $spacing-xs $spacing-md 0;
-    flex-wrap: wrap;
-    gap: $spacing-sm;
-  }
-
-  @include mobile {
-    gap: $spacing-xs;
-  }
-
-  &:hover .rowArrow {
-    transform: translateX(4px);
-  }
-
-  &:disabled {
-    cursor: default;
-    opacity: 0.5;
-    position: relative;
+  @include hover {
+    background-color: rgba(10, 10, 10, 0.03);
 
     .rowArrow {
-      opacity: 0;
+      transform: translateX(4px);
     }
 
-    &::after {
-      content: '[ COMING SOON ]';
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: $font-mono;
-      font-size: $font-size-xs;
-      letter-spacing: $letter-spacing-wide;
-      color: $color-text;
-      background: rgba($color-bg, 0.75);
-      opacity: 0;
-      transition: opacity $transition;
-    }
-
-    &:hover::after {
-      opacity: 1;
+    .rowTitle {
+      transform: translateX(6px);
     }
   }
 
   &:first-child {
     border-top: 1px solid $color-border;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
   }
 
   .rowNum {
@@ -128,17 +103,10 @@
 
   .rowTitle {
     font-size: $font-size-2xl;
-    letter-spacing: $letter-spacing-tight;
+    letter-spacing: -0.02em;
     color: $color-text;
     flex-shrink: 0;
-
-    @include tablet {
-      font-size: $font-size-xl;
-    }
-
-    @include mobile {
-      font-size: $font-size-lg;
-    }
+    transition: transform 0.5s $ease-apple;
   }
 
   .rowSub {
@@ -147,46 +115,18 @@
     font-size: $font-size-xl;
     color: $color-text-muted;
     flex: 1;
-
-    @include tablet {
-      font-size: $font-size-md;
-      flex-basis: 100%;
-      order: 3;
-    }
+    min-width: 0;
   }
 
   .rowStack {
     font-family: $font-mono;
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
     color: $color-text-muted;
-    margin-left: auto;
-    margin-right: $spacing-md;
     flex-shrink: 0;
-
-    @include tablet {
-      margin-left: 0;
-      margin-right: $spacing-sm;
-      font-size: $font-size-xs;
-    }
-
-    @include mobile {
-      display: none;
-    }
   }
 
   .rowStatus {
-    font-family: $font-mono;
-    font-size: $font-size-xs;
-    font-weight: 600;
-    letter-spacing: $letter-spacing-wide;
-    color: $color-bg;
-    background-color: $color-text;
-    padding: 4px $spacing-sm;
-    border-radius: $radius-md;
-    min-width: 90px;
-    text-align: center;
     flex-shrink: 0;
-    margin-right: $spacing-sm;
   }
 
   .rowArrow {
@@ -194,21 +134,76 @@
     font-size: $font-size-md;
     color: $color-text;
     flex-shrink: 0;
-    transition: transform $transition;
+    transition: transform 0.3s $ease-apple;
+  }
+
+  @include laptop {
+    .rowStack {
+      display: none;
+    }
+  }
+
+  // Phones: number + title + arrow on top, tagline and status underneath
+  @include tablet {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "num title arrow"
+      ". sub sub"
+      ". status status";
+    align-items: center;
+    gap: 2px $spacing-sm;
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+
+    .rowNum {
+      grid-area: num;
+    }
+
+    .rowTitle {
+      grid-area: title;
+      font-size: 20px;
+    }
+
+    .rowSub {
+      grid-area: sub;
+      font-size: 16px;
+    }
+
+    .rowStatus {
+      grid-area: status;
+      justify-self: start;
+      margin-top: 6px;
+    }
+
+    .rowArrow {
+      grid-area: arrow;
+    }
   }
 }
 
+.viewAllWrap {
+  align-self: flex-end;
+  margin-top: $spacing-lg;
+}
+
 .viewAll {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: $radius-pill;
+  box-shadow: inset 0 0 0 1px $color-border-strong;
   color: $color-text;
   font-family: $font-mono;
   font-size: $font-size-sm;
   letter-spacing: $letter-spacing-wide;
-  align-self: flex-end;
-  margin-top: $spacing-lg;
-  @include transition-opacity;
+  transition: background-color 0.3s $ease-apple, color 0.3s $ease-apple;
 
-  &:hover {
-    opacity: 0.7;
+  @include hover {
+    opacity: 1;
+    background-color: $color-text;
+    color: $color-bg;
   }
 }
 
@@ -217,9 +212,9 @@
   flex-direction: column;
   gap: $spacing-xl;
   border-bottom: 1px solid $color-border;
-  padding: $spacing-3xl 0;
+  padding: $spacing-4xl 0;
 
-  @include mobile {
+  @include mobile-lg {
     padding: $spacing-2xl 0;
     gap: $spacing-lg;
   }
@@ -233,8 +228,8 @@
       font-family: $font-sans;
       font-size: 64px;
       font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
       margin: 0;
 
       @include laptop {
@@ -246,27 +241,22 @@
       }
 
       @include mobile {
-        font-size: 28px;
-        line-height: 1.2;
+        font-size: 32px;
       }
 
       &:nth-child(2) {
         font-family: $font-serif;
         font-style: italic;
+        letter-spacing: -0.01em;
       }
     }
   }
 
   .body {
-    font-size: $font-size-md;
-    line-height: $line-height-loose;
+    font-size: 16px;
+    line-height: 1.6;
     color: $color-text-muted;
     max-width: 600px;
-
-    @include mobile {
-      font-size: $font-size-sm;
-      line-height: 1.6;
-    }
   }
 }
 
@@ -275,34 +265,83 @@
   flex-direction: column;
   gap: $spacing-lg;
   border-bottom: 1px solid $color-border;
-  padding: $spacing-3xl 0;
+  padding: $spacing-4xl 0;
 
-  @include mobile {
+  @include mobile-lg {
     padding: $spacing-2xl 0;
     gap: $spacing-md;
   }
 
   .emailLink {
+    display: inline-flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.3em;
+    width: fit-content;
+    max-width: 100%;
     font-family: $font-sans;
-    font-size: $font-size-4xl;
+    font-size: clamp(22px, 5vw, 56px);
     font-weight: 400;
-    line-height: $line-height-relaxed;
-    letter-spacing: $letter-spacing-title;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
     color: $color-text;
+
+    @include hover {
+      opacity: 1;
+
+      .emailText {
+        background-size: 100% 1px;
+      }
+
+      .emailArrow {
+        transform: translateX(8px);
+      }
+    }
+  }
+
+  .emailText {
+    overflow-wrap: anywhere;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0 1px;
+    transition: background-size 0.6s $ease-apple;
+  }
+
+  .emailArrow {
+    transition: transform 0.5s $ease-apple;
+  }
+}
+
+// Cursor-following preview of the hovered project
+.hoverPreview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 320px;
+  aspect-ratio: 16 / 10;
+  margin: 24px 0 0 24px;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  pointer-events: none;
+  box-shadow: $shadow-card-hover;
+  background-color: $color-surface;
+}
+
+.hoverPreviewImage {
+  position: absolute;
+  inset: 0;
+}
+
+// Bleed the row's hover background past the text, but only on pointer devices.
+// Higher specificity than the row itself so it wins over its width/padding.
+@media (hover: hover) and (pointer: fine) {
+  .projectsList > .projectRow {
+    width: calc(100% + #{$spacing-sm * 2});
+    margin-left: -$spacing-sm;
+    margin-right: -$spacing-sm;
+    padding-left: $spacing-sm;
     padding-right: $spacing-sm;
-
-    @include laptop {
-      font-size: $font-size-3xl;
-    }
-
-    @include tablet {
-      font-size: $font-size-2xl;
-    }
-
-    @include mobile {
-      font-size: $font-size-lg;
-      word-break: break-all;
-      padding-right: 0;
-    }
   }
 }

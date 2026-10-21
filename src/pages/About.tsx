@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import Footer from '@/components/Footer'
-import { useIsMobile } from '@/hooks/useIsMobile'
-import { useInView } from '@/hooks/useInView'
+import HeroTitle from '@/components/motion/HeroTitle'
+import { Reveal, RevealGroup, RevealItem } from '@/components/motion/Reveal'
+import { EASE_OUT_EXPO, VIEWPORT } from '@/shared/motion'
 import styles from '@/styles/About/about.module.scss'
 
 interface LearningItem {
@@ -17,31 +18,15 @@ interface Principle {
   body: string
 }
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-}
+const QUICK_INFO_KEYS = ['location', 'status', 'codingSince', 'focus', 'stack', 'editor'] as const
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-}
+// How far along each learning step is, in the same order as about.learning.items
+const LEARNING_PROGRESS = [1, 0.6, 0.25, 0.1]
 
 export default function About() {
   const { t } = useTranslation()
-  const isMobile = useIsMobile()
-
-  const infoRef = useInView({ threshold: 0.1 })
-  const learningRef = useInView({ threshold: 0.1 })
-  const principlesRef = useInView({ threshold: 0.1 })
+  const learningItems = t('about.learning.items', { returnObjects: true }) as LearningItem[]
+  const principles = t('about.principles.items', { returnObjects: true }) as Principle[]
 
   return (
     <>
@@ -51,159 +36,74 @@ export default function About() {
           <div className={styles.status}>{t('about.status')}</div>
         </div>
 
-        <div className={styles.hero}>
-          <h1>{t('about.hero.line1')}</h1>
-          <h1>{t('about.hero.line2')}</h1>
-          <h1>{t('about.hero.line3')}</h1>
-        </div>
+        <HeroTitle
+          className={styles.hero}
+          lines={[t('about.hero.line1'), t('about.hero.line2'), t('about.hero.line3')]}
+        />
 
         {/* Background + Quick Info side by side */}
-        {!isMobile && (
-          <motion.div
-            ref={infoRef.ref}
-            className={styles.infoRow}
-            initial="hidden"
-            animate={infoRef.isInView ? 'visible' : 'hidden'}
-            variants={sectionVariants}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <section className={styles.backgroundSection}>
-              <div className={styles.sectionLabel}>{t('about.background.label')}</div>
-              <p className={styles.body}>{t('about.background.body')}</p>
-            </section>
+        <div className={styles.infoRow}>
+          <Reveal as="section" className={styles.backgroundSection}>
+            <div className={styles.sectionLabel}>{t('about.background.label')}</div>
+            {t('about.background.body')
+              .split('\n\n')
+              .map((paragraph, i) => (
+                <p key={i} className={styles.body}>
+                  {paragraph}
+                </p>
+              ))}
+          </Reveal>
 
-            <section className={styles.quickInfoSection}>
-              <div className={styles.sectionLabel}>{t('about.quickInfo.label')}</div>
-              <div className={styles.infoGrid}>
-                {['location', 'status', 'codingSince', 'focus', 'stack', 'editor'].map((key) => (
-                  <div key={key} className={styles.infoItem}>
-                    <span className={styles.infoKey}>{t(`about.quickInfo.${key}.key`)}</span>
-                    <span className={styles.infoValue}>{t(`about.quickInfo.${key}.value`)}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-          </motion.div>
-        )}
+          <section className={styles.quickInfoSection}>
+            <Reveal className={styles.sectionLabel}>{t('about.quickInfo.label')}</Reveal>
+            <RevealGroup className={styles.infoGrid} stagger={0.05}>
+              {QUICK_INFO_KEYS.map((key) => (
+                <RevealItem key={key} className={styles.infoItem}>
+                  <span className={styles.infoKey}>{t(`about.quickInfo.${key}.key`)}</span>
+                  <span className={styles.infoValue}>{t(`about.quickInfo.${key}.value`)}</span>
+                </RevealItem>
+              ))}
+            </RevealGroup>
+          </section>
+        </div>
 
-        {isMobile && (
-          <div ref={infoRef.ref} className={styles.infoRow}>
-            <section className={styles.backgroundSection}>
-              <div className={styles.sectionLabel}>{t('about.background.label')}</div>
-              <p className={styles.body}>{t('about.background.body')}</p>
-            </section>
-
-            <section className={styles.quickInfoSection}>
-              <div className={styles.sectionLabel}>{t('about.quickInfo.label')}</div>
-              <div className={styles.infoGrid}>
-                {['location', 'status', 'codingSince', 'focus', 'stack', 'editor'].map((key) => (
-                  <div key={key} className={styles.infoItem}>
-                    <span className={styles.infoKey}>{t(`about.quickInfo.${key}.key`)}</span>
-                    <span className={styles.infoValue}>{t(`about.quickInfo.${key}.value`)}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-          </div>
-        )}
-
-        {!isMobile && (
-          <motion.section
-            ref={learningRef.ref}
-            className={styles.learningSection}
-            initial="hidden"
-            animate={learningRef.isInView ? 'visible' : 'hidden'}
-            variants={sectionVariants}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
+        <section className={styles.learningSection}>
+          <Reveal>
             <div className={styles.sectionLabel}>{t('about.learning.label')}</div>
             <p className={styles.learningSubtitle}>{t('about.learning.subtitle')}</p>
-            <motion.div
-              className={styles.learningItems}
-              variants={containerVariants}
-              initial="hidden"
-              animate={learningRef.isInView ? 'visible' : 'hidden'}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-            >
-              {(t('about.learning.items', { returnObjects: true }) as LearningItem[]).map((item) => (
-                <motion.div
-                  key={item.level}
-                  className={styles.learningItem}
-                  variants={itemVariants}
-                >
-                  <span className={styles.levelIndicator} />
-                  <span className={styles.levelName}>{item.name}</span>
-                  <span className={styles.levelStatus}>{item.status}</span>
-                  <span className={styles.levelNum}>{item.level}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.section>
-        )}
+          </Reveal>
+          <RevealGroup className={styles.learningItems}>
+            {learningItems.map((item, i) => (
+              <RevealItem key={item.level} className={styles.learningItem}>
+                <span className={styles.levelNum}>{item.level}</span>
+                <span className={styles.levelName}>{item.name}</span>
+                <span className={styles.levelStatus}>{item.status}</span>
+                <span className={styles.levelTrack} aria-hidden="true">
+                  <motion.span
+                    className={styles.levelFill}
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: LEARNING_PROGRESS[i] ?? 0 }}
+                    viewport={VIEWPORT}
+                    transition={{ duration: 1.4, ease: EASE_OUT_EXPO, delay: 0.2 + i * 0.08 }}
+                  />
+                </span>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </section>
 
-        {isMobile && (
-          <section ref={learningRef.ref} className={styles.learningSection}>
-            <div className={styles.sectionLabel}>{t('about.learning.label')}</div>
-            <p className={styles.learningSubtitle}>{t('about.learning.subtitle')}</p>
-            <div className={styles.learningItems}>
-              {(t('about.learning.items', { returnObjects: true }) as LearningItem[]).map((item) => (
-                <div key={item.level} className={styles.learningItem}>
-                  <span className={styles.levelIndicator} />
-                  <span className={styles.levelName}>{item.name}</span>
-                  <span className={styles.levelStatus}>{item.status}</span>
-                  <span className={styles.levelNum}>{item.level}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {!isMobile && (
-          <motion.section
-            ref={principlesRef.ref}
-            className={styles.principlesSection}
-            initial="hidden"
-            animate={principlesRef.isInView ? 'visible' : 'hidden'}
-            variants={sectionVariants}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <div className={styles.sectionLabel}>{t('about.principles.label')}</div>
-            <motion.div
-              className={styles.principlesList}
-              variants={containerVariants}
-              initial="hidden"
-              animate={principlesRef.isInView ? 'visible' : 'hidden'}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-            >
-              {(t('about.principles.items', { returnObjects: true }) as Principle[]).map((item) => (
-                <motion.div
-                  key={item.number}
-                  className={styles.principleCard}
-                  variants={itemVariants}
-                >
-                  <span className={styles.principleIndicator}>■</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.section>
-        )}
-
-        {isMobile && (
-          <section ref={principlesRef.ref} className={styles.principlesSection}>
-            <div className={styles.sectionLabel}>{t('about.principles.label')}</div>
-            <div className={styles.principlesList}>
-              {(t('about.principles.items', { returnObjects: true }) as Principle[]).map((item) => (
-                <div key={item.number} className={styles.principleCard}>
-                  <span className={styles.principleIndicator}>■</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+        <section className={styles.principlesSection}>
+          <Reveal className={styles.sectionLabel}>{t('about.principles.label')}</Reveal>
+          <RevealGroup className={styles.principlesList} stagger={0.1}>
+            {principles.map((item) => (
+              <RevealItem key={item.number} className={styles.principleCard}>
+                <span className={styles.principleNum}>{item.number}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </section>
         <Footer title={t('about.footer.next')} href="/contact" />
       </section>
     </>

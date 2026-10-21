@@ -12,7 +12,10 @@
     "home": "ГЛАВНАЯ",
     "projects": "ПРОЕКТЫ",
     "about": "ОБО МНЕ",
-    "contact": "КОНТАКТЫ"
+    "contact": "КОНТАКТЫ",
+    "menu": "Меню",
+    "closeMenu": "Закрыть меню",
+    "language": "Язык"
   },
   "home": {
     "breadcrumb": "001 / ГЛАВНАЯ",
@@ -122,6 +125,11 @@
     },
     "footer": {
       "next": "→ ОБО МНЕ"
+    },
+    "modal": {
+      "openDemo": "ОТКРЫТЬ ДЕМО",
+      "close": "Закрыть",
+      "loading": "ЗАГРУЖАЮ ВИДЕО"
     }
   },
   "about": {

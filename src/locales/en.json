@@ -12,7 +12,10 @@
     "home": "HOME",
     "projects": "PROJECTS",
     "about": "ABOUT",
-    "contact": "CONTACT"
+    "contact": "CONTACT",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "language": "Language"
   },
   "home": {
     "breadcrumb": "001 / HOME",
@@ -122,6 +125,11 @@
     },
     "footer": {
       "next": "→ ABOUT"
+    },
+    "modal": {
+      "openDemo": "OPEN DEMO",
+      "close": "Close",
+      "loading": "LOADING VIDEO"
     }
   },
   "about": {

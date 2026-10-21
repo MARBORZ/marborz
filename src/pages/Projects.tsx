@@ -1,52 +1,82 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import Footer from "@/components/Footer";
 import ProjectModal from "@/components/ProjectModal";
+import MediaImage from "@/components/MediaImage";
+import StatusPill from "@/components/StatusPill";
+import SegmentedControl from "@/components/SegmentedControl";
+import HeroTitle from "@/components/motion/HeroTitle";
+import { Reveal, RevealGroup } from "@/components/motion/Reveal";
+import { EASE_APPLE, revealVariants } from "@/shared/motion";
 import {
   allProjects,
   PROJECT_FILTERS,
-  type ProjectStatus,
+  type Project,
+  type ProjectFilter,
 } from "@/shared/projects";
-import { useIsMobile } from "@/hooks/useIsMobile";
-import { useInView } from "@/hooks/useInView";
 import styles from "@/styles/Projects/projects.module.scss";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12 },
-  },
+const filterKeys: Record<ProjectFilter, string> = {
+  all: "all",
+  active: "active",
+  shipped: "shipped",
+  experiment: "experiments",
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
+function FeaturedProject({
+  project,
+  onOpen,
+}: {
+  project: Project;
+  onOpen: (id: string) => void;
+}) {
+  const { t } = useTranslation();
+  const ref = useRef<HTMLButtonElement>(null);
+  // The screenshot settles from slightly zoomed in as the card scrolls into place
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "center center"],
+  });
+  const scale = useTransform(scrollYProgress, [0, 1], [1.12, 1]);
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-};
+  return (
+    <Reveal as="section" className={styles.featuredSection}>
+      <div className={styles.featuredLabel}>{t("projects.featured.label")}</div>
+      <motion.button
+        ref={ref}
+        type="button"
+        className={styles.featuredProject}
+        onClick={() => onOpen(project.id)}
+        disabled={project.status === "planned"}
+        whileTap={{ scale: 0.985 }}
+      >
+        <div className={styles.featuredMedia}>
+          <motion.div className={styles.featuredMediaInner} style={{ scale }}>
+            <MediaImage src={project.imageUrl} alt={project.title} eager />
+          </motion.div>
+        </div>
+        <div className={styles.featuredBody}>
+          <div className={styles.featuredMeta}>
+            <span className={styles.featuredNum}>/{project.number}</span>
+            <StatusPill status={project.status} />
+          </div>
+          <span className={styles.featuredTitle}>{project.title}</span>
+          <p className={styles.featuredDescription}>
+            {t(`projects.list.${project.id}.description`, {
+              defaultValue: project.stack,
+            })}
+          </p>
+        </div>
+      </motion.button>
+    </Reveal>
+  );
+}
 
 export default function Projects() {
   const { t } = useTranslation();
-  const [filter, setFilter] = useState<ProjectStatus | "all">("all");
+  const [filter, setFilter] = useState<ProjectFilter>("all");
   const [activeId, setActiveId] = useState<string | null>(null);
-  const isMobile = useIsMobile();
-
-  const featuredRef = useInView({ threshold: 0.1 });
-  const gridRef = useInView({ threshold: 0.1 });
-  const archiveRef = useInView({ threshold: 0.1 });
-
-  const filterKeys: Record<"all" | ProjectStatus, string> = {
-    all: "all",
-    active: "active",
-    shipped: "shipped",
-    experiment: "experiments",
-    planned: "planned",
-  };
 
   const handleCloseModal = useCallback(() => {
     setActiveId(null);
@@ -69,6 +99,11 @@ export default function Projects() {
       (p.status === "experiment" || p.status === "planned"),
   );
 
+  const filterOptions = PROJECT_FILTERS.map((f) => ({
+    value: f,
+    label: t(`projects.filter.${filterKeys[f]}`),
+  }));
+
   return (
     <>
       <section className={styles.page}>
@@ -77,291 +112,104 @@ export default function Projects() {
           <div className={styles.count}>{t("projects.count")}</div>
         </div>
 
-        <div className={styles.hero}>
-          <h1>{t("projects.hero.line1")}</h1>
-          <h1>{t("projects.hero.line2")}</h1>
-        </div>
+        <HeroTitle
+          className={styles.hero}
+          lines={[t("projects.hero.line1"), t("projects.hero.line2")]}
+        />
 
         <div className={styles.filters}>
           <span className={styles.filterLabel}>
             {t("projects.filter.label")}
           </span>
-
-          {/* Desktop filter buttons */}
-          <div className={styles.filterButtons}>
-            {PROJECT_FILTERS.map((f) => (
-              <button
-                key={f}
-                type="button"
-                className={filter === f ? styles.active : ""}
-                onClick={() => setFilter(f)}
-              >
-                {t(`projects.filter.${filterKeys[f]}`)}
-              </button>
-            ))}
-          </div>
-
-          {/* Mobile filter dropdown */}
-          <select
-            className={styles.filterSelect}
+          <SegmentedControl
+            id="project-filter"
+            options={filterOptions}
             value={filter}
-            onChange={(e) => setFilter(e.target.value as ProjectStatus | "all")}
-            aria-label={t("projects.filter.label")}
-          >
-            {PROJECT_FILTERS.map((f) => (
-              <option key={f} value={f}>
-                {t(`projects.filter.${filterKeys[f]}`)}
-              </option>
-            ))}
-          </select>
-
+            onChange={setFilter}
+            ariaLabel={t("projects.filter.label")}
+            className={styles.filterControl}
+          />
           <span className={styles.filterCount}>
             {filtered.length} / {allProjects.length}
           </span>
         </div>
 
-        {featured && !isMobile && (
+        {/* Re-keyed per filter so results crossfade and re-stagger */}
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
-            ref={featuredRef.ref}
-            className={styles.featuredSection}
-            initial="hidden"
-            animate={featuredRef.isInView ? "visible" : "hidden"}
-            variants={sectionVariants}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            key={filter}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.2, ease: EASE_APPLE } }}
+            transition={{ duration: 0.3, ease: EASE_APPLE }}
           >
-            <div className={styles.featuredLabel}>
-              {t("projects.featured.label")}
-            </div>
-            <button
-              type="button"
-              className={styles.featuredProject}
-              onClick={() => setActiveId(featured.id)}
-              disabled={featured.status === "planned"}
-            >
-              <div className={styles.featuredMedia}>
-                {featured.imageUrl ? (
-                  <img
-                    src={featured.imageUrl}
-                    alt={featured.title}
-                    className={styles.featuredImg}
-                  />
-                ) : (
-                  <span>[ DEMO VIDEO PLACEHOLDER ]</span>
-                )}
-              </div>
-              <div className={styles.featuredBody}>
-                <div className={styles.featuredMeta}>
-                  <span className={styles.featuredNum}>/{featured.number}</span>
-                  <span className={styles.featuredStatus}>
-                    {t(`common.statuses.${featured.status}`)}
-                  </span>
-                </div>
-                <span className={styles.featuredTitle}>{featured.title}</span>
-                <p className={styles.featuredDescription}>
-                  {t(`projects.list.${featured.id}.description`, {
-                    defaultValue: featured.stack,
-                  })}
-                </p>
-              </div>
-            </button>
+            {featured && (
+              <FeaturedProject project={featured} onOpen={setActiveId} />
+            )}
+
+            {gridProjects.length > 0 && (
+              <RevealGroup className={styles.projectsGrid} stagger={0.07}>
+                {gridProjects.map((project) => (
+                  <motion.button
+                    key={project.id}
+                    type="button"
+                    className={styles.projectCard}
+                    onClick={() => setActiveId(project.id)}
+                    disabled={project.status === "planned"}
+                    variants={revealVariants}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className={styles.cardMedia}>
+                      <MediaImage src={project.imageUrl} alt={project.title} />
+                    </div>
+                    <div className={styles.cardBody}>
+                      <div className={styles.cardMeta}>
+                        <span className={styles.cardNum}>/{project.number}</span>
+                        <StatusPill status={project.status} />
+                      </div>
+                      <span className={styles.cardTitle}>{project.title}</span>
+                      <p className={styles.cardDescription}>
+                        {t(`projects.list.${project.id}.description`, {
+                          defaultValue: project.stack,
+                        })}
+                      </p>
+                    </div>
+                  </motion.button>
+                ))}
+              </RevealGroup>
+            )}
+
+            {archiveProjects.length > 0 && (
+              <section className={styles.archiveSection}>
+                <Reveal className={styles.archiveLabel}>
+                  {t("projects.archive.label")}
+                </Reveal>
+                <RevealGroup className={styles.archiveList} stagger={0.06}>
+                  {archiveProjects.map((project) => (
+                    <motion.button
+                      key={project.id}
+                      type="button"
+                      className={styles.archiveRow}
+                      onClick={() => setActiveId(project.id)}
+                      disabled={project.status === "planned"}
+                      variants={revealVariants}
+                      whileTap={{ scale: 0.99 }}
+                    >
+                      <span className={styles.archiveNum}>/{project.number}</span>
+                      <span className={styles.archiveTitle}>{project.title}</span>
+                      <span className={styles.archiveSub}>
+                        {project.subtitle}
+                      </span>
+                      <span className={styles.archiveStack}>{project.stack}</span>
+                      <span className={styles.archiveArrow} aria-hidden="true">→</span>
+                    </motion.button>
+                  ))}
+                </RevealGroup>
+              </section>
+            )}
           </motion.div>
-        )}
+        </AnimatePresence>
 
-        {featured && isMobile && (
-          <div ref={featuredRef.ref} className={styles.featuredSection}>
-            <div className={styles.featuredLabel}>
-              {t("projects.featured.label")}
-            </div>
-            <button
-              type="button"
-              className={styles.featuredProject}
-              onClick={() => setActiveId(featured.id)}
-              disabled={featured.status === "planned"}
-            >
-              <div className={styles.featuredMedia}>
-                {featured.imageUrl ? (
-                  <img
-                    src={featured.imageUrl}
-                    alt={featured.title}
-                    className={styles.featuredImg}
-                  />
-                ) : (
-                  <span>[ DEMO VIDEO PLACEHOLDER ]</span>
-                )}
-              </div>
-              <div className={styles.featuredBody}>
-                <div className={styles.featuredMeta}>
-                  <span className={styles.featuredNum}>/{featured.number}</span>
-                  <span className={styles.featuredStatus}>
-                    {t(`common.statuses.${featured.status}`)}
-                  </span>
-                </div>
-                <span className={styles.featuredTitle}>{featured.title}</span>
-                <p className={styles.featuredDescription}>
-                  {t(`projects.list.${featured.id}.description`, {
-                    defaultValue: featured.stack,
-                  })}
-                </p>
-              </div>
-            </button>
-          </div>
-        )}
-
-        {gridProjects.length > 0 && !isMobile && (
-          <motion.div
-            ref={gridRef.ref}
-            className={styles.projectsGrid}
-            variants={containerVariants}
-            initial="hidden"
-            animate={gridRef.isInView ? "visible" : "hidden"}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          >
-            {gridProjects.map((project) => (
-              <motion.button
-                key={project.id}
-                type="button"
-                className={styles.projectCard}
-                onClick={() => setActiveId(project.id)}
-                disabled={project.status === "planned"}
-                variants={itemVariants}
-              >
-                <div className={styles.cardMedia}>
-                  {project.imageUrl ? (
-                    <img
-                      src={project.imageUrl}
-                      alt={project.title}
-                      className={styles.cardImg}
-                    />
-                  ) : (
-                    <span>[ IMAGE PLACEHOLDER ]</span>
-                  )}
-                </div>
-                <div className={styles.cardBody}>
-                  <div className={styles.cardMeta}>
-                    <span className={styles.cardNum}>/{project.number}</span>
-                    <span className={styles.cardStatus}>
-                      {t(`common.statuses.${project.status}`)}
-                    </span>
-                  </div>
-                  <span className={styles.cardTitle}>{project.title}</span>
-                  <p className={styles.cardDescription}>
-                    {t(`projects.list.${project.id}.description`, {
-                      defaultValue: project.stack,
-                    })}
-                  </p>
-                </div>
-              </motion.button>
-            ))}
-          </motion.div>
-        )}
-
-        {gridProjects.length > 0 && isMobile && (
-          <div ref={gridRef.ref} className={styles.projectsGrid}>
-            {gridProjects.map((project) => (
-              <button
-                key={project.id}
-                type="button"
-                className={styles.projectCard}
-                onClick={() => setActiveId(project.id)}
-                disabled={project.status === "planned"}
-              >
-                <div className={styles.cardMedia}>
-                  {project.imageUrl ? (
-                    <img
-                      src={project.imageUrl}
-                      alt={project.title}
-                      className={styles.cardImg}
-                    />
-                  ) : (
-                    <span>[ IMAGE PLACEHOLDER ]</span>
-                  )}
-                </div>
-                <div className={styles.cardBody}>
-                  <div className={styles.cardMeta}>
-                    <span className={styles.cardNum}>/{project.number}</span>
-                    <span className={styles.cardStatus}>
-                      {t(`common.statuses.${project.status}`)}
-                    </span>
-                  </div>
-                  <span className={styles.cardTitle}>{project.title}</span>
-                  <p className={styles.cardDescription}>
-                    {t(`projects.list.${project.id}.description`, {
-                      defaultValue: project.stack,
-                    })}
-                  </p>
-                </div>
-              </button>
-            ))}
-          </div>
-        )}
-
-        {archiveProjects.length > 0 && !isMobile && (
-          <motion.div
-            ref={archiveRef.ref}
-            className={styles.archiveSection}
-            initial="hidden"
-            animate={archiveRef.isInView ? "visible" : "hidden"}
-            variants={sectionVariants}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <div className={styles.archiveLabel}>
-              {t("projects.archive.label")}
-            </div>
-            <motion.div
-              className={styles.archiveList}
-              variants={containerVariants}
-              initial="hidden"
-              animate={archiveRef.isInView ? "visible" : "hidden"}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-            >
-              {archiveProjects.map((project) => (
-                <motion.button
-                  key={project.id}
-                  type="button"
-                  className={styles.archiveRow}
-                  onClick={() => setActiveId(project.id)}
-                  disabled={project.status === "planned"}
-                  variants={itemVariants}
-                >
-                  <span className={styles.archiveNum}>/{project.number}</span>
-                  <span className={styles.archiveTitle}>{project.title}</span>
-                  <span className={styles.archiveSub}>
-                    — {project.subtitle}
-                  </span>
-                  <span className={styles.archiveStack}>{project.stack}</span>
-                  <span className={styles.archiveArrow}>→</span>
-                </motion.button>
-              ))}
-            </motion.div>
-          </motion.div>
-        )}
-
-        {archiveProjects.length > 0 && isMobile && (
-          <div ref={archiveRef.ref} className={styles.archiveSection}>
-            <div className={styles.archiveLabel}>
-              {t("projects.archive.label")}
-            </div>
-            <div className={styles.archiveList}>
-              {archiveProjects.map((project) => (
-                <button
-                  key={project.id}
-                  type="button"
-                  className={styles.archiveRow}
-                  onClick={() => setActiveId(project.id)}
-                  disabled={project.status === "planned"}
-                >
-                  <span className={styles.archiveNum}>/{project.number}</span>
-                  <span className={styles.archiveTitle}>{project.title}</span>
-                  <span className={styles.archiveSub}>
-                    — {project.subtitle}
-                  </span>
-                  <span className={styles.archiveStack}>{project.stack}</span>
-                  <span className={styles.archiveArrow}>→</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
         <Footer title={t("projects.footer.next")} href="/about" />
       </section>
 

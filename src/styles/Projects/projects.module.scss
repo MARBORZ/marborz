@@ -23,16 +23,10 @@
 .filters {
   display: flex;
   align-items: center;
-  gap: $spacing-2xl;
-  position: relative;
+  gap: $spacing-lg;
   border-top: 1px solid $color-border;
   border-bottom: 1px solid $color-border;
-  padding: $spacing-lg 0;
-
-  @include tablet {
-    flex-wrap: wrap;
-    gap: $spacing-md;
-  }
+  padding: $spacing-md 0;
 
   @include mobile-lg {
     gap: $spacing-sm;
@@ -43,69 +37,14 @@
     font-size: $font-size-xs;
     letter-spacing: $letter-spacing-wide;
     color: $color-text-muted;
-  }
-
-  .filterButtons {
-    display: flex;
-    gap: $spacing-sm;
-    flex-wrap: wrap;
 
     @include mobile-lg {
       display: none;
     }
-
-    button {
-      padding: $spacing-xs $spacing-md;
-      border: 1px solid transparent;
-      border-radius: $radius-md;
-      font-family: $font-mono;
-      font-size: $font-size-xs;
-      font-weight: 600;
-      letter-spacing: $letter-spacing-wide;
-      color: $color-text;
-      background-color: transparent;
-      cursor: pointer;
-      @include transition-colors;
-
-      @include mobile {
-        padding: $spacing-xs $spacing-sm;
-        font-size: 10px;
-      }
-
-      &.active {
-        background-color: $color-text;
-        color: $color-bg;
-      }
-
-      &:hover:not(.active) {
-        border-color: $color-text;
-      }
-    }
   }
 
-  .filterSelect {
-    display: none;
-
-    @include mobile-lg {
-      display: block;
-      max-width: 200px;
-      padding: $spacing-xs $spacing-sm;
-      border: 1px solid $color-border;
-      border-radius: $radius-md;
-      font-family: $font-mono;
-      font-size: $font-size-xs;
-      font-weight: 600;
-      letter-spacing: $letter-spacing-wide;
-      color: $color-text;
-      background-color: $color-bg;
-      cursor: pointer;
-      transition: border-color $transition;
-
-      &:focus {
-        outline: none;
-        border-color: $color-text;
-      }
-    }
+  .filterControl {
+    min-width: 0;
   }
 
   .filterCount {
@@ -114,41 +53,17 @@
     letter-spacing: $letter-spacing-wide;
     color: $color-text-muted;
     margin-left: auto;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+
+    @include mobile-lg {
+      display: none;
+    }
   }
 }
 
-// Featured section
-.featuredSection {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-xl;
-  padding: $spacing-3xl 0;
-  border-bottom: 1px solid $color-border;
-}
-
-.featuredLabel {
-  font-family: $font-mono;
-  font-size: $font-size-sm;
-  letter-spacing: $letter-spacing-wide;
-  color: $color-text-muted;
-}
-
-.featuredProject {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border: 1.25px solid $color-border;
-  border-radius: 8px;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  text-align: left;
-  transition: opacity $transition, border-color $transition;
-
-  &:hover {
-    opacity: 0.85;
-  }
-
+// Shared "coming soon" overlay for planned projects
+@mixin coming-soon($size: $font-size-sm) {
   &:disabled {
     cursor: default;
     opacity: 0.5;
@@ -162,7 +77,7 @@
       align-items: center;
       justify-content: center;
       font-family: $font-mono;
-      font-size: $font-size-sm;
+      font-size: $size;
       letter-spacing: $letter-spacing-wide;
       color: $color-text;
       background: rgba($color-bg, 0.75);
@@ -176,54 +91,93 @@
   }
 }
 
-.featuredImg {
+// Card base: soft surface, hairline edge, lifts on hover
+@mixin card-surface {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-  display: block;
+  overflow: hidden;
+  border-radius: $radius-xl;
+  background-color: $color-card;
+  box-shadow: inset 0 0 0 1px $color-border, $shadow-card;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow 0.5s $ease-apple, translate 0.5s $ease-apple;
+  -webkit-tap-highlight-color: transparent;
+
+  @include hover {
+    translate: 0 -4px;
+    box-shadow: inset 0 0 0 1px rgba(10, 10, 10, 0.22), $shadow-card-hover;
+  }
+}
+
+// ── Featured ───────────────────────────────────────────
+
+.featuredSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  padding: $spacing-3xl 0;
+
+  @include mobile-lg {
+    padding: $spacing-2xl 0 $spacing-xl;
+  }
+}
+
+.featuredLabel {
+  @include section-label;
+}
+
+.featuredProject {
+  @include card-surface;
+  @include coming-soon;
+
+  @include hover {
+    .featuredMedia img {
+      scale: 1.03;
+    }
+  }
 }
 
 .featuredMedia {
+  position: relative;
   width: 100%;
-  height: 520px;
+  height: clamp(240px, 42vw, 560px);
+  overflow: hidden;
   background-color: $color-surface;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  @include tablet {
-    height: 360px;
+  img {
+    transition: scale 0.9s $ease-apple;
   }
 
-  @include mobile {
-    height: 240px;
+  @include mobile-lg {
+    height: auto;
+    aspect-ratio: 16 / 10;
   }
+}
 
-  span {
-    font-family: $font-mono;
-    font-size: $font-size-md;
-    letter-spacing: $letter-spacing-wide;
-    color: $color-text-muted;
-
-    @include mobile {
-      font-size: $font-size-sm;
-    }
-  }
+.featuredMediaInner {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 0;
 }
 
 .featuredBody {
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
+  gap: $spacing-sm;
   padding: $spacing-xl;
+
+  @include mobile-lg {
+    padding: $spacing-lg $spacing-md;
+  }
 }
 
 .featuredMeta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   gap: $spacing-xs;
 }
 
@@ -237,7 +191,8 @@
   font-family: $font-sans;
   font-size: $font-size-5xl;
   font-weight: 500;
-  letter-spacing: -0.03em;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
   color: $color-text;
 
   @include laptop {
@@ -249,129 +204,63 @@
   }
 
   @include mobile {
-    font-size: $font-size-2xl;
+    font-size: 30px;
   }
-}
-
-.featuredStatus {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px $spacing-sm;
-  background-color: $color-text;
-  color: $color-bg;
-  font-family: $font-mono;
-  font-size: $font-size-xs;
-  font-weight: 600;
-  letter-spacing: $letter-spacing-wide;
-  border-radius: $radius-md;
-  width: fit-content;
 }
 
 .featuredDescription {
   font-family: $font-sans;
-  font-size: $font-size-md;
+  font-size: 15px;
   line-height: $line-height-loose;
   color: $color-text-muted;
   max-width: 720px;
 }
 
-// Project cards grid (2x2)
+// ── Grid ───────────────────────────────────────────────
+
 .projectsGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: $spacing-2xl;
-  padding: $spacing-3xl 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $spacing-xl;
+  padding: 0 0 $spacing-3xl;
   border-bottom: 1px solid $color-border;
 
   @include tablet {
-    grid-template-columns: 1fr;
-    gap: $spacing-xl;
+    gap: $spacing-lg;
   }
 
-  @include mobile {
-    gap: $spacing-lg;
+  // Compact list on phones: thumbnail on the left, text on the right
+  @include mobile-lg {
+    grid-template-columns: 1fr;
+    gap: $spacing-sm;
+    padding-bottom: $spacing-2xl;
   }
 }
 
 .projectCard {
-  display: flex;
-  flex-direction: column;
-  border: 1.25px solid $color-border;
-  border-radius: 8px;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  text-align: left;
-  transition: opacity $transition, border-color $transition;
+  @include card-surface;
+  @include coming-soon;
 
-  &:hover {
-    opacity: 0.85;
-  }
-
-  &:disabled {
-    cursor: default;
-    opacity: 0.5;
-    position: relative;
-
-    &::after {
-      content: '[ COMING SOON ]';
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: $font-mono;
-      font-size: $font-size-sm;
-      letter-spacing: $letter-spacing-wide;
-      color: $color-text;
-      background: rgba($color-bg, 0.75);
-      opacity: 0;
-      transition: opacity $transition;
-    }
-
-    &:hover::after {
-      opacity: 1;
+  @include hover {
+    .cardMedia img {
+      scale: 1.04;
     }
   }
 
   .cardMedia {
     width: 100%;
-    height: 220px;
-    background-color: $color-surface;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
 
-    @include mobile {
-      height: 180px;
+    img {
+      transition: scale 0.9s $ease-apple;
     }
-
-    span {
-      font-family: $font-mono;
-      font-size: $font-size-sm;
-      letter-spacing: $letter-spacing-wide;
-      color: $color-text-muted;
-
-      @include mobile {
-        font-size: $font-size-xs;
-      }
-    }
-  }
-
-  .cardImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  object-position: top;
-    display: block;
   }
 
   .cardBody {
     display: flex;
     flex-direction: column;
-    gap: $spacing-sm;
+    gap: $spacing-xs;
     padding: $spacing-lg;
   }
 
@@ -379,7 +268,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
     gap: $spacing-xs;
   }
 
@@ -389,28 +277,13 @@
     color: $color-text-muted;
   }
 
-  .cardStatus {
-    font-family: $font-mono;
-    font-size: $font-size-xs;
-    font-weight: 600;
-    letter-spacing: $letter-spacing-wide;
-    color: $color-bg;
-    background-color: $color-text;
-    padding: 3px $spacing-sm;
-    border-radius: $radius-md;
-  }
-
   .cardTitle {
     font-family: $font-sans;
     font-size: $font-size-xl;
-    font-weight: 400;
-    letter-spacing: $letter-spacing-tight;
+    font-weight: 500;
+    letter-spacing: -0.02em;
     color: $color-text;
     margin-top: $spacing-xs;
-
-    @include mobile {
-      font-size: $font-size-lg;
-    }
   }
 
   .cardDescription {
@@ -419,21 +292,60 @@
     line-height: 1.55;
     color: $color-text-muted;
   }
+
+  @include mobile-lg {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    align-items: stretch;
+    border-radius: $radius-lg;
+
+    .cardMedia {
+      aspect-ratio: auto;
+      height: 100%;
+      min-height: 104px;
+    }
+
+    .cardBody {
+      gap: 4px;
+      padding: $spacing-sm $spacing-md $spacing-sm $spacing-sm;
+    }
+
+    .cardMeta {
+      order: 3;
+      margin-top: 4px;
+    }
+
+    .cardTitle {
+      margin-top: 0;
+      font-size: 16px;
+    }
+
+    .cardDescription {
+      font-size: 12px;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
 }
 
-// Experiments list
+// ── Archive ────────────────────────────────────────────
+
 .archiveSection {
   display: flex;
   flex-direction: column;
   gap: $spacing-lg;
   padding: $spacing-3xl 0;
+
+  @include mobile-lg {
+    padding: $spacing-2xl 0;
+  }
 }
 
 .archiveLabel {
-  font-family: $font-mono;
-  font-size: $font-size-sm;
-  letter-spacing: $letter-spacing-wide;
-  color: $color-text-muted;
+  @include section-label;
 }
 
 .archiveList {
@@ -445,68 +357,36 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 80px;
+  min-height: 80px;
   border-bottom: 1px solid $color-border;
   gap: $spacing-lg;
-  background: none;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  padding: 0 $spacing-xs 0 0;
-  cursor: pointer;
+  padding: 0;
+  border-radius: $radius-md;
   text-align: left;
-  overflow: hidden;
   position: relative;
-  transition: background-color $transition;
+  transition: background-color 0.3s $ease-apple;
+  -webkit-tap-highlight-color: transparent;
 
-  @include tablet {
-    height: auto;
-    min-height: 60px;
-    padding: $spacing-md $spacing-xs $spacing-md 0;
-    flex-wrap: wrap;
-    gap: $spacing-sm;
-  }
+  @include coming-soon($font-size-xs);
 
-  @include mobile {
-    gap: $spacing-xs;
-  }
-
-  &:hover .archiveArrow {
-    transform: translateX(4px);
-  }
-
-  &:disabled {
-    cursor: default;
-    opacity: 0.5;
-    position: relative;
+  @include hover {
+    background-color: rgba(10, 10, 10, 0.03);
 
     .archiveArrow {
-      opacity: 0;
-    }
-
-    &::after {
-      content: '[ COMING SOON ]';
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: $font-mono;
-      font-size: $font-size-xs;
-      letter-spacing: $letter-spacing-wide;
-      color: $color-text;
-      background: rgba($color-bg, 0.75);
-      opacity: 0;
-      transition: opacity $transition;
-    }
-
-    &:hover::after {
-      opacity: 1;
+      transform: translateX(4px);
     }
   }
 
   &:first-child {
     border-top: 1px solid $color-border;
+  }
+
+  @include tablet {
+    min-height: 64px;
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+    flex-wrap: wrap;
+    gap: 4px $spacing-sm;
   }
 
   .archiveNum {
@@ -520,15 +400,11 @@
   .archiveTitle {
     font-family: $font-sans;
     font-size: $font-size-2xl;
-    letter-spacing: $letter-spacing-tight;
+    letter-spacing: -0.02em;
     color: $color-text;
     flex-shrink: 0;
 
     @include tablet {
-      font-size: $font-size-xl;
-    }
-
-    @include mobile {
       font-size: $font-size-lg;
     }
   }
@@ -541,25 +417,21 @@
     flex: 1;
 
     @include tablet {
-      font-size: $font-size-md;
+      font-size: 16px;
       flex-basis: 100%;
       order: 3;
+      padding-left: calc(32px + #{$spacing-sm});
     }
   }
 
   .archiveStack {
     font-family: $font-mono;
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
     color: $color-text-muted;
     margin-left: auto;
     flex-shrink: 0;
 
-    @include tablet {
-      margin-left: 0;
-      font-size: $font-size-xs;
-    }
-
-    @include mobile {
+    @include mobile-lg {
       display: none;
     }
   }
@@ -569,6 +441,23 @@
     font-size: $font-size-md;
     color: $color-text;
     flex-shrink: 0;
-    transition: transform $transition;
+    margin-left: auto;
+    transition: transform 0.3s $ease-apple;
+
+    @include tablet {
+      margin-left: auto;
+    }
+  }
+}
+
+// Bleed the row's hover background past the text, but only on pointer devices.
+// Higher specificity than the row itself so it wins over its width/padding.
+@media (hover: hover) and (pointer: fine) {
+  .archiveList > .archiveRow {
+    width: calc(100% + #{$spacing-sm * 2});
+    margin-left: -$spacing-sm;
+    margin-right: -$spacing-sm;
+    padding-left: $spacing-sm;
+    padding-right: $spacing-sm;
   }
 }

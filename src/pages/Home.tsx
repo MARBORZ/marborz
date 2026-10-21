@@ -1,47 +1,38 @@
 import { useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion, useMotionValue, useSpring } from 'framer-motion'
 import Footer from '@/components/Footer'
 import ProjectModal from '@/components/ProjectModal'
+import MediaImage from '@/components/MediaImage'
+import StatusPill from '@/components/StatusPill'
+import HeroTitle from '@/components/motion/HeroTitle'
+import { Reveal, RevealGroup } from '@/components/motion/Reveal'
 import { allProjects } from '@/shared/projects'
 import { SITE_CONFIG } from '@/shared/config'
+import { EASE_APPLE, revealVariants } from '@/shared/motion'
 import { useIsMobile } from '@/hooks/useIsMobile'
-import { useInView } from '@/hooks/useInView'
 import styles from '@/styles/Home/home.module.scss'
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-}
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-}
+const previewProjects = allProjects.slice(0, 4)
 
 export default function Home() {
   const { t } = useTranslation()
   const [activeId, setActiveId] = useState<string | null>(null)
-  const isMobile = useIsMobile()
+  const [hoveredId, setHoveredId] = useState<string | null>(null)
+  const isTouch = useIsMobile(1025)
 
-  const projectsRef = useInView({ threshold: 0.1 })
-  const approachRef = useInView({ threshold: 0.1 })
-  const ctaRef = useInView({ threshold: 0.1 })
+  // Floating preview that trails the cursor over the project list
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const x = useSpring(mouseX, { stiffness: 350, damping: 35, mass: 0.6 })
+  const y = useSpring(mouseY, { stiffness: 350, damping: 35, mass: 0.6 })
 
   const handleCloseModal = useCallback(() => {
     setActiveId(null)
   }, [])
 
-  const previewProjects = allProjects.slice(0, 4)
+  const hovered = previewProjects.find((p) => p.id === hoveredId)
 
   return (
     <>
@@ -51,135 +42,110 @@ export default function Home() {
           <div className={styles.location}>{t('home.location')}</div>
         </div>
 
-        <div className={styles.hero}>
-          <h1>{t('home.hero.line1')}</h1>
-          <h1>{t('home.hero.line2')}</h1>
-          <h1>{t('home.hero.line3')}</h1>
-        </div>
+        <HeroTitle
+          className={styles.hero}
+          lines={[t('home.hero.line1'), t('home.hero.line2'), t('home.hero.line3')]}
+        />
 
-        {!isMobile ? (
-          <motion.section
-            ref={projectsRef.ref}
-            className={styles.projectsSection}
-            initial="hidden"
-            animate={projectsRef.isInView ? 'visible' : 'hidden'}
-            variants={sectionVariants}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
+        <section className={styles.projectsSection}>
+          <Reveal>
             <div className={styles.sectionLabel}>{t('home.projects.label')}</div>
             <p className={styles.projectsSubtitle}>{t('home.projects.subtitle')}</p>
+          </Reveal>
 
-            <motion.div
-              className={styles.projectsList}
-              variants={containerVariants}
-              initial="hidden"
-              animate={projectsRef.isInView ? 'visible' : 'hidden'}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-            >
-              {previewProjects.map((project) => (
-                <motion.button
-                  key={project.id}
-                  type="button"
-                  className={styles.projectRow}
-                  onClick={() => setActiveId(project.id)}
-                  disabled={project.status === 'planned'}
-                  variants={itemVariants}
-                >
-                  <span className={styles.rowNum}>/{project.number}</span>
-                  <span className={styles.rowTitle}>{project.title}</span>
-                  <span className={styles.rowSub}>— {project.subtitle}</span>
-                  <span className={styles.rowStack}>{project.stack}</span>
-                  <span className={styles.rowStatus}>{t(`common.statuses.${project.status}`)}</span>
-                  <span className={styles.rowArrow}>→</span>
-                </motion.button>
-              ))}
-            </motion.div>
+          <RevealGroup
+            className={styles.projectsList}
+            onPointerEnter={(e) => {
+              // Start at the cursor instead of springing in from the corner
+              mouseX.set(e.clientX)
+              mouseY.set(e.clientY)
+              x.jump(e.clientX)
+              y.jump(e.clientY)
+            }}
+            onPointerMove={(e) => {
+              mouseX.set(e.clientX)
+              mouseY.set(e.clientY)
+            }}
+            onPointerLeave={() => setHoveredId(null)}
+          >
+            {previewProjects.map((project) => (
+              <motion.button
+                key={project.id}
+                type="button"
+                className={styles.projectRow}
+                onClick={() => {
+                  setHoveredId(null)
+                  setActiveId(project.id)
+                }}
+                onPointerEnter={(e) => {
+                  if (e.pointerType === 'mouse' && !isTouch) setHoveredId(project.id)
+                }}
+                disabled={project.status === 'planned'}
+                variants={revealVariants}
+                whileTap={{ scale: 0.99 }}
+              >
+                <span className={styles.rowNum}>/{project.number}</span>
+                <span className={styles.rowTitle}>{project.title}</span>
+                <span className={styles.rowSub}>{project.subtitle}</span>
+                <span className={styles.rowStack}>{project.stack}</span>
+                <StatusPill status={project.status} className={styles.rowStatus} />
+                <span className={styles.rowArrow} aria-hidden="true">→</span>
+              </motion.button>
+            ))}
+          </RevealGroup>
 
+          <Reveal className={styles.viewAllWrap}>
             <Link to="/projects" className={styles.viewAll}>
               {t('home.projects.viewAll')}
             </Link>
-          </motion.section>
-        ) : (
-          <section ref={projectsRef.ref} className={styles.projectsSection}>
-            <div className={styles.sectionLabel}>{t('home.projects.label')}</div>
-            <p className={styles.projectsSubtitle}>{t('home.projects.subtitle')}</p>
+          </Reveal>
+        </section>
 
-            <div className={styles.projectsList}>
-              {previewProjects.map((project) => (
-                <button
-                  key={project.id}
-                  type="button"
-                  className={styles.projectRow}
-                  onClick={() => setActiveId(project.id)}
-                  disabled={project.status === 'planned'}
-                >
-                  <span className={styles.rowNum}>/{project.number}</span>
-                  <span className={styles.rowTitle}>{project.title}</span>
-                  <span className={styles.rowSub}>— {project.subtitle}</span>
-                  <span className={styles.rowStack}>{project.stack}</span>
-                  <span className={styles.rowStatus}>{t(`common.statuses.${project.status}`)}</span>
-                  <span className={styles.rowArrow}>→</span>
-                </button>
-              ))}
-            </div>
+        <Reveal as="section" className={styles.approach}>
+          <div className={styles.sectionLabel}>{t('home.approach.label')}</div>
+          <div className={styles.approachContent}>
+            <h3>{t('home.approach.line1')}</h3>
+            <h3>{t('home.approach.line2')}</h3>
+          </div>
+          <p className={styles.body}>{t('home.approach.body')}</p>
+        </Reveal>
 
-            <Link to="/projects" className={styles.viewAll}>
-              {t('home.projects.viewAll')}
-            </Link>
-          </section>
-        )}
-
-        {!isMobile ? (
-          <motion.section
-            ref={approachRef.ref}
-            className={styles.approach}
-            initial="hidden"
-            animate={approachRef.isInView ? 'visible' : 'hidden'}
-            variants={sectionVariants}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <div className={styles.sectionLabel}>{t('home.approach.label')}</div>
-            <div className={styles.approachContent}>
-              <h3>{t('home.approach.line1')}</h3>
-              <h3>{t('home.approach.line2')}</h3>
-            </div>
-            <p className={styles.body}>{t('home.approach.body')}</p>
-          </motion.section>
-        ) : (
-          <section ref={approachRef.ref} className={styles.approach}>
-            <div className={styles.sectionLabel}>{t('home.approach.label')}</div>
-            <div className={styles.approachContent}>
-              <h3>{t('home.approach.line1')}</h3>
-              <h3>{t('home.approach.line2')}</h3>
-            </div>
-            <p className={styles.body}>{t('home.approach.body')}</p>
-          </section>
-        )}
-
-        {!isMobile ? (
-          <motion.section
-            ref={ctaRef.ref}
-            className={styles.cta}
-            initial="hidden"
-            animate={ctaRef.isInView ? 'visible' : 'hidden'}
-            variants={sectionVariants}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <div className={styles.sectionLabel}>{t('home.cta.label')}</div>
-            <a href={`mailto:${SITE_CONFIG.email}`} className={styles.emailLink}>
-              {SITE_CONFIG.email} →
-            </a>
-          </motion.section>
-        ) : (
-          <section ref={ctaRef.ref} className={styles.cta}>
-            <div className={styles.sectionLabel}>{t('home.cta.label')}</div>
-            <a href={`mailto:${SITE_CONFIG.email}`} className={styles.emailLink}>
-              {SITE_CONFIG.email} →
-            </a>
-          </section>
-        )}
+        <Reveal as="section" className={styles.cta}>
+          <div className={styles.sectionLabel}>{t('home.cta.label')}</div>
+          <a href={`mailto:${SITE_CONFIG.email}`} className={styles.emailLink}>
+            <span className={styles.emailText}>{SITE_CONFIG.email}</span>
+            <span className={styles.emailArrow} aria-hidden="true">→</span>
+          </a>
+        </Reveal>
         <Footer title={t('home.footer.next')} href="/projects" />
       </section>
+
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            className={styles.hoverPreview}
+            style={{ x, y }}
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.85 }}
+            transition={{ duration: 0.35, ease: EASE_APPLE }}
+            aria-hidden="true"
+          >
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={hovered.id}
+                className={styles.hoverPreviewImage}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25, ease: EASE_APPLE }}
+              >
+                <MediaImage src={hovered.imageUrl} alt="" eager />
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <ProjectModal projectId={activeId} onClose={handleCloseModal} />
     </>

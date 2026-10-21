@@ -13,15 +13,20 @@ button {
   cursor: pointer;
   font-family: inherit;
   font-size: inherit;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
   transition: background-color $transition, opacity $transition, color $transition, border-color $transition;
+}
 
-  &:focus-visible {
-    outline: none;
-  }
+:focus-visible {
+  outline: 2px solid $color-border-strong;
+  outline-offset: 3px;
+  border-radius: $radius-md;
+}
 
-  &:hover {
-    background-color: rgba(10, 10, 10, 0.04);
-  }
+::selection {
+  background-color: $color-text;
+  color: $color-bg;
 }
 
 html,
@@ -30,23 +35,30 @@ body,
   height: 100%;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background-color: $color-bg;
   color: $color-text;
   font-family: $font-sans;
   font-size: $font-size-md;
+  font-optical-sizing: auto;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
 a {
   color: $color-text;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
   transition: opacity $transition;
 
-  &:hover {
+  @include hover {
     opacity: 0.7;
   }
 }
@@ -56,9 +68,10 @@ textarea {
   border: 1px solid $color-border;
   padding: $spacing-sm $spacing-md;
   font-family: $font-sans;
-  font-size: $font-size-md;
+  font-size: 16px; // 16px stops iOS Safari from zooming on focus
   background-color: transparent;
   color: $color-text;
+  border-radius: 0;
   transition: border-color $transition;
 
   &::placeholder {
@@ -67,7 +80,7 @@ textarea {
 
   &:focus {
     outline: none;
-    border-color: $color-text;
+    border-color: $color-border-strong;
   }
 }
 
@@ -75,6 +88,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   line-height: 1.15;
   letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 h1 {
@@ -91,4 +109,14 @@ h3 {
 
 h4 {
   font-size: $font-size-xl;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 150% 0;
+  }
+
+  to {
+    background-position: -50% 0;
+  }
 }

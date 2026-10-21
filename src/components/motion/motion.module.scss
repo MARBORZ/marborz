@@ -1,0 +1,12 @@
+// Mask for line-by-line headline reveal. The padding keeps descenders (g, j, y) from being clipped.
+.maskLine {
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em !important;
+}
+
+.maskInner {
+  display: block;
+  transform-origin: 0 100%;
+  will-change: transform;
+}

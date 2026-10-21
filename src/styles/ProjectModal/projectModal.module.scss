@@ -3,26 +3,69 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 10, 10, 0.7);
+  background: rgba(10, 10, 10, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
   padding: $spacing-lg;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
 
-  @media (max-width: $breakpoint-mobile) {
-    padding: $spacing-sm;
+  @media (max-width: $breakpoint-mobile-lg) {
+    align-items: flex-end;
+    padding: 0;
   }
 }
 
 .modal {
+  position: relative;
   background: $color-bg;
   width: 100%;
-  max-width: 860px;
+  max-width: 880px;
   max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-modal;
+
+  @media (max-width: $breakpoint-mobile-lg) {
+    max-height: 92dvh;
+    border-radius: $radius-xl $radius-xl 0 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+// Scrolls inside the panel so the close button and grabber stay put
+.scroll {
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
-  border: 1px solid $color-border;
+  overscroll-behavior: contain;
+}
+
+// ── Mobile sheet grabber ───────────────────────────────
+
+.grabberArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 14px;
+  touch-action: none;
+  cursor: grab;
+}
+
+.grabber {
+  width: 40px;
+  height: 5px;
+  border-radius: $radius-pill;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 4px rgba(10, 10, 10, 0.35);
 }
 
 // ── Media ──────────────────────────────────────────────
@@ -33,42 +76,75 @@
   background: $color-surface;
   overflow: hidden;
   position: relative;
+
+  @media (max-width: $breakpoint-mobile-lg) {
+    touch-action: none;
+  }
 }
 
+.poster,
 .iframe,
-.video,
-.image {
+.video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  border: none;
+}
+
+.video {
   object-fit: cover;
   object-position: top;
-  border: none;
   display: block;
 }
 
-.placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
+.loadingChip {
+  position: absolute;
+  left: $spacing-md;
+  bottom: $spacing-md;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: $radius-pill;
   font-family: $font-mono;
-  font-size: $font-size-sm;
-  color: $color-text-muted;
-  letter-spacing: $letter-spacing-label;
+  font-size: 10px;
+  letter-spacing: $letter-spacing-wide;
+  color: #fff;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.loadingDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: blink 1s $ease-apple infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.25;
+  }
 }
 
 // ── Body ───────────────────────────────────────────────
 
 .body {
-  padding: $spacing-xl $spacing-xl $spacing-2xl;
+  padding: $spacing-xl $spacing-2xl $spacing-2xl;
 
   @media (max-width: $breakpoint-tablet) {
     padding: $spacing-lg $spacing-lg $spacing-xl;
   }
 
   @media (max-width: $breakpoint-mobile) {
-    padding: $spacing-md $spacing-md $spacing-lg;
+    padding: $spacing-lg $spacing-md $spacing-xl;
   }
 }
 
@@ -92,45 +168,48 @@
   letter-spacing: $letter-spacing-label;
 }
 
-.statusBadge {
-  font-family: $font-mono;
-  font-size: $font-size-xs;
-  letter-spacing: $letter-spacing-label;
-  padding: 3px 8px;
-  background: $color-text;
-  color: $color-bg;
-}
-
 .closeBtn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  color: $color-text-muted;
-  padding: 4px 8px;
-  line-height: 1;
-  transition: color $transition;
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  z-index: 4;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(10, 10, 10, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background-color $transition, transform 0.3s $ease-apple;
 
-  &:hover {
-    color: $color-text;
+  @include hover {
+    background: rgba(10, 10, 10, 0.75);
+    transform: scale(1.06);
+  }
+
+  &:active {
+    transform: scale(0.94);
   }
 }
 
 .title {
   font-family: $font-sans;
-  font-size: $font-size-3xl;
-  font-weight: 700;
-  letter-spacing: $letter-spacing-title;
-  line-height: 1.1;
+  font-size: $font-size-4xl;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
   margin-bottom: $spacing-sm;
   color: $color-text;
 
   @media (max-width: $breakpoint-tablet) {
-    font-size: $font-size-2xl;
+    font-size: $font-size-3xl;
   }
 
   @media (max-width: $breakpoint-mobile) {
-    font-size: $font-size-xl;
+    font-size: $font-size-2xl;
   }
 }
 
@@ -138,7 +217,7 @@
   font-family: $font-mono;
   font-size: $font-size-sm;
   color: $color-text-muted;
-  letter-spacing: $letter-spacing-wide;
+  letter-spacing: 0.02em;
   margin-bottom: $spacing-lg;
 }
 
@@ -146,27 +225,45 @@
   font-family: $font-sans;
   font-size: $font-size-lg;
   color: $color-text;
-  line-height: 1.65;
+  line-height: 1.6;
   max-width: 640px;
   margin-bottom: $spacing-xl;
 
   @media (max-width: $breakpoint-mobile) {
-    font-size: $font-size-md;
+    font-size: 16px;
   }
 }
 
 .demoLink {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
   font-family: $font-mono;
   font-size: $font-size-sm;
-  letter-spacing: $letter-spacing-label;
+  font-weight: 600;
+  letter-spacing: $letter-spacing-wide;
   color: $color-bg;
   background: $color-text;
-  padding: 10px 20px;
+  padding: 12px 22px;
+  border-radius: $radius-pill;
   text-decoration: none;
-  transition: opacity $transition;
 
-  &:hover {
-    opacity: 0.75;
+  @include hover {
+    opacity: 0.85;
+
+    .demoArrow {
+      transform: translate(2px, -2px);
+    }
   }
+
+  @media (max-width: $breakpoint-mobile-lg) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.demoArrow {
+  display: inline-block;
+  transition: transform 0.3s $ease-apple;
 }

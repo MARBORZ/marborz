@@ -12,7 +12,10 @@
     "home": "HJEM",
     "projects": "PROSJEKTER",
     "about": "OM MEG",
-    "contact": "KONTAKT"
+    "contact": "KONTAKT",
+    "menu": "Meny",
+    "closeMenu": "Lukk meny",
+    "language": "Språk"
   },
   "home": {
     "breadcrumb": "001 / HJEM",
@@ -122,6 +125,11 @@
     },
     "footer": {
       "next": "→ OM MEG"
+    },
+    "modal": {
+      "openDemo": "ÅPNE DEMO",
+      "close": "Lukk",
+      "loading": "LASTER VIDEO"
     }
   },
   "about": {

@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Footer from '@/components/Footer'
+import HeroTitle from '@/components/motion/HeroTitle'
+import { Reveal } from '@/components/motion/Reveal'
 import { SITE_CONFIG } from '@/shared/config'
-import { useIsMobile } from '@/hooks/useIsMobile'
-import { useInView } from '@/hooks/useInView'
+import { EASE_APPLE } from '@/shared/motion'
 import styles from '@/styles/Contact/contact.module.scss'
 
 interface ContactFormData {
@@ -14,15 +15,8 @@ interface ContactFormData {
   message: string
 }
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-}
-
 export default function Contact() {
   const { t } = useTranslation()
-  const isMobile = useIsMobile()
-  const contentRef = useInView({ threshold: 0.1 })
 
   const {
     register,
@@ -58,7 +52,7 @@ export default function Contact() {
 
   const contactInner = (
     <>
-      <section className={styles.formSection}>
+      <Reveal as="section" className={styles.formSection}>
         <div className={styles.sectionLabel}>{t("contact.form.label")}</div>
         <form
           className={styles.contactForm}
@@ -132,24 +126,45 @@ export default function Contact() {
             )}
           </div>
 
-          <button
+          <motion.button
             type="submit"
             className={styles.submitBtn}
             disabled={isSubmitting}
+            whileTap={{ scale: 0.97 }}
           >
             {isSubmitting ? "Sending..." : t("contact.form.send")}
-          </button>
+          </motion.button>
 
-          {errors.root && (
-            <span className={styles.errorMessage}>{errors.root.message}</span>
-          )}
-          {success && (
-            <span className={styles.successMessage}>Message sent ✓</span>
-          )}
+          <AnimatePresence>
+            {errors.root && (
+              <motion.span
+                key="error"
+                className={styles.errorMessage}
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: EASE_APPLE }}
+              >
+                {errors.root.message}
+              </motion.span>
+            )}
+            {success && (
+              <motion.span
+                key="success"
+                className={styles.successMessage}
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: EASE_APPLE }}
+              >
+                Message sent ✓
+              </motion.span>
+            )}
+          </AnimatePresence>
         </form>
-      </section>
+      </Reveal>
 
-      <section className={styles.directContact}>
+      <Reveal as="section" className={styles.directContact} delay={0.1}>
         <div className={styles.sectionLabel}>
           {t("contact.direct.label")}
         </div>
@@ -203,7 +218,7 @@ export default function Contact() {
             </span>
           </div>
         </div>
-      </section>
+      </Reveal>
     </>
   )
 
@@ -215,27 +230,12 @@ export default function Contact() {
           <div className={styles.status}>{t("contact.status")}</div>
         </div>
 
-        <div className={styles.hero}>
-          <h1>{t("contact.hero.line1")}</h1>
-          <h1>{t("contact.hero.line2")}</h1>
-        </div>
+        <HeroTitle
+          className={styles.hero}
+          lines={[t("contact.hero.line1"), t("contact.hero.line2")]}
+        />
 
-        {!isMobile ? (
-          <motion.div
-            ref={contentRef.ref}
-            className={styles.contactContent}
-            initial="hidden"
-            animate={contentRef.isInView ? 'visible' : 'hidden'}
-            variants={sectionVariants}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            {contactInner}
-          </motion.div>
-        ) : (
-          <div ref={contentRef.ref} className={styles.contactContent}>
-            {contactInner}
-          </div>
-        )}
+        <div className={styles.contactContent}>{contactInner}</div>
         <Footer title={t("contact.footer.next")} href="/" />
       </section>
     </>
